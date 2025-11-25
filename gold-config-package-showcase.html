@@ -770,7 +770,7 @@
                                     </div>
                                 </div>
                                 <div class="text-xs text-kaptio-grey-300 italic bg-kaptio-primary-50 rounded p-2">
-                                    Why: "Standard" mode cascades room type selection across all hotels. Customer selects "Twin" once, applies everywhere.
+                                    Why: Enables room type selection. For combo packages with multiple segments, use "Package Levels" mode for cross-segment bed type defaulting.
                                 </div>
                             </div>
                         </div>
@@ -845,7 +845,7 @@
                 </div>
 
                 <div class="mt-8 bg-kaptio-primary-50 rounded-lg p-4 text-xs text-kaptio-grey-300">
-                    <strong class="text-kaptio-primary-800">For Implementation Teams:</strong> Package Type field = "Principle", Categories include "Land Only", Service Level Mode = "Standard"
+                    <strong class="text-kaptio-primary-800">For Implementation Teams:</strong> Package Type field = "Principle", Categories include "Land Only", Service Level Mode = "Standard" (basic room type selection)
                 </div>
             </div>
 
@@ -1465,11 +1465,11 @@
                 <div class="mt-6 bg-kaptio-primary-800 text-white rounded-xl p-6">
                     <h4 class="text-kaptio-yellow-400 mb-4 font-semibold text-lg">✨ New Feature: Bed Type Defaulting Across Segments</h4>
                     <p class="text-lg opacity-90 mb-4">
-                        When Service Level Mode = "Standard," room type selection cascades across BOTH tour segments automatically.
+                        When Service Level Mode = "Package Levels," room type selection cascades across BOTH tour segments automatically.
                     </p>
                     
                     <div class="bg-white bg-opacity-10 rounded-lg p-4 mb-4">
-                        <div class="font-semibold mb-3 text-sm">How It Works:</div>
+                        <div class="font-semibold mb-3 text-sm">How It Will Work:</div>
                         <div class="space-y-2 text-sm">
                             <div class="flex items-start space-x-2">
                                 <span class="text-kaptio-yellow-400">1.</span>
@@ -1502,10 +1502,9 @@
                         </p>
                     </div>
 
-                    <div class="mt-4 text-xs opacity-75 italic">
-                        For Implementation Teams: This is enabled by Service Level Mode = "Standard" on the package. 
-                        PackageServiceLevelAssignments link all room configurations to the same service levels (Single/Double/Twin), 
-                        enabling cross-segment bed type mapping.
+                    <div class="mt-4 bg-kaptio-yellow-400 rounded-lg p-3 text-kaptio-black text-xs">
+                        <strong>📅 Feature Status:</strong> This bed type defaulting capability for combo packages is being implemented as part of the Package Levels feature. 
+                        Configure Service Level Mode = "Package Levels" to enable cross-segment room type cascading.
                     </div>
                 </div>
             </div>
@@ -2458,7 +2457,7 @@
                                     <option>Standard</option>
                                 </select>
                                 <div class="text-xs text-kaptio-grey-300">
-                                    Enables bed type defaulting - customer selects Twin once, applies to all hotels
+                                    Enables room type selection. For combo packages, use "Package Levels" mode for cross-segment bed type defaulting.
                                 </div>
                             </div>
                         </div>
