@@ -2075,7 +2075,7 @@
                     <div class="bg-kaptio-yellow-200 rounded-lg p-6">
                         <div class="text-3xl font-bold text-kaptio-black mb-2">3</div>
                         <div class="text-sm text-kaptio-grey-300 mb-1">Units Reserved</div>
-                        <div class="text-xs text-kaptio-black">(Quotes)</div>
+                        <div class="text-xs text-kaptio-black">(Options)</div>
                     </div>
                     <div class="bg-green-50 rounded-lg p-6">
                         <div class="text-3xl font-bold text-green-600 mb-2">5</div>
@@ -2085,6 +2085,30 @@
                 </div>
                 <div class="text-xs text-kaptio-grey-300 mt-4 text-center italic">
                     Formula: Available = Total - Booked - Reserved
+                </div>
+
+                <div class="mt-6 bg-kaptio-yellow-400 bg-opacity-20 rounded-lg p-4">
+                    <h4 class="font-semibold text-kaptio-black mb-3 text-sm">💡 Advanced: Room Type-Specific Inventory</h4>
+                    <p class="text-kaptio-black text-sm leading-relaxed mb-3">
+                        You can control inventory separately for each room type. This is useful when you have limited single rooms but plenty of doubles.
+                    </p>
+                    <div class="bg-white rounded p-3 text-xs">
+                        <div class="mb-2 font-semibold text-kaptio-primary-800">Example Scenario:</div>
+                        <div class="space-y-1 text-kaptio-grey-300">
+                            <div>• Hotel Contract: 20 total rooms</div>
+                            <div>• But only: 5 singles, 15 doubles/twins</div>
+                        </div>
+                        <div class="mt-3 mb-2 font-semibold text-kaptio-primary-800">How to Configure:</div>
+                        <div class="space-y-1 text-kaptio-black">
+                            <div>1. Create Inventory Contract A: "Hotel - Single Rooms" (5 capacity)</div>
+                            <div>2. Create Inventory Contract B: "Hotel - Double/Twin Rooms" (15 capacity)</div>
+                            <div>3. Link Contract A to Single room price category</div>
+                            <div>4. Link Contract B to Double/Twin price categories</div>
+                        </div>
+                        <div class="mt-3 text-kaptio-grey-300">
+                            Result: Single rooms sell out after 5 bookings, but Double/Twin still available up to 15 bookings.
+                        </div>
+                    </div>
                 </div>
             </div>
 
