@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kaptio Configuration Guides | Implementation Showcase</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'kaptio-primary-800': '#032E36',
+                        'kaptio-primary-600': '#034955',
+                        'kaptio-primary-400': '#056F82',
+                        'kaptio-primary-300': '#69A9B4',
+                        'kaptio-primary-200': '#B4D4DA',
+                        'kaptio-primary-100': '#E6F1F2',
+                        'kaptio-primary-50': '#EFF5F5',
+                        'kaptio-yellow-400': '#FFBC42',
+                        'kaptio-yellow-300': '#FFD78E',
+                        'kaptio-yellow-200': '#FFEBC6',
+                        'kaptio-background': '#F9FAF8',
+                        'kaptio-white': '#FFFFFF',
+                        'kaptio-black': '#212121',
+                        'kaptio-grey-100': '#EBEBEB',
+                        'kaptio-grey-200': '#C3C3C3',
+                        'kaptio-grey-300': '#878787',
+                        'kaptio-action': '#C1121F',
+                        'kaptio-secondary-400': '#DE37A4',
+                    },
+                    fontFamily: {
+                        'sans': ['Lexend', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Lexend', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        .guide-card {
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+        .guide-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(3, 46, 54, 0.15);
+            border-left-color: #FFBC42;
+        }
+    </style>
+</head>
+<body class="bg-kaptio-background">
+    
+    <!-- Header -->
+    <header class="bg-kaptio-primary-800 text-white py-16">
+        <div class="container mx-auto px-8">
+            <h1 class="text-5xl font-bold mb-4">Kaptio Configuration Guides</h1>
+            <p class="text-xl font-light opacity-90">Implementation Showcases & Best Practice Documentation</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-8 py-16">
+        
+        <!-- Introduction -->
+        <section class="mb-16">
+            <div class="bg-white rounded-lg shadow-lg p-8 border-t-4 border-kaptio-yellow-400">
+                <h2 class="text-3xl font-bold text-kaptio-primary-800 mb-4">About These Guides</h2>
+                <p class="text-lg text-kaptio-black font-light leading-relaxed mb-4">
+                    These guides document **production-ready implementation patterns** for Kaptio Travel platform configuration. 
+                    Each guide combines real data analysis, architectural principles, and operational best practices honed over 20 years of tour industry experience.
+                </p>
+                <p class="text-kaptio-black leading-relaxed">
+                    Unlike typical documentation that explains "what" fields do, these guides explain **why** configurations matter, 
+                    **how** they work together, and **when** to use specific patterns—with real examples from live implementations.
+                </p>
+            </div>
+        </section>
+
+        <!-- Configuration Guides -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-kaptio-primary-800 mb-8">Configuration Guides</h2>
+            
+            <div class="grid grid-cols-1 gap-6">
+                
+                <!-- Gold Config Package Guide -->
+                <a href="gold-config-package-showcase.html" class="guide-card bg-white rounded-lg shadow-lg p-8 block">
+                    <div class="flex items-start justify-between mb-4">
+                        <div>
+                            <h3 class="text-2xl font-bold text-kaptio-primary-800 mb-2">Gold Config Package Architecture</h3>
+                            <p class="text-sm text-kaptio-yellow-400 font-semibold uppercase tracking-wide">Core Configuration</p>
+                        </div>
+                        <div class="bg-kaptio-yellow-400 text-kaptio-black px-4 py-2 rounded-lg font-semibold text-sm">
+                            Available Now
+                        </div>
+                    </div>
+                    
+                    <p class="text-kaptio-black mb-4 leading-relaxed">
+                        Comprehensive guide to package configuration in Kaptio Travel, covering all six package types: 
+                        Classic Land-Only, Classic Air+Land, Combo Land-Only, Combo Air+Land, Linked Parent, and Linked Combined.
+                    </p>
+                    
+                    <div class="mb-4">
+                        <h4 class="font-semibold text-kaptio-primary-800 mb-2">What You'll Learn:</h4>
+                        <ul class="space-y-1 text-sm text-kaptio-grey-300">
+                            <li>✓ How package types are differentiated (PACKAGE_TYPE__C vs CATEGORIES__C vs PhysicalInventorySelection)</li>
+                            <li>✓ Flight placeholder architecture for subsidizing air+land pricing</li>
+                            <li>✓ Component structures for multi-segment Combo packages with day ranges</li>
+                            <li>✓ Linked package pattern for modular tour extensions</li>
+                            <li>✓ Payment schedule and cancellation policy assignment hierarchies</li>
+                            <li>✓ Inventory/allotment tracking and departure generation</li>
+                            <li>✓ Service level mode and bed type defaulting across components</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="flex items-center space-x-4 text-sm">
+                        <span class="bg-kaptio-primary-50 text-kaptio-primary-600 px-3 py-1 rounded">Real Data from ktdev45</span>
+                        <span class="bg-kaptio-primary-50 text-kaptio-primary-600 px-3 py-1 rounded">Magazine-Style PDF</span>
+                        <span class="bg-kaptio-primary-50 text-kaptio-primary-600 px-3 py-1 rounded">Print-Optimized</span>
+                    </div>
+                    
+                    <div class="mt-4 text-kaptio-primary-400 font-semibold flex items-center">
+                        View Guide
+                        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </div>
+                </a>
+
+                <!-- Placeholder for Future Guides -->
+                <div class="guide-card bg-white rounded-lg shadow-lg p-8 opacity-60">
+                    <div class="flex items-start justify-between mb-4">
+                        <div>
+                            <h3 class="text-2xl font-bold text-kaptio-primary-800 mb-2">Household Account Model</h3>
+                            <p class="text-sm text-kaptio-grey-300 font-semibold uppercase tracking-wide">Account Management</p>
+                        </div>
+                        <div class="bg-kaptio-grey-200 text-kaptio-grey-300 px-4 py-2 rounded-lg font-semibold text-sm">
+                            Coming Soon
+                        </div>
+                    </div>
+                    
+                    <p class="text-kaptio-grey-300 mb-4 leading-relaxed">
+                        Deep dive into household account architecture: when to use household vs person accounts, 
+                        migration strategies from legacy systems, and real scenarios demonstrating the benefits.
+                    </p>
+                    
+                    <div class="text-kaptio-grey-300 text-sm italic">
+                        Guide in development
+                    </div>
+                </div>
+
+                <div class="guide-card bg-white rounded-lg shadow-lg p-8 opacity-60">
+                    <div class="flex items-start justify-between mb-4">
+                        <div>
+                            <h3 class="text-2xl font-bold text-kaptio-primary-800 mb-2">Payment Schedules & Cancellation Policies</h3>
+                            <p class="text-sm text-kaptio-grey-300 font-semibold uppercase tracking-wide">Financial Configuration</p>
+                        </div>
+                        <div class="bg-kaptio-grey-200 text-kaptio-grey-300 px-4 py-2 rounded-lg font-semibold text-sm">
+                            Coming Soon
+                        </div>
+                    </div>
+                    
+                    <p class="text-kaptio-grey-300 mb-4 leading-relaxed">
+                        Complete guide to configuring payment schedule rules and cancellation policy tiers, 
+                        including assignment hierarchies, date-based rule matching, and financial reconciliation patterns.
+                    </p>
+                    
+                    <div class="text-kaptio-grey-300 text-sm italic">
+                        Guide in development
+                    </div>
+                </div>
+
+                <div class="guide-card bg-white rounded-lg shadow-lg p-8 opacity-60">
+                    <div class="flex items-start justify-between mb-4">
+                        <div>
+                            <h3 class="text-2xl font-bold text-kaptio-primary-800 mb-2">Inventory & Allotment Management</h3>
+                            <p class="text-sm text-kaptio-grey-300 font-semibold uppercase tracking-wide">Operations</p>
+                        </div>
+                        <div class="bg-kaptio-grey-200 text-kaptio-grey-300 px-4 py-2 rounded-lg font-semibold text-sm">
+                            Coming Soon
+                        </div>
+                    </div>
+                    
+                    <p class="text-kaptio-grey-300 mb-4 leading-relaxed">
+                        Comprehensive coverage of allotment contracts, release tiers, package/service assignments, 
+                        and how inventory drives departure generation and availability management.
+                    </p>
+                    
+                    <div class="text-kaptio-grey-300 text-sm italic">
+                        Guide in development
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Architecture Showcases -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-kaptio-primary-800 mb-8">Architecture Showcases</h2>
+            
+            <div class="grid grid-cols-1 gap-6">
+                
+                <!-- Booking Numbers Showcase -->
+                <a href="../quanta-docs-duvine/transfer-architecture-magazine.html" class="guide-card bg-white rounded-lg shadow-lg p-8 block">
+                    <div class="flex items-start justify-between mb-4">
+                        <div>
+                            <h3 class="text-2xl font-bold text-kaptio-primary-800 mb-2">Why Separate Booking Numbers Enable Better Guest Service</h3>
+                            <p class="text-sm text-kaptio-secondary-400 font-semibold uppercase tracking-wide">Data Architecture</p>
+                        </div>
+                        <div class="bg-kaptio-secondary-400 text-white px-4 py-2 rounded-lg font-semibold text-sm">
+                            Available Now
+                        </div>
+                    </div>
+                    
+                    <p class="text-kaptio-black mb-4 leading-relaxed">
+                        A magazine-style technical narrative explaining why Kaptio creates separate bookings when guests transfer to new dates, 
+                        rather than updating a single booking. Based on real data analysis of 457 transfer operations.
+                    </p>
+                    
+                    <div class="mb-4">
+                        <h4 class="font-semibold text-kaptio-primary-800 mb-2">What You'll Learn:</h4>
+                        <ul class="space-y-1 text-sm text-kaptio-grey-300">
+                            <li>✓ Why single booking architecture breaks for partial room transfers</li>
+                            <li>✓ How TransactionTransfer records maintain complete audit trails</li>
+                            <li>✓ Financial reporting requirements by departure month</li>
+                            <li>✓ Room-level flexibility patterns with mixed party decisions</li>
+                            <li>✓ Real scenarios from Railbookers and Audley Travel</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="flex items-center space-x-4 text-sm">
+                        <span class="bg-kaptio-primary-50 text-kaptio-primary-600 px-3 py-1 rounded">Real Data Analysis</span>
+                        <span class="bg-kaptio-primary-50 text-kaptio-primary-600 px-3 py-1 rounded">Magazine Format</span>
+                        <span class="bg-kaptio-primary-50 text-kaptio-primary-600 px-3 py-1 rounded">Print-Ready PDF</span>
+                    </div>
+                    
+                    <div class="mt-4 text-kaptio-secondary-400 font-semibold flex items-center">
+                        View Showcase
+                        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </div>
+                </a>
+
+            </div>
+        </section>
+
+        <!-- Technical References -->
+        <section>
+            <h2 class="text-3xl font-bold text-kaptio-primary-800 mb-8">Technical References</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h3 class="text-xl font-bold text-kaptio-primary-800 mb-3">Package Schema Analysis</h3>
+                    <p class="text-kaptio-black text-sm mb-4">
+                        Field-level documentation of the Package object schema from ktdev45, 
+                        including configuration patterns for all six package types.
+                    </p>
+                    <a href="PACKAGE_SCHEMA_ANALYSIS.md" class="text-kaptio-primary-400 font-semibold text-sm flex items-center">
+                        View Markdown
+                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </a>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h3 class="text-xl font-bold text-kaptio-primary-800 mb-3">Complete Data Model Reference</h3>
+                    <p class="text-kaptio-black text-sm mb-4">
+                        Comprehensive object relationship map covering payment schedules, cancellation policies, 
+                        inventory/allotments, and complete booking flow architecture.
+                    </p>
+                    <a href="COMPLETE_DATA_MODEL_REFERENCE.md" class="text-kaptio-primary-400 font-semibold text-sm flex items-center">
+                        View Markdown
+                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7-7 7"></path>
+                        </svg>
+                    </a>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-kaptio-primary-800 text-white py-12 mt-16">
+        <div class="container mx-auto px-8 text-center">
+            <p class="text-lg mb-2">Built with ❤️ for the Kaptio Ecosystem</p>
+            <p class="text-sm opacity-75">© 2025 Kaptio | Documentation Version 1.0</p>
+        </div>
+    </footer>
+
+</body>
+</html>
+
