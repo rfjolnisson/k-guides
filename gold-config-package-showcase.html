@@ -933,57 +933,57 @@
             <!-- The Problem -->
             <div class="grid md:grid-cols-2 gap-8 mb-12">
                 <div class="bg-white rounded-xl shadow-lg p-8 border-t-4 border-kaptio-action">
-                    <h4 class="font-semibold text-kaptio-action mb-4 text-lg">Without Flight Placeholders:</h4>
+                    <h4 class="font-semibold text-kaptio-action mb-4 text-lg">The Old Way (Risky):</h4>
                     <div class="space-y-3 text-sm text-kaptio-black">
                         <div class="flex items-start space-x-2">
                             <span class="text-kaptio-action">✗</span>
-                            <span>Customer books land tour at $5,000</span>
+                            <span>Customer books at $5,000 land-only</span>
                         </div>
                         <div class="flex items-start space-x-2">
                             <span class="text-kaptio-action">✗</span>
-                            <span>You say "we'll add flights later"</span>
+                            <span>"We'll add flights closer to departure"</span>
                         </div>
                         <div class="flex items-start space-x-2">
                             <span class="text-kaptio-action">✗</span>
-                            <span>2 months later: "Flights are $1,800"</span>
+                            <span>Two months later: flights jumped to $1,800</span>
                         </div>
                         <div class="flex items-start space-x-2">
                             <span class="text-kaptio-action">✗</span>
-                            <span>Customer upset: "I wasn't budgeting for that!"</span>
+                            <span>Awkward call: "Actually, flights are extra..."</span>
                         </div>
                         <div class="flex items-start space-x-2">
                             <span class="text-kaptio-action">✗</span>
-                            <span>You either eat the cost or have an awkward conversation</span>
+                            <span>Either you eat $1,800 or customer feels misled</span>
                         </div>
                     </div>
                 </div>
 
                 <div class="bg-white rounded-xl shadow-lg p-8 border-t-4 border-green-500">
-                    <h4 class="font-semibold text-green-600 mb-4 text-lg">With Flight Placeholders:</h4>
+                    <h4 class="font-semibold text-green-600 mb-4 text-lg">The Gold Config Way:</h4>
                     <div class="space-y-3 text-sm text-kaptio-black">
                         <div class="flex items-start space-x-2">
                             <span class="text-green-600">✓</span>
-                            <span>Customer books "Air+Land" at $6,500</span>
+                            <span>Customer books Air+Land at $6,500 upfront</span>
                         </div>
                         <div class="flex items-start space-x-2">
                             <span class="text-green-600">✓</span>
-                            <span>They know total cost upfront</span>
+                            <span>Total cost is clear from day one</span>
                         </div>
                         <div class="flex items-start space-x-2">
                             <span class="text-green-600">✓</span>
-                            <span>You allocate $1,500 for flights</span>
+                            <span>You've budgeted $1,500 for their flights</span>
                         </div>
                         <div class="flex items-start space-x-2">
                             <span class="text-green-600">✓</span>
-                            <span>Book real flights 60 days out via Connect</span>
+                            <span>60 days out: ticket flights in your GDS (Amadeus, Sabre)</span>
                         </div>
                         <div class="flex items-start space-x-2">
                             <span class="text-green-600">✓</span>
-                            <span>If flights cost $1,450 → you save $50</span>
+                            <span>Flights come in at $1,450? You pocket $50</span>
                         </div>
                         <div class="flex items-start space-x-2">
                             <span class="text-green-600">✓</span>
-                            <span>If flights cost $1,600 → you manage $100 variance</span>
+                            <span>Flights cost $1,600? You manage the $100 variance</span>
                         </div>
                     </div>
                 </div>
@@ -1022,7 +1022,8 @@
                                     Calculation: Air+Land price ($6,500) - Land-Only price ($5,000) = $1,500
                                 </div>
                             </div>
-                            <div class="tree-node level-2">Replaced by real flight when booked via Connect gateway (T-60 days)</div>
+                            <div class="tree-node level-2">Gets replaced when you ticket flights in GDS (Amadeus/Sabre)</div>
+                            <div class="tree-node level-2">PNR imported back to Kaptio with actual flight details</div>
                             <div class="tree-node level-2">Commission: 10% (part of base package)</div>
                         </div>
 
@@ -1169,24 +1170,26 @@
 
             <!-- The Timeline -->
             <div class="bg-white rounded-xl shadow-lg p-8 mb-12">
-                <h3 class="text-kaptio-primary-800 mb-6 font-semibold text-xl">The Booking & Fulfillment Flow</h3>
+                <h3 class="text-kaptio-primary-800 mb-6 font-semibold text-xl">How It Actually Works</h3>
                 
                 <div class="space-y-4">
                     <div class="flex items-start space-x-4 bg-kaptio-primary-50 rounded-lg p-4">
-                        <div class="bg-kaptio-yellow-400 text-kaptio-black px-4 py-2 rounded font-bold flex-shrink-0">T-180</div>
+                        <div class="bg-kaptio-yellow-400 text-kaptio-black px-4 py-2 rounded font-bold flex-shrink-0">Month 1</div>
                         <div class="flex-1">
-                            <div class="font-semibold text-kaptio-primary-800 mb-1">Customer Books Air+Land Package</div>
-                            <div class="text-sm text-kaptio-grey-300">Itinerary shows: "Included Economy Flight - $1,500"</div>
+                            <div class="font-semibold text-kaptio-primary-800 mb-1">Customer Books (6 months before departure)</div>
+                            <div class="text-sm text-kaptio-grey-300">Their itinerary shows: "Economy flights included - $1,500"</div>
+                            <div class="text-xs text-kaptio-grey-300 mt-1">This is the placeholder holding the cost delta</div>
                         </div>
                     </div>
 
                     <div class="text-center text-2xl text-kaptio-primary-400">↓</div>
 
                     <div class="flex items-start space-x-4 bg-kaptio-primary-100 rounded-lg p-4">
-                        <div class="bg-kaptio-primary-400 text-white px-4 py-2 rounded font-bold flex-shrink-0">T-60</div>
+                        <div class="bg-kaptio-primary-400 text-white px-4 py-2 rounded font-bold flex-shrink-0">Month 4</div>
                         <div class="flex-1">
-                            <div class="font-semibold text-kaptio-primary-800 mb-1">You Book Real Flights via Connect Gateway</div>
-                            <div class="text-sm text-kaptio-grey-300">Connect returns: BA 189 LHR→NRT, Economy, $1,450</div>
+                            <div class="font-semibold text-kaptio-primary-800 mb-1">You Ticket Flights in Your GDS (60 days out)</div>
+                            <div class="text-sm text-kaptio-grey-300">Book in Amadeus/Sabre: BA 189 LHR→NRT, Economy, $1,450</div>
+                            <div class="text-xs text-kaptio-grey-300 mt-1">PNR imported back into Kaptio via Connect gateway integration</div>
                         </div>
                     </div>
 
@@ -1195,9 +1198,9 @@
                     <div class="flex items-start space-x-4 bg-green-50 rounded-lg p-4">
                         <div class="bg-green-600 text-white px-4 py-2 rounded font-bold flex-shrink-0">Auto</div>
                         <div class="flex-1">
-                            <div class="font-semibold text-green-800 mb-1">System Replaces Placeholder with Actual Flight</div>
-                            <div class="text-sm text-kaptio-grey-300">Customer sees: "BA 189 - LHR→NRT - $1,450"</div>
-                            <div class="text-sm text-green-600 mt-1">Cost variance: $50 under budget (tracked for reconciliation)</div>
+                            <div class="font-semibold text-green-800 mb-1">Placeholder Gets Replaced</div>
+                            <div class="text-sm text-kaptio-grey-300">Customer now sees: "BA 189 - LHR→NRT - $1,450"</div>
+                            <div class="text-sm text-green-600 mt-1">You came in $50 under budget. Nice!</div>
                         </div>
                     </div>
                 </div>
