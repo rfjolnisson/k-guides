@@ -1355,9 +1355,24 @@
                         </div>
 
                         <!-- South Korea Room Config -->
-                        <div class="tree-node level-1 required">
+                        <div class="tree-node level-1 required" onclick="toggleNode(this)">
+                            <span class="expand-icon">▼</span>
                             <span>🛌 South Korea Room Configuration</span>
                             <span class="badge-required">Days 1-12</span>
+                        </div>
+                        <div class="tree-children">
+                            <div class="tree-node level-2">
+                                <span>🟦 Single Room</span>
+                                <span class="price-detail">$9,200 <span class="supplement">(+$1,500)</span></span>
+                            </div>
+                            <div class="tree-node level-2">
+                                <span>🟩 Double Room</span>
+                                <span class="price-detail">$7,700</span>
+                            </div>
+                            <div class="tree-node level-2">
+                                <span>🟩 Twin Room</span>
+                                <span class="price-detail">$7,700</span>
+                            </div>
                         </div>
 
                         <!-- Bridge Component (CRITICAL!) -->
@@ -1385,9 +1400,24 @@
                         </div>
 
                         <!-- Japan Room Config -->
-                        <div class="tree-node level-1 required">
+                        <div class="tree-node level-1 required" onclick="toggleNode(this)">
+                            <span class="expand-icon">▼</span>
                             <span>🛌 Japan Room Configuration</span>
                             <span class="badge-required">Days 13-26</span>
+                        </div>
+                        <div class="tree-children">
+                            <div class="tree-node level-2">
+                                <span>🟦 Single Room</span>
+                                <span class="price-detail">$9,200 <span class="supplement">(+$1,500)</span></span>
+                            </div>
+                            <div class="tree-node level-2">
+                                <span>🟩 Double Room</span>
+                                <span class="price-detail">$7,700</span>
+                            </div>
+                            <div class="tree-node level-2">
+                                <span>🟩 Twin Room</span>
+                                <span class="price-detail">$7,700</span>
+                            </div>
                         </div>
 
                         <!-- Optional Components -->
@@ -1428,8 +1458,55 @@
                 <div class="mt-6 bg-kaptio-yellow-400 bg-opacity-20 rounded-lg p-4">
                     <p class="text-sm text-kaptio-black">
                         <strong>🔑 Notice the Day Ranges:</strong> Each segment (highlighted by color) specifies which days it covers. 
-                        The Bridge component (yellow) connects the two tours. Click components to expand and see details.
+                        The Bridge component (yellow) connects the two tours. Click "Room Configuration" sections to see room type options.
                     </p>
+                </div>
+
+                <div class="mt-6 bg-kaptio-primary-800 text-white rounded-xl p-6">
+                    <h4 class="text-kaptio-yellow-400 mb-4 font-semibold text-lg">✨ New Feature: Bed Type Defaulting Across Segments</h4>
+                    <p class="text-lg opacity-90 mb-4">
+                        When Service Level Mode = "Standard," room type selection cascades across BOTH tour segments automatically.
+                    </p>
+                    
+                    <div class="bg-white bg-opacity-10 rounded-lg p-4 mb-4">
+                        <div class="font-semibold mb-3 text-sm">How It Works:</div>
+                        <div class="space-y-2 text-sm">
+                            <div class="flex items-start space-x-2">
+                                <span class="text-kaptio-yellow-400">1.</span>
+                                <span>Customer selects <strong>"Twin Room"</strong> on South Korea segment</span>
+                            </div>
+                            <div class="flex items-start space-x-2">
+                                <span class="text-kaptio-yellow-400">2.</span>
+                                <span>System automatically applies <strong>"Twin Room"</strong> to Japan segment</span>
+                            </div>
+                            <div class="flex items-start space-x-2">
+                                <span class="text-kaptio-yellow-400">3.</span>
+                                <span>Selection also applies to Pre-Stay Seoul and Post-Stay Osaka</span>
+                            </div>
+                            <div class="flex items-start space-x-2">
+                                <span class="text-kaptio-yellow-400">4.</span>
+                                <span>Bridge Hotel (Tokyo) also gets Twin assignment</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-kaptio-action bg-opacity-20 rounded-lg p-4">
+                        <div class="font-semibold mb-2 text-sm">🚨 Important: Sold-Out Behavior</div>
+                        <p class="text-sm opacity-90">
+                            If Twin rooms are sold out on <strong>any</strong> component (Korea hotels, Japan hotels, bridge hotel, pre-stay, or post-stay), 
+                            the entire Twin selection is blocked across the whole tour.
+                        </p>
+                        <p class="text-sm opacity-90 mt-2">
+                            <strong>No auto-fallback to Single.</strong> Customer must explicitly choose Double/Single or join the waitlist. 
+                            This prevents surprise price increases—nobody wants to book as Twin roommates then discover one hotel changed them to Single rooms.
+                        </p>
+                    </div>
+
+                    <div class="mt-4 text-xs opacity-75 italic">
+                        For Implementation Teams: This is enabled by Service Level Mode = "Standard" on the package. 
+                        PackageServiceLevelAssignments link all room configurations to the same service levels (Single/Double/Twin), 
+                        enabling cross-segment bed type mapping.
+                    </div>
                 </div>
             </div>
 
