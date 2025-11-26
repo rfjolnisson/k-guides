@@ -1,8 +1,8 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Sophia Sheet Simplified Contract",
+  "title": "Kaptio Package Import - Simplified Contract",
   "version": "1.0",
-  "description": "Simplified data contract for Bunnik's Sophia Sheet → Kaptio transformation. This schema is ~80% simpler than Gold Config format while capturing all essential package data.",
+  "description": "Universal simplified data contract for importing packages into Kaptio from any source (Excel, CSV, databases). This schema is ~95% simpler than native Kaptio format while capturing all essential package data.",
   
   "type": "object",
   "required": ["package", "components", "pricing", "departures"],
@@ -446,9 +446,22 @@
     
     "size_comparison": {
       "simplified_contract": "~100-200 lines of JSON for complete package",
-      "gold_config_bundle": "~3,500 lines (135 records)",
+      "native_kaptio_format": "~3,500 lines (135 records)",
       "reduction": "~95% less verbose",
       "complexity_hidden": "Salesforce IDs, parent-child relationships, RecordTypes, namespaces, system fields"
+    },
+    
+    "universal_data_sources": {
+      "description": "This adapter is source-agnostic and works with:",
+      "examples": [
+        "Sophia Sheets (Bunnik Tours)",
+        "Custom Excel planning templates",
+        "CSV exports from legacy systems",
+        "Database extracts (MySQL, PostgreSQL, etc.)",
+        "API responses from booking platforms",
+        "Manual JSON creation",
+        "Any structured tour data"
+      ]
     }
   }
 }

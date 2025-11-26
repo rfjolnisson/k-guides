@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sophia Sheet Adapter | Kaptio</title>
+    <title>Package Import Adapter | Kaptio</title>
     <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -55,8 +55,8 @@
     <!-- Header -->
     <header class="bg-gradient-to-r from-kaptio-primary-800 to-kaptio-primary-600 text-white py-8">
         <div class="max-w-6xl mx-auto px-6">
-            <h1 class="text-4xl font-bold mb-2">Sophia Sheet Adapter</h1>
-            <p class="text-lg opacity-90">Transform your Sophia Sheet data into Kaptio packages</p>
+            <h1 class="text-4xl font-bold mb-2">Kaptio Package Import Adapter</h1>
+            <p class="text-lg opacity-90">Transform your planning data into Kaptio packages using simplified format</p>
         </div>
     </header>
 
@@ -85,18 +85,21 @@
 
         <!-- Tab 1: Upload -->
         <div id="content-tab-1" class="tab-content">
-            <h2 class="text-3xl font-bold text-kaptio-primary-800 mb-6">Upload Sophia Sheet Data</h2>
+            <h2 class="text-3xl font-bold text-kaptio-primary-800 mb-6">Upload Package Data</h2>
             
             <div class="bg-blue-50 border-l-4 border-blue-500 p-6 mb-8">
-                <h3 class="font-semibold text-blue-900 mb-2">📋 Your Workflow:</h3>
+                <h3 class="font-semibold text-blue-900 mb-2">📋 Universal Import Workflow:</h3>
                 <ol class="text-sm text-blue-800 space-y-2">
-                    <li><strong>1.</strong> Run your Excel extraction script on the Sophia Sheet</li>
-                    <li><strong>2.</strong> Generate simplified JSON using your script</li>
+                    <li><strong>1.</strong> Extract data from your planning tool (Excel, database, legacy system)</li>
+                    <li><strong>2.</strong> Generate simplified JSON using your extraction script</li>
                     <li><strong>3.</strong> Upload the JSON here (drag & drop or paste)</li>
                     <li><strong>4.</strong> Review and edit the extracted data</li>
-                    <li><strong>5.</strong> Transform to Gold Config format</li>
-                    <li><strong>6.</strong> Deploy to your Kaptio Salesforce org</li>
+                    <li><strong>5.</strong> Transform to Kaptio-ready format</li>
+                    <li><strong>6.</strong> Deploy to your Salesforce org</li>
                 </ol>
+                <p class="text-xs text-blue-700 mt-3 italic">
+                    Works with any source: Sophia Sheets, custom Excel templates, CSV exports, legacy databases, or manual entry.
+                </p>
             </div>
 
             <!-- Drop Zone -->
@@ -104,7 +107,7 @@
                 <svg class="w-16 h-16 mx-auto text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
                 </svg>
-                <h3 class="text-xl font-semibold text-gray-700 mb-2">Drag & Drop Sophia JSON</h3>
+                <h3 class="text-xl font-semibold text-gray-700 mb-2">Drag & Drop Simplified JSON</h3>
                 <p class="text-gray-500 mb-4">or click to browse files</p>
                 <input type="file" id="fileInput" accept=".json" class="hidden" onchange="handleFileSelect(event)">
                 <button onclick="document.getElementById('fileInput').click()" class="bg-kaptio-primary-400 text-white px-6 py-3 rounded-lg font-medium hover:bg-kaptio-primary-600 transition">
@@ -121,7 +124,7 @@
                     <textarea 
                         id="jsonPaste" 
                         class="w-full h-64 p-4 border-2 border-gray-200 rounded-lg font-mono text-sm"
-                        placeholder='Paste your Sophia JSON here...'
+                        placeholder='Paste your simplified package JSON here...'
                     ></textarea>
                     <button onclick="handlePastedJSON()" class="mt-4 bg-kaptio-yellow-400 text-gray-900 px-6 py-3 rounded-lg font-medium hover:bg-yellow-500 transition">
                         ✨ Load JSON
@@ -134,12 +137,12 @@
                 <h3 class="font-semibold text-kaptio-primary-800 mb-4">📚 Example Templates:</h3>
                 <div class="space-y-2">
                     <button onclick="loadExample('south-american-discovery')" class="block w-full text-left p-4 rounded-lg hover:bg-gray-50 border">
-                        <div class="font-medium">South American Discovery</div>
-                        <div class="text-sm text-gray-500">Complete example: 15 days, 5 components, full itinerary</div>
+                        <div class="font-medium">Complete Example</div>
+                        <div class="text-sm text-gray-500">South American Discovery: 15 days, 5 components, full itinerary, seasonal pricing</div>
                     </button>
                     <button onclick="loadExample('minimal')" class="block w-full text-left p-4 rounded-lg hover:bg-gray-50 border">
                         <div class="font-medium">Minimal Example</div>
-                        <div class="text-sm text-gray-500">Simplest valid package: 8 days, 2 components, 2 departures</div>
+                        <div class="text-sm text-gray-500">Italian Wine Country: Simplest valid package (8 days, 2 components)</div>
                     </button>
                 </div>
             </div>
@@ -147,7 +150,7 @@
 
         <!-- Tab 2: Review & Edit -->
         <div id="content-tab-2" class="tab-content" style="display:none;">
-            <h2 class="text-3xl font-bold text-kaptio-primary-800 mb-6">Review & Edit Sophia Data</h2>
+            <h2 class="text-3xl font-bold text-kaptio-primary-800 mb-6">Review & Edit Package Data</h2>
             
             <div id="reviewContent" class="space-y-6">
                 <!-- Package Info Card -->
@@ -273,7 +276,7 @@
             
             <div class="bg-green-50 border-l-4 border-green-500 p-6 mb-8">
                 <h3 class="font-semibold text-green-900 mb-2">✅ Transformation Complete!</h3>
-                <p class="text-green-800">Your Sophia data has been transformed into a Gold Config bundle.</p>
+                <p class="text-green-800">Your simplified package data has been transformed into a complete Kaptio deployment bundle.</p>
             </div>
 
             <!-- Bundle Summary -->
@@ -309,8 +312,8 @@
                     </button>
                     <button onclick="downloadSourceJSON()" class="w-full flex items-center justify-between p-4 border-2 border-gray-200 rounded-lg hover:border-kaptio-primary-400 hover:bg-gray-50 transition">
                         <div>
-                            <div class="font-medium">Original Sophia JSON</div>
-                            <div class="text-sm text-gray-500">Your simplified input file</div>
+                            <div class="font-medium">Original Simplified JSON</div>
+                            <div class="text-sm text-gray-500">Your input file (from Excel, CSV, or other source)</div>
                         </div>
                         <span class="text-2xl">📄</span>
                     </button>
@@ -414,7 +417,7 @@
         function validateAndProceed(data) {
             // Basic validation
             if (!data.package || !data.components || !data.pricing || !data.departures) {
-                alert('Invalid Sophia JSON: Missing required fields (package, components, pricing, departures)');
+                alert('Invalid Package JSON: Missing required fields (package, components, pricing, departures)');
                 return;
             }
 

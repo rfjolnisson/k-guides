@@ -1,13 +1,15 @@
 #!/usr/bin/env node
 
 /**
- * Sophia to Gold Config Transformer
+ * Kaptio Package Import Transformer
  * 
- * Transforms simplified Sophia Sheet JSON into complete Gold Config bundle format.
- * Expands ~100 lines of simplified JSON into ~135 Salesforce records.
+ * Transforms simplified package JSON into complete Kaptio deployment bundle.
+ * Expands ~150 lines of human-friendly JSON into ~135 Salesforce records.
+ * 
+ * Source-agnostic: Works with data from Excel, CSV, databases, or any planning tool.
  * 
  * Usage:
- *   node transform-to-gold-config.js --input sophia.json --output gold-config-bundle.json
+ *   node transform-to-gold-config.js --input your-package.json --output kaptio-bundle.json
  */
 
 const fs = require('fs');
@@ -23,7 +25,7 @@ class SophiaTransformer {
       bundleMetadata: {
         packageName: null,
         packageType: null,
-        extractedFrom: 'sophia-sheet',
+        extractedFrom: 'package-import-adapter',
         extractionDate: new Date().toISOString().split('T')[0],
         totalRecords: 0,
         requiresMapping: ['OwnerId', 'CurrencyIsoCode'],
@@ -40,10 +42,10 @@ class SophiaTransformer {
    * Main transformation entry point
    */
   async transform() {
-    console.log(`\n🔄 Transforming Sophia JSON to Gold Config format...\n`);
+    console.log(`\n🔄 Transforming simplified package JSON to Kaptio format...\n`);
 
     try {
-      // Load Sophia JSON
+      // Load simplified package JSON
       this.sophia = JSON.parse(fs.readFileSync(this.inputPath, 'utf8'));
       console.log(`✓ Loaded: ${this.sophia.package.name}`);
       console.log(`  Duration: ${this.sophia.package.duration_days} days`);
@@ -686,9 +688,9 @@ if (require.main === module) {
 
   if (!inputPath) {
     console.error('Error: --input is required');
-    console.log('\nUsage: node transform-to-gold-config.js --input <sophia-json> --output <gold-config-bundle>');
+    console.log('\nUsage: node transform-to-gold-config.js --input <simplified-json> --output <kaptio-bundle>');
     console.log('\nExample:');
-    console.log('  node transform-to-gold-config.js --input sophia-south-america.json --output ../package-bundles/south-america-bundle.json');
+    console.log('  node transform-to-gold-config.js --input my-package.json --output ../package-bundles/my-package-bundle.json');
     process.exit(1);
   }
 

@@ -1,0 +1,1279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Understanding Kaptio CRM and Salesforce licensing: What's included, when additional licenses are needed, and how to choose the right model for your business.">
+  <meta property="og:title" content="Kaptio CRM & Salesforce Licensing Guide">
+  <meta property="og:description" content="A comprehensive guide to understanding what's included in Kaptio and when additional Salesforce licenses may be needed.">
+  <meta property="og:type" content="website">
+  <title>Kaptio CRM & Salesforce Licensing Guide</title>
+  
+  <!-- Google Fonts - Lexend -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <script>
+    // Tailwind Configuration with Kaptio Design System
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            kaptio: {
+              // Primary Palette - Teal/Cyan Family
+              'primary-800': '#032E36',
+              'primary-600': '#034955',
+              'primary-500-orange': '#F18525',
+              'primary-400': '#056F82',
+              'primary-300': '#69A9B4',
+              'primary-200': '#B4D4DA',
+              'primary-100': '#E6F1F2',
+              'primary-50': '#EFF5F5',
+              
+              // Yellow - Primary CTA Color
+              'yellow-400': '#FFBC42',
+              'yellow-300': '#FFD78E',
+              'yellow-200': '#FFEBC6',
+              
+              // Secondary - Pink/Magenta
+              'secondary-600': '#AF0072',
+              'secondary-400': '#DE37A4',
+              
+              // Neutrals
+              'background': '#F9FAF8',
+              'black': '#212121',
+              'grey-100': '#EBEBEB',
+              'grey-200': '#C3C3C3',
+              'grey-300': '#878787',
+              'white': '#FFFFFF',
+              'action': '#C1121F',
+            }
+          },
+          fontFamily: {
+            'lexend': ['Lexend', 'sans-serif'],
+            sans: ['Lexend', 'system-ui', '-apple-system', 'sans-serif'],
+          },
+          boxShadow: {
+            'kaptio': '0 100px 80px rgba(0,0,0,0.07), 0 41.778px 33.422px rgba(0,0,0,0.05), 0 22.336px 17.869px rgba(0,0,0,0.04), 0 12.522px 10.017px rgba(0,0,0,0.04), 0 6.65px 5.32px rgba(0,0,0,0.03), 0 2.767px 2.214px rgba(0,0,0,0.02)',
+            'button': '0 1px 2px rgba(16,24,40,0.05)',
+          },
+        },
+      },
+    }
+  </script>
+  
+  <style>
+    /* Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Lexend', sans-serif;
+      font-weight: 300;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-weight: 700;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #EFF5F5;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #B4D4DA;
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #056F82;
+    }
+
+    /* Smooth Transitions */
+    * {
+      transition-property: color, background-color, border-color, transform, box-shadow;
+      transition-duration: 200ms;
+      transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Sticky Nav Styles */
+    .nav-hidden {
+      transform: translateY(-100%);
+    }
+
+    .nav-visible {
+      transform: translateY(0);
+    }
+
+    /* Hover Effects */
+    .card-hover {
+      transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+    }
+
+    .card-hover:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    }
+
+    /* FAQ Accordion */
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+    }
+
+    .faq-answer.open {
+      max-height: 1000px;
+      transition: max-height 0.5s ease-in, padding 0.3s ease-in;
+    }
+
+    .faq-icon {
+      transition: transform 0.3s ease;
+    }
+
+    .faq-icon.rotated {
+      transform: rotate(180deg);
+    }
+
+    /* Feature Icons */
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      background: #E6F1F2;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Comparison Table Styles */
+    .comparison-table th {
+      position: sticky;
+      top: 0;
+      background: #FFFFFF;
+      z-index: 10;
+    }
+
+    /* License Badge */
+    .license-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.5rem 1rem;
+      border-radius: 9999px;
+      font-size: 0.875rem;
+      font-weight: 500;
+    }
+
+    .badge-platform {
+      background: #E6F1F2;
+      color: #056F82;
+    }
+
+    .badge-full {
+      background: #FFEBC6;
+      color: #212121;
+    }
+
+    /* Print Styles */
+    @media print {
+      .no-print {
+        display: none !important;
+      }
+      
+      body {
+        background: white;
+      }
+      
+      .card-hover:hover {
+        transform: none;
+        box-shadow: 0 100px 80px rgba(0,0,0,0.07);
+      }
+    }
+  </style>
+</head>
+<body class="bg-kaptio-background text-kaptio-black">
+
+  <!-- Sticky Navigation -->
+  <nav id="stickyNav" class="no-print fixed top-0 left-0 right-0 bg-kaptio-white border-b border-kaptio-grey-100 shadow-button z-50 nav-hidden">
+    <div class="max-w-7xl mx-auto px-6 py-4">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center space-x-3">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 91 29" width="91" height="29" class="h-6">
+            <path d="M64.8,22.2c-1.2.4-2.6.6-3.9.6-3.4,0-5.7-2.5-5.7-6.2v-4.1h-2.8v-4h2.8v-3.5l4.8-1.2v4.7h4.9v4h-4.9v4c0,1.4.8,2.1,2.2,2.1.9,0,1.8-.2,2.6-.4v4.1Z" fill="#032E36"/>
+            <path d="M72.5,22.4h-4.8v-13.9h4.8v13.9Z" fill="#032E36"/>
+            <path d="M82.8,8.2c-4.5,0-7.7,3.1-7.7,7.2s3.2,7.4,7.7,7.4,7.7-3.1,7.7-7.4-3.2-7.2-7.7-7.2ZM82.8,18.8c-1.9,0-3.4-1.5-3.4-3.3s1.5-3.3,3.4-3.3,3.4,1.5,3.4,3.3-1.5,3.3-3.4,3.3Z" fill="#032E36"/>
+            <path d="M27.5,22.4h4.8v-13.9h-4.8v.8c-1.2-.7-2.5-1.1-3.9-1.1-3.8,0-7.1,3.1-7.1,7.2s3.2,7.2,7.1,7.2c1.4,0,2.7-.3,3.9-1.1v.8ZM28.3,15.5c0,1.8-1.5,3.3-3.4,3.3s-3.4-1.5-3.4-3.3,1.5-3.3,3.4-3.3,3.4,1.5,3.4,3.3Z" fill="#032E36"/>
+            <path d="M44.2,22.6c3.8,0,7.1-3.1,7.1-7.2s-3.2-7.2-7.1-7.2c-1.4,0-2.7.3-3.9,1.1v-.7h-4.8v20.3h4.8v-7.2c1.2.7,2.5,1.1,3.9,1.1ZM46.2,15.5c0,1.8-1.5,3.3-3.4,3.3s-3.4-1.5-3.4-3.3,1.5-3.3,3.4-3.3,3.4,1.5,3.4,3.3Z" fill="#032E36"/>
+            <path d="M10.1,22.3l-4.9-6.1v6.1H.4V2h4.7v12.2l4.8-5.8h6.1l-5.7,6.7,5.9,7.3h-6.2Z" fill="#032E36"/>
+            <ellipse cx="70.3" cy="3.6" rx="3.4" ry="3.4" fill="#DE37A4"/>
+          </svg>
+        </div>
+        <div class="hidden md:flex items-center space-x-6">
+          <a href="#included" class="text-sm text-kaptio-grey-300 hover:text-kaptio-primary-400">What's Included</a>
+          <a href="#platform" class="text-sm text-kaptio-grey-300 hover:text-kaptio-primary-400">Platform Licenses</a>
+          <a href="#models" class="text-sm text-kaptio-grey-300 hover:text-kaptio-primary-400">Licensing Models</a>
+          <a href="#additional" class="text-sm text-kaptio-grey-300 hover:text-kaptio-primary-400">Additional Licenses</a>
+          <a href="#faq" class="text-sm text-kaptio-grey-300 hover:text-kaptio-primary-400">FAQ</a>
+          <a href="#contact" class="bg-kaptio-yellow-400 hover:bg-kaptio-yellow-300 text-kaptio-black px-4 py-2 rounded-lg text-sm font-medium shadow-button active:scale-95">Contact Us</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="bg-gradient-to-br from-kaptio-primary-800 to-kaptio-primary-600 text-white">
+    <div class="max-w-7xl mx-auto px-6 py-16 md:py-24">
+      <div class="max-w-4xl">
+        <!-- Logo -->
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 91 29" width="182" height="58" class="mb-8">
+          <path d="M64.8,22.2c-1.2.4-2.6.6-3.9.6-3.4,0-5.7-2.5-5.7-6.2v-4.1h-2.8v-4h2.8v-3.5l4.8-1.2v4.7h4.9v4h-4.9v4c0,1.4.8,2.1,2.2,2.1.9,0,1.8-.2,2.6-.4v4.1Z" fill="#FFFFFF"/>
+          <path d="M72.5,22.4h-4.8v-13.9h4.8v13.9Z" fill="#FFFFFF"/>
+          <path d="M82.8,8.2c-4.5,0-7.7,3.1-7.7,7.2s3.2,7.4,7.7,7.4,7.7-3.1,7.7-7.4-3.2-7.2-7.7-7.2ZM82.8,18.8c-1.9,0-3.4-1.5-3.4-3.3s1.5-3.3,3.4-3.3,3.4,1.5,3.4,3.3-1.5,3.3-3.4,3.3Z" fill="#FFFFFF"/>
+          <path d="M27.5,22.4h4.8v-13.9h-4.8v.8c-1.2-.7-2.5-1.1-3.9-1.1-3.8,0-7.1,3.1-7.1,7.2s3.2,7.2,7.1,7.2c1.4,0,2.7-.3,3.9-1.1v.8ZM28.3,15.5c0,1.8-1.5,3.3-3.4,3.3s-3.4-1.5-3.4-3.3,1.5-3.3,3.4-3.3,3.4,1.5,3.4,3.3Z" fill="#FFFFFF"/>
+          <path d="M44.2,22.6c3.8,0,7.1-3.1,7.1-7.2s-3.2-7.2-7.1-7.2c-1.4,0-2.7.3-3.9,1.1v-.7h-4.8v20.3h4.8v-7.2c1.2.7,2.5,1.1,3.9,1.1ZM46.2,15.5c0,1.8-1.5,3.3-3.4,3.3s-3.4-1.5-3.4-3.3,1.5-3.3,3.4-3.3,3.4,1.5,3.4,3.3Z" fill="#FFFFFF"/>
+          <path d="M10.1,22.3l-4.9-6.1v6.1H.4V2h4.7v12.2l4.8-5.8h6.1l-5.7,6.7,5.9,7.3h-6.2Z" fill="#FFFFFF"/>
+          <ellipse cx="70.3" cy="3.6" rx="3.4" ry="3.4" fill="#DE37A4"/>
+        </svg>
+        
+        <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">Understanding Kaptio CRM & Salesforce Licensing</h1>
+        <p class="text-xl md:text-2xl font-light mb-8 text-kaptio-primary-100">Industry-specific CRM for multi-day tour and cruise operators, built on Salesforce's enterprise platform.</p>
+        <p class="text-base md:text-lg font-light leading-relaxed text-kaptio-primary-200">Kaptio delivers purpose-built CRM for travel operators on Salesforce's trusted platform. This guide clarifies what travel-specific capabilities come standard with Kaptio and how Salesforce's Service Cloud and Marketing Cloud can extend your operations when your business is ready to scale.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- What's Included Section -->
+  <section id="included" class="py-16 md:py-20">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-kaptio-primary-800 mb-4">What's Included in Kaptio</h2>
+        <p class="text-lg text-kaptio-grey-300 max-w-3xl mx-auto">Industry-specific CRM purpose-built for multi-day tour and cruise operators. Kaptio speaks your language—Trips, Itineraries, Passengers, Bookings—not generic Leads and Opportunities.</p>
+      </div>
+
+      <!-- Core CRM Features -->
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+        <!-- Trip & Itinerary - Featured -->
+        <div class="bg-gradient-to-br from-kaptio-primary-800 to-kaptio-primary-600 rounded-lg shadow-kaptio p-6 card-hover text-white md:col-span-2 lg:col-span-3">
+          <div class="flex items-start space-x-4">
+            <div class="flex-shrink-0">
+              <div class="w-12 h-12 bg-kaptio-yellow-400 rounded-lg flex items-center justify-center">
+                <svg class="w-6 h-6 text-kaptio-primary-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/>
+                </svg>
+              </div>
+            </div>
+            <div class="flex-1">
+              <div class="flex items-center space-x-2 mb-2">
+                <h3 class="text-lg font-bold">Trip & Itinerary Management</h3>
+                <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-kaptio-yellow-400 text-kaptio-primary-800">Kaptio Unique</span>
+              </div>
+              <p class="text-sm font-light leading-relaxed text-kaptio-primary-100 mb-3">Purpose-built objects that capture the complete customer journey—from initial interest through booking and travel. Track Trip lifecycle stages (Prospecting → Qualification → Quote → Confirmed → Travelling → Completed) with multiple Itinerary proposals per Trip.</p>
+              <div class="flex flex-wrap gap-2">
+                <span class="text-xs px-2 py-1 bg-white/20 rounded">Customer Journey Tracking</span>
+                <span class="text-xs px-2 py-1 bg-white/20 rounded">Quote Management</span>
+                <span class="text-xs px-2 py-1 bg-white/20 rounded">Marketing Automation Ready</span>
+                <span class="text-xs px-2 py-1 bg-white/20 rounded">Lifecycle Stages</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-kaptio-white rounded-lg shadow-kaptio p-6 card-hover">
+          <div class="feature-icon mb-4">
+            <svg class="w-6 h-6 text-kaptio-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold text-kaptio-primary-800 mb-2">Accounts & Contacts</h3>
+          <p class="text-sm text-kaptio-grey-300 font-light">Manage customer relationships with robust account and contact management, including hierarchies and custom fields.</p>
+        </div>
+
+        <div class="bg-kaptio-white rounded-lg shadow-kaptio p-6 card-hover">
+          <div class="feature-icon mb-4">
+            <svg class="w-6 h-6 text-kaptio-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold text-kaptio-primary-800 mb-2">Activities & Tasks</h3>
+          <p class="text-sm text-kaptio-grey-300 font-light">Track all interactions with tasks, events, and activity history. Never lose context on customer communications.</p>
+        </div>
+
+        <div class="bg-kaptio-white rounded-lg shadow-kaptio p-6 card-hover">
+          <div class="feature-icon mb-4">
+            <svg class="w-6 h-6 text-kaptio-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold text-kaptio-primary-800 mb-2">Reports & Dashboards</h3>
+          <p class="text-sm text-kaptio-grey-300 font-light">Build custom reports and dashboards to visualize your data and make informed business decisions.</p>
+        </div>
+
+        <div class="bg-kaptio-white rounded-lg shadow-kaptio p-6 card-hover">
+          <div class="feature-icon mb-4">
+            <svg class="w-6 h-6 text-kaptio-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"/>
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold text-kaptio-primary-800 mb-2">Custom Objects</h3>
+          <p class="text-sm text-kaptio-grey-300 font-light">Extend your CRM with unlimited custom objects to model your unique travel business processes.</p>
+        </div>
+
+        <div class="bg-kaptio-white rounded-lg shadow-kaptio p-6 card-hover">
+          <div class="feature-icon mb-4">
+            <svg class="w-6 h-6 text-kaptio-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold text-kaptio-primary-800 mb-2">Workflow Automation</h3>
+          <p class="text-sm text-kaptio-grey-300 font-light">Automate business processes with Visual Workflow, validation rules, and process builder functionality.</p>
+        </div>
+
+        <div class="bg-kaptio-white rounded-lg shadow-kaptio p-6 card-hover">
+          <div class="feature-icon mb-4">
+            <svg class="w-6 h-6 text-kaptio-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold text-kaptio-primary-800 mb-2">Mobile Access</h3>
+          <p class="text-sm text-kaptio-grey-300 font-light">Access your CRM on-the-go with Salesforce's mobile app, keeping your team connected anywhere.</p>
+        </div>
+      </div>
+
+      <!-- Kaptio's Unique Trip & Itinerary Objects -->
+      <div class="bg-gradient-to-br from-kaptio-primary-800 to-kaptio-primary-600 rounded-lg p-8 mb-8 text-white">
+        <div class="flex items-start space-x-6">
+          <div class="flex-shrink-0">
+            <div class="w-16 h-16 bg-kaptio-yellow-400 rounded-lg flex items-center justify-center">
+              <svg class="w-8 h-8 text-kaptio-primary-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/>
+              </svg>
+            </div>
+          </div>
+          <div class="flex-1">
+            <h3 class="text-2xl font-bold mb-3">Beyond Standard CRM: Trip & Itinerary Objects</h3>
+            <p class="text-base font-light leading-relaxed mb-4 text-kaptio-primary-100">Kaptio extends Salesforce with purpose-built objects designed specifically for travel operators, capturing the complete customer journey from initial interest to post-trip engagement.</p>
+            
+            <div class="grid md:grid-cols-2 gap-6 mt-6">
+              <div class="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20">
+                <div class="flex items-center space-x-2 mb-2">
+                  <svg class="w-5 h-5 text-kaptio-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                  </svg>
+                  <h4 class="text-lg font-bold">Trip Object</h4>
+                </div>
+                <p class="text-sm font-light leading-relaxed text-kaptio-primary-100">The overarching container that captures customer intent and tracks the entire lifecycle—from prospecting through qualification, quoting, booking, travelling, and completion.</p>
+              </div>
+              
+              <div class="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20">
+                <div class="flex items-center space-x-2 mb-2">
+                  <svg class="w-5 h-5 text-kaptio-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                  </svg>
+                  <h4 class="text-lg font-bold">Itinerary Object</h4>
+                </div>
+                <p class="text-sm font-light leading-relaxed text-kaptio-primary-100">Specific configurations of possible bookings within a Trip. Each Itinerary represents a concrete proposal with pricing, services, and dates—creating multiple options for the customer.</p>
+              </div>
+            </div>
+
+            <div class="mt-6 p-4 bg-kaptio-yellow-400/20 backdrop-blur-sm rounded-lg border border-kaptio-yellow-400/30">
+              <div class="flex items-start space-x-3">
+                <svg class="w-5 h-5 text-kaptio-yellow-400 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"/>
+                  <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"/>
+                </svg>
+                <div class="flex-1">
+                  <p class="text-sm font-medium text-white mb-1">Marketing Integration Ready</p>
+                  <p class="text-sm font-light leading-relaxed text-kaptio-primary-100">Trip lifecycle data integrates seamlessly with marketing automation platforms, email marketing systems, and CRM campaigns—enabling targeted outreach based on customer journey stage, abandoned quotes, and post-trip engagement opportunities.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Callout Box -->
+      <div class="bg-kaptio-primary-50 border-l-4 border-kaptio-primary-400 rounded-lg p-6">
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0">
+            <svg class="w-6 h-6 text-kaptio-primary-400" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+            </svg>
+          </div>
+          <div class="flex-1">
+            <h3 class="text-lg font-bold text-kaptio-primary-800 mb-2">Industry-Specific CRM Built on Salesforce</h3>
+            <p class="text-sm text-kaptio-grey-300 font-light leading-relaxed">"You get Salesforce Platform included in the Kaptio license to begin with"—with purpose-built objects for travel operators. Kaptio provides 100% of the travel CRM functionality you need from day one. As your business scales, Service Cloud and Marketing Cloud are natural add-ons that many of our customers adopt to expand support and marketing capabilities.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Platform Licenses Section -->
+  <section id="platform" class="py-16 md:py-20 bg-kaptio-white">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-kaptio-primary-800 mb-4">Kaptio on Platform Licenses vs Salesforce Sales Cloud</h2>
+        <p class="text-lg text-kaptio-grey-300 max-w-3xl mx-auto">Platform licenses + Kaptio deliver industry-specific CRM for travel. Sales Cloud adds general-purpose sales automation when needed.</p>
+      </div>
+
+      <div class="bg-kaptio-background rounded-lg shadow-kaptio p-8">
+        <div class="overflow-x-auto">
+          <table class="w-full comparison-table">
+            <thead>
+              <tr class="border-b-2 border-kaptio-primary-400">
+                <th class="text-left py-4 px-4 text-base font-bold text-kaptio-primary-800">Capability</th>
+                <th class="text-center py-4 px-4 text-base font-bold text-kaptio-primary-800">
+                  <div class="flex flex-col items-center space-y-2">
+                    <span class="license-badge badge-platform">Salesforce Platform</span>
+                    <span class="text-xs font-normal text-kaptio-grey-300">Foundation</span>
+                  </div>
+                </th>
+                <th class="text-center py-4 px-4 text-base font-bold text-kaptio-primary-800">
+                  <div class="flex flex-col items-center space-y-2">
+                    <span class="license-badge badge-platform" style="background: #FFEBC6; color: #032E36;">Platform + Kaptio</span>
+                    <span class="text-xs font-normal text-kaptio-grey-300">Travel-Specific</span>
+                  </div>
+                </th>
+                <th class="text-center py-4 px-4 text-base font-bold text-kaptio-primary-800">
+                  <div class="flex flex-col items-center space-y-2">
+                    <span class="license-badge badge-full">Sales/Service Cloud</span>
+                    <span class="text-xs font-normal text-kaptio-grey-300">General Sales Tools</span>
+                  </div>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Standard Platform Features -->
+              <tr class="border-b border-kaptio-grey-100">
+                <td class="py-4 px-4 font-medium text-kaptio-primary-800">Accounts & Contacts</td>
+                <td class="py-4 px-4 text-center">
+                  <svg class="w-6 h-6 text-green-600 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
+                  </svg>
+                </td>
+                <td class="py-4 px-4 text-center">
+                  <svg class="w-6 h-6 text-green-600 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
+                  </svg>
+                </td>
+                <td class="py-4 px-4 text-center">
+                  <svg class="w-6 h-6 text-green-600 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
+                  </svg>
+                </td>
+              </tr>
+              <tr class="border-b border-kaptio-grey-100">
+                <td class="py-4 px-4 font-medium text-kaptio-primary-800">Activities & Tasks</td>
+                <td class="py-4 px-4 text-center">
+                  <svg class="w-6 h-6 text-green-600 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
+                  </svg>
+                </td>
+                <td class="py-4 px-4 text-center">
+                  <svg class="w-6 h-6 text-green-600 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
+                  </svg>
+                </td>
+                <td class="py-4 px-4 text-center">
+                  <svg class="w-6 h-6 text-green-600 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
+                  </svg>
+                </td>
+              </tr>
+              <tr class="border-b border-kaptio-grey-100">
+                <td class="py-4 px-4 font-medium text-kaptio-primary-800">Reports & Dashboards</td>
+                <td class="py-4 px-4 text-center">
+                  <svg class="w-6 h-6 text-green-600 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
+                  </svg>
+                </td>
+                <td class="py-4 px-4 text-center">
+                  <svg class="w-6 h-6 text-green-600 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
+                  </svg>
+                </td>
+                <td class="py-4 px-4 text-center">
+                  <svg class="w-6 h-6 text-green-600 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
+                  </svg>
+                </td>
+              </tr>
+              <tr class="border-b border-kaptio-grey-100">
+                <td class="py-4 px-4 font-medium text-kaptio-primary-800">Workflows & Automation</td>
+                <td class="py-4 px-4 text-center">
+                  <svg class="w-6 h-6 text-green-600 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
+                  </svg>
+                </td>
+                <td class="py-4 px-4 text-center">
+                  <svg class="w-6 h-6 text-green-600 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
+                  </svg>
+                </td>
+                <td class="py-4 px-4 text-center">
+                  <svg class="w-6 h-6 text-green-600 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
+                  </svg>
+                </td>
+              </tr>
+              
+              <!-- Kaptio Industry-Specific Objects (Highlighted) -->
+              <tr class="border-b border-kaptio-grey-100 bg-yellow-50">
+                <td class="py-4 px-4 font-medium text-kaptio-primary-800">
+                  <div class="flex items-center space-x-2">
+                    <span>Trip Object (Customer Journey)</span>
+                    <span class="text-xs px-2 py-0.5 bg-kaptio-yellow-400 text-kaptio-primary-800 rounded-full font-medium">Travel-Specific</span>
+                  </div>
+                </td>
+                <td class="py-4 px-4 text-center">
+                  <svg class="w-6 h-6 text-kaptio-grey-200 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M6 18L18 6M6 6l12 12"/>
+                  </svg>
+                </td>
+                <td class="py-4 px-4 text-center bg-kaptio-yellow-200">
+                  <svg class="w-6 h-6 text-green-600 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
+                  </svg>
+                </td>
+                <td class="py-4 px-4 text-center">
+                  <svg class="w-6 h-6 text-kaptio-grey-200 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M6 18L18 6M6 6l12 12"/>
+                  </svg>
+                </td>
+              </tr>
+              <tr class="border-b border-kaptio-grey-100 bg-yellow-50">
+                <td class="py-4 px-4 font-medium text-kaptio-primary-800">
+                  <div class="flex items-center space-x-2">
+                    <span>Itinerary Object (Proposals)</span>
+                    <span class="text-xs px-2 py-0.5 bg-kaptio-yellow-400 text-kaptio-primary-800 rounded-full font-medium">Travel-Specific</span>
+                  </div>
+                </td>
+                <td class="py-4 px-4 text-center">
+                  <svg class="w-6 h-6 text-kaptio-grey-200 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M6 18L18 6M6 6l12 12"/>
+                  </svg>
+                </td>
+                <td class="py-4 px-4 text-center bg-kaptio-yellow-200">
+                  <svg class="w-6 h-6 text-green-600 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
+                  </svg>
+                </td>
+                <td class="py-4 px-4 text-center">
+                  <svg class="w-6 h-6 text-kaptio-grey-200 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M6 18L18 6M6 6l12 12"/>
+                  </svg>
+                </td>
+              </tr>
+              <tr class="border-b border-kaptio-grey-100 bg-yellow-50">
+                <td class="py-4 px-4 font-medium text-kaptio-primary-800">
+                  <div class="flex items-center space-x-2">
+                    <span>Passengers & Bookings</span>
+                    <span class="text-xs px-2 py-0.5 bg-kaptio-yellow-400 text-kaptio-primary-800 rounded-full font-medium">Travel-Specific</span>
+                  </div>
+                </td>
+                <td class="py-4 px-4 text-center">
+                  <svg class="w-6 h-6 text-kaptio-grey-200 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M6 18L18 6M6 6l12 12"/>
+                  </svg>
+                </td>
+                <td class="py-4 px-4 text-center bg-kaptio-yellow-200">
+                  <svg class="w-6 h-6 text-green-600 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
+                  </svg>
+                </td>
+                <td class="py-4 px-4 text-center">
+                  <svg class="w-6 h-6 text-kaptio-grey-200 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M6 18L18 6M6 6l12 12"/>
+                  </svg>
+                </td>
+              </tr>
+              <tr class="border-b border-kaptio-grey-100 bg-yellow-50">
+                <td class="py-4 px-4 font-medium text-kaptio-primary-800">
+                  <div class="flex items-center space-x-2">
+                    <span>Packages & Pricing</span>
+                    <span class="text-xs px-2 py-0.5 bg-kaptio-yellow-400 text-kaptio-primary-800 rounded-full font-medium">Travel-Specific</span>
+                  </div>
+                </td>
+                <td class="py-4 px-4 text-center">
+                  <svg class="w-6 h-6 text-kaptio-grey-200 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M6 18L18 6M6 6l12 12"/>
+                  </svg>
+                </td>
+                <td class="py-4 px-4 text-center bg-kaptio-yellow-200">
+                  <svg class="w-6 h-6 text-green-600 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
+                  </svg>
+                </td>
+                <td class="py-4 px-4 text-center">
+                  <svg class="w-6 h-6 text-kaptio-grey-200 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M6 18L18 6M6 6l12 12"/>
+                  </svg>
+                </td>
+              </tr>
+              
+              <!-- Salesforce Sales Cloud Features -->
+              <tr class="border-b border-kaptio-grey-100 bg-kaptio-primary-50">
+                <td class="py-4 px-4 font-medium text-kaptio-primary-800">
+                  <div class="flex items-center space-x-2">
+                    <span>Leads (Generic)</span>
+                    <span class="text-xs px-2 py-0.5 bg-kaptio-grey-200 text-kaptio-grey-300 rounded-full font-medium">General Purpose</span>
+                  </div>
+                </td>
+                <td class="py-4 px-4 text-center">
+                  <svg class="w-6 h-6 text-kaptio-grey-200 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M6 18L18 6M6 6l12 12"/>
+                  </svg>
+                </td>
+                <td class="py-4 px-4 text-center">
+                  <svg class="w-6 h-6 text-kaptio-grey-200 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M6 18L18 6M6 6l12 12"/>
+                  </svg>
+                </td>
+                <td class="py-4 px-4 text-center">
+                  <svg class="w-6 h-6 text-green-600 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
+                  </svg>
+                </td>
+              </tr>
+              <tr class="border-b border-kaptio-grey-100 bg-kaptio-primary-50">
+                <td class="py-4 px-4 font-medium text-kaptio-primary-800">
+                  <div class="flex items-center space-x-2">
+                    <span>Opportunities (Generic)</span>
+                    <span class="text-xs px-2 py-0.5 bg-kaptio-grey-200 text-kaptio-grey-300 rounded-full font-medium">General Purpose</span>
+                  </div>
+                </td>
+                <td class="py-4 px-4 text-center">
+                  <svg class="w-6 h-6 text-kaptio-grey-200 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M6 18L18 6M6 6l12 12"/>
+                  </svg>
+                </td>
+                <td class="py-4 px-4 text-center">
+                  <svg class="w-6 h-6 text-kaptio-grey-200 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M6 18L18 6M6 6l12 12"/>
+                  </svg>
+                </td>
+                <td class="py-4 px-4 text-center">
+                  <svg class="w-6 h-6 text-green-600 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
+                  </svg>
+                </td>
+              </tr>
+              <tr class="border-b border-kaptio-grey-100 bg-kaptio-primary-50">
+                <td class="py-4 px-4 font-medium text-kaptio-primary-800">Forecasting & Pipeline</td>
+                <td class="py-4 px-4 text-center">
+                  <svg class="w-6 h-6 text-kaptio-grey-200 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M6 18L18 6M6 6l12 12"/>
+                  </svg>
+                </td>
+                <td class="py-4 px-4 text-center">
+                  <svg class="w-6 h-6 text-kaptio-grey-200 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M6 18L18 6M6 6l12 12"/>
+                  </svg>
+                </td>
+                <td class="py-4 px-4 text-center">
+                  <svg class="w-6 h-6 text-green-600 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
+                  </svg>
+                </td>
+              </tr>
+              <tr class="border-b border-kaptio-grey-100 bg-kaptio-primary-50">
+                <td class="py-4 px-4 font-medium text-kaptio-primary-800">Cases & Service Desk</td>
+                <td class="py-4 px-4 text-center">
+                  <svg class="w-6 h-6 text-kaptio-grey-200 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M6 18L18 6M6 6l12 12"/>
+                  </svg>
+                </td>
+                <td class="py-4 px-4 text-center">
+                  <svg class="w-6 h-6 text-kaptio-grey-200 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M6 18L18 6M6 6l12 12"/>
+                  </svg>
+                </td>
+                <td class="py-4 px-4 text-center">
+                  <svg class="w-6 h-6 text-green-600 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
+                  </svg>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="mt-6 p-4 bg-kaptio-white rounded-lg">
+          <p class="text-sm text-kaptio-grey-300 font-light leading-relaxed"><strong class="text-kaptio-primary-800">Key Insight:</strong> Kaptio provides industry-specific CRM objects (highlighted in yellow) that speak the language of multi-day tour and cruise operators—Trips, Itineraries, Passengers, Packages. Sales Cloud provides general-purpose sales tools (Leads, Opportunities) that are industry-agnostic. Most travel operators find Kaptio's purpose-built objects more valuable than generic sales automation.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ISV vs OEM Models Section -->
+  <section id="models" class="py-16 md:py-20">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-kaptio-primary-800 mb-4">ISV vs OEM Licensing Models</h2>
+        <p class="text-lg text-kaptio-grey-300 max-w-3xl mx-auto">Kaptio offers two licensing models depending on your existing Salesforce relationship.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8">
+        <!-- ISV Model -->
+        <div class="bg-kaptio-white rounded-lg shadow-kaptio p-8 card-hover">
+          <div class="mb-6">
+            <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-kaptio-primary-100 text-kaptio-primary-400 mb-4">ISV Model</span>
+            <h3 class="text-2xl font-bold text-kaptio-primary-800 mb-3">For Existing Salesforce Customers</h3>
+            <p class="text-sm text-kaptio-grey-300 font-light">Ideal if you already have Salesforce licenses or want to leverage Sales/Service Cloud features.</p>
+          </div>
+
+          <div class="space-y-4 mb-6">
+            <div class="flex items-start space-x-3">
+              <svg class="w-5 h-5 text-kaptio-primary-400 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              <div>
+                <p class="text-sm font-medium text-kaptio-primary-800">Seamless CRM Integration</p>
+                <p class="text-xs text-kaptio-grey-300 font-light">Works with your existing Salesforce org</p>
+              </div>
+            </div>
+
+            <div class="flex items-start space-x-3">
+              <svg class="w-5 h-5 text-kaptio-primary-400 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              <div>
+                <p class="text-sm font-medium text-kaptio-primary-800">Leverage Existing Investment</p>
+                <p class="text-xs text-kaptio-grey-300 font-light">Use your current Sales/Service Cloud features</p>
+              </div>
+            </div>
+
+            <div class="flex items-start space-x-3">
+              <svg class="w-5 h-5 text-kaptio-primary-400 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              <div>
+                <p class="text-sm font-medium text-kaptio-primary-800">Two-Vendor Relationship</p>
+                <p class="text-xs text-kaptio-grey-300 font-light">Purchase Platform licenses from Salesforce, Kaptio from us</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- OEM Model -->
+        <div class="bg-kaptio-white rounded-lg shadow-kaptio p-8 card-hover border-2 border-kaptio-yellow-400">
+          <div class="mb-6">
+            <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-kaptio-yellow-200 text-kaptio-black mb-4">OEM Model (Recommended)</span>
+            <h3 class="text-2xl font-bold text-kaptio-primary-800 mb-3">For Non-Salesforce Customers</h3>
+            <p class="text-sm text-kaptio-grey-300 font-light">Perfect if you don't currently use Salesforce and want a single-vendor solution.</p>
+          </div>
+
+          <div class="space-y-4 mb-6">
+            <div class="flex items-start space-x-3">
+              <svg class="w-5 h-5 text-kaptio-primary-400 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              <div>
+                <p class="text-sm font-medium text-kaptio-primary-800">Single Vendor Simplicity</p>
+                <p class="text-xs text-kaptio-grey-300 font-light">Everything from Kaptio—one contract, one relationship</p>
+              </div>
+            </div>
+
+            <div class="flex items-start space-x-3">
+              <svg class="w-5 h-5 text-kaptio-primary-400 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              <div>
+                <p class="text-sm font-medium text-kaptio-primary-800">Platform Licenses Included</p>
+                <p class="text-xs text-kaptio-grey-300 font-light">Salesforce platform licenses embedded in pricing</p>
+              </div>
+            </div>
+
+            <div class="flex items-start space-x-3">
+              <svg class="w-5 h-5 text-kaptio-primary-400 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              <div>
+                <p class="text-sm font-medium text-kaptio-primary-800">Simpler Procurement</p>
+                <p class="text-xs text-kaptio-grey-300 font-light">No need to manage Salesforce licensing separately</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="border-t border-kaptio-grey-100 pt-4">
+            <p class="text-xs text-kaptio-grey-300 font-light"><strong class="text-kaptio-primary-800">Note:</strong> Cannot be sold into existing Salesforce orgs using Sales/Service Cloud</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- When Additional Licenses May Be Needed Section -->
+  <section id="additional" class="py-16 md:py-20 bg-kaptio-white">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-kaptio-primary-800 mb-4">Expanding Your Capabilities with Salesforce Clouds</h2>
+        <p class="text-lg text-kaptio-grey-300 max-w-3xl mx-auto">Kaptio provides comprehensive travel CRM out of the box. As your business scales, Salesforce's Service Cloud and Marketing Cloud are commonly added to expand customer support and marketing automation capabilities.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6 mb-12">
+        <!-- Service Cloud -->
+        <div class="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-6 border-2 border-green-300 card-hover">
+          <div class="flex items-start space-x-4">
+            <div class="flex-shrink-0">
+              <div class="w-12 h-12 bg-green-600 rounded-lg flex items-center justify-center">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"/>
+                </svg>
+              </div>
+            </div>
+            <div class="flex-1">
+              <div class="flex items-center space-x-2 mb-2">
+                <h3 class="text-xl font-bold text-green-900">Service Cloud</h3>
+                <span class="text-xs px-2 py-0.5 bg-green-600 text-white rounded-full font-medium">Popular Add-on</span>
+              </div>
+              <p class="text-sm text-green-900 font-light mb-4 leading-relaxed">Elevate customer support with enterprise-grade service desk capabilities. Very common in the travel industry for handling guest inquiries, emergencies, and post-booking support.</p>
+              
+              <div class="space-y-2 mb-4">
+                <div class="flex items-start space-x-2">
+                  <svg class="w-4 h-4 text-green-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                  </svg>
+                  <span class="text-sm text-green-800">Case management with queues & escalations</span>
+                </div>
+                <div class="flex items-start space-x-2">
+                  <svg class="w-4 h-4 text-green-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                  </svg>
+                  <span class="text-sm text-green-800">Knowledge base for self-service support</span>
+                </div>
+                <div class="flex items-start space-x-2">
+                  <svg class="w-4 h-4 text-green-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                  </svg>
+                  <span class="text-sm text-green-800">Omni-channel routing (email, phone, chat)</span>
+                </div>
+                <div class="flex items-start space-x-2">
+                  <svg class="w-4 h-4 text-green-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                  </svg>
+                  <span class="text-sm text-green-800">CTI (Computer Telephony Integration)</span>
+                </div>
+                <div class="flex items-start space-x-2">
+                  <svg class="w-4 h-4 text-green-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                  </svg>
+                  <span class="text-sm text-green-800">SLA management & entitlements</span>
+                </div>
+              </div>
+              
+              <p class="text-xs text-green-700 italic">Common use case: 24/7 traveler support desk, emergency assistance, booking modifications</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Marketing Cloud -->
+        <div class="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-6 border-2 border-purple-300 card-hover">
+          <div class="flex items-start space-x-4">
+            <div class="flex-shrink-0">
+              <div class="w-12 h-12 bg-purple-600 rounded-lg flex items-center justify-center">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                </svg>
+              </div>
+            </div>
+            <div class="flex-1">
+              <div class="flex items-center space-x-2 mb-2">
+                <h3 class="text-xl font-bold text-purple-900">Marketing Cloud</h3>
+                <span class="text-xs px-2 py-0.5 bg-purple-600 text-white rounded-full font-medium">Popular Add-on</span>
+              </div>
+              <p class="text-sm text-purple-900 font-light mb-4 leading-relaxed">Enterprise marketing automation that integrates seamlessly with Kaptio's Trip lifecycle. Widely adopted by travel operators for sophisticated customer engagement and retention campaigns.</p>
+              
+              <div class="space-y-2 mb-4">
+                <div class="flex items-start space-x-2">
+                  <svg class="w-4 h-4 text-purple-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                  </svg>
+                  <span class="text-sm text-purple-800">Advanced email campaigns & journeys</span>
+                </div>
+                <div class="flex items-start space-x-2">
+                  <svg class="w-4 h-4 text-purple-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                  </svg>
+                  <span class="text-sm text-purple-800">Customer journey mapping & automation</span>
+                </div>
+                <div class="flex items-start space-x-2">
+                  <svg class="w-4 h-4 text-purple-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                  </svg>
+                  <span class="text-sm text-purple-800">Dynamic segmentation & personalization</span>
+                </div>
+                <div class="flex items-start space-x-2">
+                  <svg class="w-4 h-4 text-purple-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                  </svg>
+                  <span class="text-sm text-purple-800">A/B testing & analytics</span>
+                </div>
+                <div class="flex items-start space-x-2">
+                  <svg class="w-4 h-4 text-purple-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                  </svg>
+                  <span class="text-sm text-purple-800">Multi-channel campaigns (email, SMS, social)</span>
+                </div>
+              </div>
+              
+              <p class="text-xs text-purple-700 italic">Common use case: Abandoned quote campaigns, post-trip surveys, upsell/cross-sell automation</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sales Cloud (Optional) -->
+        <div class="bg-kaptio-background rounded-lg p-6 border-l-4 border-kaptio-grey-200">
+          <div class="flex items-start space-x-4">
+            <div class="flex-shrink-0 text-3xl font-bold text-kaptio-grey-300">+</div>
+            <div class="flex-1">
+              <h3 class="text-lg font-bold text-kaptio-primary-800 mb-2">Sales Cloud (Optional)</h3>
+              <p class="text-sm text-kaptio-grey-300 font-light mb-3">General-purpose sales automation with Leads, Opportunities, and forecasting. Less common for travel operators since Kaptio's Trip object provides travel-specific sales tracking.</p>
+              <span class="license-badge badge-full text-xs">Sales Cloud License</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pardot/Account Engagement -->
+        <div class="bg-kaptio-background rounded-lg p-6 border-l-4 border-kaptio-grey-200">
+          <div class="flex items-start space-x-4">
+            <div class="flex-shrink-0 text-3xl font-bold text-kaptio-grey-300">+</div>
+            <div class="flex-1">
+              <h3 class="text-lg font-bold text-kaptio-primary-800 mb-2">Pardot / Account Engagement (Optional)</h3>
+              <p class="text-sm text-kaptio-grey-300 font-light mb-3">B2B marketing automation alternative to Marketing Cloud. Some travel operators use Pardot for lead nurturing and marketing analytics.</p>
+              <span class="license-badge badge-full text-xs">Pardot License</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section id="faq" class="py-16 md:py-20">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-kaptio-primary-800 mb-4">Frequently Asked Questions</h2>
+        <p class="text-lg text-kaptio-grey-300">Common questions about Kaptio and Salesforce licensing</p>
+      </div>
+
+      <div class="space-y-4">
+        <!-- FAQ 1 -->
+        <div class="bg-kaptio-white rounded-lg shadow-kaptio overflow-hidden">
+          <button class="faq-question w-full text-left px-6 py-5 flex items-center justify-between hover:bg-kaptio-primary-50 transition-colors" onclick="toggleFAQ(this)">
+            <span class="text-base font-bold text-kaptio-primary-800 pr-4">Do I need Salesforce licenses to use Kaptio?</span>
+            <svg class="w-5 h-5 text-kaptio-primary-400 faq-icon flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </button>
+          <div class="faq-answer px-6">
+            <div class="pb-5 text-sm text-kaptio-grey-300 font-light leading-relaxed">
+              <p class="mb-3">No, you do not need separate Salesforce licenses to use Kaptio—our solution includes all the necessary technology. Kaptio provides a fully functional, world-class CRM built on Salesforce's platform.</p>
+              <p>However, if you already have Salesforce licenses or wish to purchase them alongside Kaptio, our platform can seamlessly integrate with your existing Salesforce setup through our ISV model.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 2 -->
+        <div class="bg-kaptio-white rounded-lg shadow-kaptio overflow-hidden">
+          <button class="faq-question w-full text-left px-6 py-5 flex items-center justify-between hover:bg-kaptio-primary-50 transition-colors" onclick="toggleFAQ(this)">
+            <span class="text-base font-bold text-kaptio-primary-800 pr-4">What's Kaptio's relationship with Salesforce?</span>
+            <svg class="w-5 h-5 text-kaptio-primary-400 faq-icon flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </button>
+          <div class="faq-answer px-6">
+            <div class="pb-5 text-sm text-kaptio-grey-300 font-light leading-relaxed">
+              <p class="mb-3">Kaptio is built natively on the Salesforce Platform, leveraging Salesforce's enterprise-grade infrastructure for security, scalability, and reliability.</p>
+              <p class="mb-3">Think of it this way: <strong class="text-kaptio-primary-800">Salesforce provides the platform</strong> (accounts, contacts, reports, workflows), and <strong class="text-kaptio-primary-800">Kaptio adds the travel industry expertise</strong> (Trips, Itineraries, Packages, Passengers, Bookings).</p>
+              <p>With Kaptio, you get a single product purpose-built for multi-day tour and cruise operators, running on world-class Salesforce technology. As you scale, Salesforce's Service Cloud and Marketing Cloud provide natural expansion paths that many travel operators adopt.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 3 -->
+        <div class="bg-kaptio-white rounded-lg shadow-kaptio overflow-hidden">
+          <button class="faq-question w-full text-left px-6 py-5 flex items-center justify-between hover:bg-kaptio-primary-50 transition-colors" onclick="toggleFAQ(this)">
+            <span class="text-base font-bold text-kaptio-primary-800 pr-4">What Salesforce licenses do I need for different use cases?</span>
+            <svg class="w-5 h-5 text-kaptio-primary-400 faq-icon flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </button>
+          <div class="faq-answer px-6">
+            <div class="pb-5 text-sm text-kaptio-grey-300 font-light leading-relaxed">
+              <p class="mb-3">The answer depends on your use case:</p>
+              <ul class="list-disc pl-5 space-y-2">
+                <li><strong class="text-kaptio-primary-800">Kaptio-only usage:</strong> Platform licenses (included in OEM model, or purchased from Salesforce in ISV model)</li>
+                <li><strong class="text-kaptio-primary-800">Kaptio + Lead/Opportunity/Case management:</strong> Full Sales Cloud or Service Cloud licenses</li>
+                <li><strong class="text-kaptio-primary-800">KTAPI sync user:</strong> Requires at least ONE full Salesforce license (not Platform)</li>
+                <li><strong class="text-kaptio-primary-800">Admins/Developers:</strong> Full Salesforce licenses typically required for complete configuration access</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 4 -->
+        <div class="bg-kaptio-white rounded-lg shadow-kaptio overflow-hidden">
+          <button class="faq-question w-full text-left px-6 py-5 flex items-center justify-between hover:bg-kaptio-primary-50 transition-colors" onclick="toggleFAQ(this)">
+            <span class="text-base font-bold text-kaptio-primary-800 pr-4">Can I run Kaptio on just Platform licenses?</span>
+            <svg class="w-5 h-5 text-kaptio-primary-400 faq-icon flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </button>
+          <div class="faq-answer px-6">
+            <div class="pb-5 text-sm text-kaptio-grey-300 font-light leading-relaxed">
+              <p class="mb-3">Yes! Platform licenses include everything most travel operators need:</p>
+              <ul class="list-disc pl-5 space-y-2 mb-3">
+                <li>Accounts, Contacts, and Activities</li>
+                <li>Custom objects (unlimited with Platform Plus)</li>
+                <li>Reports, Dashboards, and Analytics</li>
+                <li>Workflows, validation rules, and automation</li>
+                <li>Chatter for team collaboration</li>
+                <li>Mobile app access</li>
+              </ul>
+              <p class="mb-3">Platform licenses do NOT include:</p>
+              <ul class="list-disc pl-5 space-y-2">
+                <li>Leads, Opportunities, Campaigns, Cases (standard Salesforce objects)</li>
+                <li>Sales Cloud features (lead scoring, opportunity management)</li>
+                <li>Service Cloud features (case management, knowledge base, CTI telephony)</li>
+              </ul>
+              <p class="mt-3"><strong class="text-kaptio-primary-800">Note:</strong> Kaptio's managed package doesn't count against custom object limits, but your own customizations do.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 5 -->
+        <div class="bg-kaptio-white rounded-lg shadow-kaptio overflow-hidden">
+          <button class="faq-question w-full text-left px-6 py-5 flex items-center justify-between hover:bg-kaptio-primary-50 transition-colors" onclick="toggleFAQ(this)">
+            <span class="text-base font-bold text-kaptio-primary-800 pr-4">What's the difference between ISV and OEM licensing?</span>
+            <svg class="w-5 h-5 text-kaptio-primary-400 faq-icon flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </button>
+          <div class="faq-answer px-6">
+            <div class="pb-5 text-sm text-kaptio-grey-300 font-light leading-relaxed">
+              <p class="mb-3"><strong class="text-kaptio-primary-800">ISV (ISVforce) Model:</strong></p>
+              <ul class="list-disc pl-5 space-y-1 mb-4">
+                <li>For existing Salesforce customers</li>
+                <li>Purchase Platform licenses from Salesforce + Kaptio licenses from us</li>
+                <li>Can integrate with existing Sales/Service Cloud implementations</li>
+              </ul>
+              <p class="mb-3"><strong class="text-kaptio-primary-800">OEM Model:</strong></p>
+              <ul class="list-disc pl-5 space-y-1">
+                <li>For non-Salesforce customers</li>
+                <li>Everything from Kaptio—single vendor relationship</li>
+                <li>Platform licenses embedded in pricing</li>
+                <li>Cannot be sold into existing Salesforce orgs using Sales/Service Cloud</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 6 -->
+        <div class="bg-kaptio-white rounded-lg shadow-kaptio overflow-hidden">
+          <button class="faq-question w-full text-left px-6 py-5 flex items-center justify-between hover:bg-kaptio-primary-50 transition-colors" onclick="toggleFAQ(this)">
+            <span class="text-base font-bold text-kaptio-primary-800 pr-4">Do I get sandbox environments with Kaptio?</span>
+            <svg class="w-5 h-5 text-kaptio-primary-400 faq-icon flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </button>
+          <div class="faq-answer px-6">
+            <div class="pb-5 text-sm text-kaptio-grey-300 font-light leading-relaxed">
+              <p class="mb-3">Yes! Sandbox environments (Developer/Developer Pro) are included in your Salesforce org license, regardless of whether you're using the ISV or OEM model.</p>
+              <p>Sandboxes allow you to test configurations, integrations, and customizations in a safe environment before deploying to production.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 7 -->
+        <div class="bg-kaptio-white rounded-lg shadow-kaptio overflow-hidden">
+          <button class="faq-question w-full text-left px-6 py-5 flex items-center justify-between hover:bg-kaptio-primary-50 transition-colors" onclick="toggleFAQ(this)">
+            <span class="text-base font-bold text-kaptio-primary-800 pr-4">Are there limits on custom objects with Platform licenses?</span>
+            <svg class="w-5 h-5 text-kaptio-primary-400 faq-icon flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </button>
+          <div class="faq-answer px-6">
+            <div class="pb-5 text-sm text-kaptio-grey-300 font-light leading-relaxed">
+              <p class="mb-3">Platform Starter is sufficient for most Kaptio deployments. It includes up to 10 custom objects—which covers typical needs since custom objects are not common in OEM deployments.</p>
+              <p class="mb-3">Importantly, <strong class="text-kaptio-primary-800">Kaptio's managed package objects don't count against this limit</strong>—only your own custom objects do.</p>
+              <p>The 10 custom objects available in Platform Starter are sufficient for the vast majority of travel operators.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 8 -->
+        <div class="bg-kaptio-white rounded-lg shadow-kaptio overflow-hidden border-2 border-kaptio-yellow-400">
+          <button class="faq-question w-full text-left px-6 py-5 flex items-center justify-between hover:bg-kaptio-primary-50 transition-colors" onclick="toggleFAQ(this)">
+            <span class="text-base font-bold text-kaptio-primary-800 pr-4">What makes Kaptio's Trip and Itinerary objects different from standard Salesforce?</span>
+            <svg class="w-5 h-5 text-kaptio-primary-400 faq-icon flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </button>
+          <div class="faq-answer px-6">
+            <div class="pb-5 text-sm text-kaptio-grey-300 font-light leading-relaxed">
+              <p class="mb-3">While Salesforce provides standard CRM objects like Leads, Opportunities, and Cases, Kaptio extends the platform with purpose-built objects designed specifically for multi-day travel operations:</p>
+              
+              <p class="mb-3"><strong class="text-kaptio-primary-800">Trip Object:</strong> Acts as the overarching container for customer intent throughout the entire journey. A Trip captures the customer's interest from the very first inquiry and tracks it through distinct lifecycle stages:</p>
+              <ul class="list-disc pl-5 space-y-1 mb-3">
+                <li>Prospecting & Qualification (initial interest)</li>
+                <li>Quote Pending & Quote Sent (proposal stage)</li>
+                <li>Confirmed & Travelling (booking fulfilled)</li>
+                <li>Completed (post-trip)</li>
+              </ul>
+
+              <p class="mb-3"><strong class="text-kaptio-primary-800">Itinerary Object:</strong> Represents specific configurations and proposals within a Trip. You can create multiple Itineraries for a single Trip—each with different dates, services, pricing, and options—allowing customers to compare alternatives.</p>
+
+              <p class="mb-3"><strong class="text-kaptio-primary-800">Marketing Integration:</strong> Because the Trip object tracks the complete customer lifecycle, it becomes incredibly powerful for marketing automation:</p>
+              <ul class="list-disc pl-5 space-y-1">
+                <li>Trigger automated follow-ups based on Trip status</li>
+                <li>Re-engage customers with expired quotes</li>
+                <li>Send post-trip surveys and upsell opportunities</li>
+                <li>Segment customers by travel stage for targeted campaigns</li>
+                <li>Integrate with marketing automation platforms (Marketo, Pardot, HubSpot, etc.)</li>
+              </ul>
+
+              <p class="mt-3">While Salesforce Sales Cloud provides general-purpose Leads and Opportunities for any industry, Kaptio's Trip and Itinerary objects are purpose-built for the unique complexity of multi-day travel operations. This industry-specific approach provides a stronger foundation for travel businesses and integrates naturally with Salesforce's Service Cloud and Marketing Cloud as you scale.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section id="contact" class="py-16 md:py-20 bg-gradient-to-br from-kaptio-primary-800 to-kaptio-primary-600 text-white">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <h2 class="text-3xl md:text-4xl font-bold mb-4">Ready to Learn More?</h2>
+      <p class="text-lg md:text-xl font-light mb-8 text-kaptio-primary-100">Let's discuss which licensing model is right for your travel business.</p>
+      
+      <div class="flex items-center justify-center">
+        <a href="https://www.kaptio.com/contact" target="_blank" class="bg-kaptio-yellow-400 hover:bg-kaptio-yellow-300 text-kaptio-black px-8 py-4 rounded-lg text-base font-medium shadow-button transition-all duration-200 hover:shadow-md active:scale-95 inline-block">
+          Contact Sales
+        </a>
+      </div>
+
+      <div class="mt-12 pt-8 border-t border-kaptio-primary-400">
+        <p class="text-sm text-kaptio-primary-200 font-light">
+          Have questions? Email us at <a href="mailto:sales@kaptio.com" class="text-kaptio-yellow-400 hover:text-kaptio-yellow-300 underline">sales@kaptio.com</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-kaptio-primary-800 text-kaptio-primary-200 py-8">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
+        <div class="flex items-center space-x-3">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 91 29" width="91" height="29" class="h-6">
+            <path d="M64.8,22.2c-1.2.4-2.6.6-3.9.6-3.4,0-5.7-2.5-5.7-6.2v-4.1h-2.8v-4h2.8v-3.5l4.8-1.2v4.7h4.9v4h-4.9v4c0,1.4.8,2.1,2.2,2.1.9,0,1.8-.2,2.6-.4v4.1Z" fill="#FFFFFF"/>
+            <path d="M72.5,22.4h-4.8v-13.9h4.8v13.9Z" fill="#FFFFFF"/>
+            <path d="M82.8,8.2c-4.5,0-7.7,3.1-7.7,7.2s3.2,7.4,7.7,7.4,7.7-3.1,7.7-7.4-3.2-7.2-7.7-7.2ZM82.8,18.8c-1.9,0-3.4-1.5-3.4-3.3s1.5-3.3,3.4-3.3,3.4,1.5,3.4,3.3-1.5,3.3-3.4,3.3Z" fill="#FFFFFF"/>
+            <path d="M27.5,22.4h4.8v-13.9h-4.8v.8c-1.2-.7-2.5-1.1-3.9-1.1-3.8,0-7.1,3.1-7.1,7.2s3.2,7.2,7.1,7.2c1.4,0,2.7-.3,3.9-1.1v.8ZM28.3,15.5c0,1.8-1.5,3.3-3.4,3.3s-3.4-1.5-3.4-3.3,1.5-3.3,3.4-3.3,3.4,1.5,3.4,3.3Z" fill="#FFFFFF"/>
+            <path d="M44.2,22.6c3.8,0,7.1-3.1,7.1-7.2s-3.2-7.2-7.1-7.2c-1.4,0-2.7.3-3.9,1.1v-.7h-4.8v20.3h4.8v-7.2c1.2.7,2.5,1.1,3.9,1.1ZM46.2,15.5c0,1.8-1.5,3.3-3.4,3.3s-3.4-1.5-3.4-3.3,1.5-3.3,3.4-3.3,3.4,1.5,3.4,3.3Z" fill="#FFFFFF"/>
+            <path d="M10.1,22.3l-4.9-6.1v6.1H.4V2h4.7v12.2l4.8-5.8h6.1l-5.7,6.7,5.9,7.3h-6.2Z" fill="#FFFFFF"/>
+            <ellipse cx="70.3" cy="3.6" rx="3.4" ry="3.4" fill="#DE37A4"/>
+          </svg>
+        </div>
+        <div class="text-sm font-light">
+          <p>&copy; 2025 Kaptio. All rights reserved.</p>
+        </div>
+        <div class="flex items-center space-x-6">
+          <a href="https://www.kaptio.com/privacy" target="_blank" class="text-sm hover:text-white transition-colors">Privacy Policy</a>
+          <a href="https://www.kaptio.com/terms" target="_blank" class="text-sm hover:text-white transition-colors">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    // Sticky Navigation
+    let lastScrollTop = 0;
+    const nav = document.getElementById('stickyNav');
+    const heroHeight = 400;
+
+    window.addEventListener('scroll', function() {
+      let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      
+      if (scrollTop > heroHeight) {
+        if (scrollTop > lastScrollTop) {
+          // Scrolling down
+          nav.classList.remove('nav-visible');
+          nav.classList.add('nav-hidden');
+        } else {
+          // Scrolling up
+          nav.classList.remove('nav-hidden');
+          nav.classList.add('nav-visible');
+        }
+      } else {
+        nav.classList.remove('nav-visible');
+        nav.classList.add('nav-hidden');
+      }
+      
+      lastScrollTop = scrollTop;
+    });
+
+    // FAQ Toggle
+    function toggleFAQ(button) {
+      const answer = button.nextElementSibling;
+      const icon = button.querySelector('.faq-icon');
+      
+      // Close all other FAQs
+      document.querySelectorAll('.faq-answer').forEach(function(item) {
+        if (item !== answer) {
+          item.classList.remove('open');
+          item.previousElementSibling.querySelector('.faq-icon').classList.remove('rotated');
+        }
+      });
+      
+      // Toggle current FAQ
+      answer.classList.toggle('open');
+      icon.classList.toggle('rotated');
+    }
+
+    // Smooth Scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          const offsetTop = target.offsetTop - 80; // Account for sticky nav
+          window.scrollTo({
+            top: offsetTop,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+
+    // Print button functionality (optional)
+    function printPage() {
+      window.print();
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,324 @@
+{
+  "bundleMetadata": {
+    "packageName": "Italian Wine Country",
+    "packageType": "Classic Land-Only (Principle)",
+    "extractedFrom": "sophia-sheet",
+    "extractionDate": "2025-11-26",
+    "totalRecords": 25,
+    "requiresMapping": [
+      "OwnerId",
+      "CurrencyIsoCode"
+    ],
+    "recordsByType": {
+      "KaptioTravel__Location__c": 2,
+      "KaptioTravel__PaymentScheduleConfiguration__c": 1,
+      "KaptioTravel__PaymentScheduleRule__c": 3,
+      "KaptioTravel__CancellationConfiguration__c": 1,
+      "KaptioTravel__CancellationRule__c": 4,
+      "KaptioTravel__Package__c": 1,
+      "KaptioTravel__Component__c": 2,
+      "KaptioTravel__ComponentOption__c": 2,
+      "KaptioTravel__Item__c": 1,
+      "KaptioTravel__Price_Category__c": 2,
+      "KaptioTravel__Item_Price__c": 2,
+      "KaptioTravel__PackageDeparture__c": 2,
+      "KaptioTravel__AllotmentDay__c": 2
+    }
+  },
+  "deploymentOrder": [
+    "KaptioTravel__Location__c",
+    "KaptioTravel__PaymentScheduleConfiguration__c",
+    "KaptioTravel__PaymentScheduleRule__c",
+    "KaptioTravel__CancellationConfiguration__c",
+    "KaptioTravel__CancellationRule__c",
+    "KaptioTravel__Package__c",
+    "KaptioTravel__Component__c",
+    "KaptioTravel__Item__c",
+    "KaptioTravel__Price_Category__c",
+    "KaptioTravel__Item_Price__c",
+    "KaptioTravel__ComponentOption__c",
+    "KaptioTravel__PackageDeparture__c",
+    "KaptioTravel__AllotmentDay__c"
+  ],
+  "records": {
+    "KaptioTravel__Location__c": [
+      {
+        "Id": "a1g03283831bede",
+        "Name": "Florence",
+        "KaptioTravel__LocationType__c": "City",
+        "_shared": true
+      },
+      {
+        "Id": "a1g16398cc40376",
+        "Name": "Rome",
+        "KaptioTravel__LocationType__c": "City",
+        "_shared": true
+      }
+    ],
+    "KaptioTravel__PaymentScheduleConfiguration__c": [
+      {
+        "Id": "a3Z77906df517d0",
+        "Name": "Italian Wine Country - Payment Schedule",
+        "KaptioTravel__IsActive__c": true
+      }
+    ],
+    "KaptioTravel__PaymentScheduleRule__c": [
+      {
+        "Id": "a3a5cf7bc5ec987",
+        "Name": "Deposit",
+        "KaptioTravel__Type__c": "Deposit",
+        "KaptioTravel__DateType__c": "After Booking",
+        "KaptioTravel__DaysOffset__c": 0,
+        "KaptioTravel__ChargeType__c": "Per Person",
+        "KaptioTravel__Value__c": 500,
+        "KaptioTravel__PaymentScheduleConfiguration__c": "a3Z77906df517d0",
+        "KaptioTravel__Sort__c": 1
+      },
+      {
+        "Id": "a3ae1b70f86c762",
+        "Name": "Progress Payment",
+        "KaptioTravel__Type__c": "Deposit",
+        "KaptioTravel__DateType__c": "After Booking",
+        "KaptioTravel__DaysOffset__c": 30,
+        "KaptioTravel__ChargeType__c": "Per Person",
+        "KaptioTravel__Value__c": 1500,
+        "KaptioTravel__PaymentScheduleConfiguration__c": "a3Z77906df517d0",
+        "KaptioTravel__Sort__c": 2
+      },
+      {
+        "Id": "a3a88c4b74c77e4",
+        "Name": "Final Balance",
+        "KaptioTravel__Type__c": "Final Balance",
+        "KaptioTravel__DateType__c": "Before Package Departure",
+        "KaptioTravel__DaysOffset__c": 60,
+        "KaptioTravel__PaymentScheduleConfiguration__c": "a3Z77906df517d0",
+        "KaptioTravel__Sort__c": 3
+      }
+    ],
+    "KaptioTravel__CancellationConfiguration__c": [
+      {
+        "Id": "a3oe5dd4ca930b2",
+        "Name": "Italian Wine Country - Cancellation Policy",
+        "KaptioTravel__IsActive__c": true
+      }
+    ],
+    "KaptioTravel__CancellationRule__c": [
+      {
+        "Id": "a3p6d14ef3eb8a0",
+        "Name": "61+ days",
+        "KaptioTravel__DaysBeforeTravelFrom__c": 61,
+        "KaptioTravel__DaysBeforeTravelTo__c": 999,
+        "KaptioTravel__ChargeType__c": "Fixed",
+        "KaptioTravel__Value__c": 2000,
+        "KaptioTravel__CancellationConfiguration__c": "a3oe5dd4ca930b2",
+        "KaptioTravel__Sort__c": 1,
+        "CurrencyIsoCode": "EUR"
+      },
+      {
+        "Id": "a3p0319415ebc7a",
+        "Name": "60-45 days",
+        "KaptioTravel__DaysBeforeTravelFrom__c": 60,
+        "KaptioTravel__DaysBeforeTravelTo__c": 45,
+        "KaptioTravel__ChargeType__c": "Percentage",
+        "KaptioTravel__Value__c": 25,
+        "KaptioTravel__CancellationConfiguration__c": "a3oe5dd4ca930b2",
+        "KaptioTravel__Sort__c": 2,
+        "CurrencyIsoCode": "EUR"
+      },
+      {
+        "Id": "a3pd5610ccb2721",
+        "Name": "44-31 days",
+        "KaptioTravel__DaysBeforeTravelFrom__c": 44,
+        "KaptioTravel__DaysBeforeTravelTo__c": 31,
+        "KaptioTravel__ChargeType__c": "Percentage",
+        "KaptioTravel__Value__c": 50,
+        "KaptioTravel__CancellationConfiguration__c": "a3oe5dd4ca930b2",
+        "KaptioTravel__Sort__c": 3,
+        "CurrencyIsoCode": "EUR"
+      },
+      {
+        "Id": "a3paaee070c392f",
+        "Name": "30-0 days",
+        "KaptioTravel__DaysBeforeTravelFrom__c": 30,
+        "KaptioTravel__DaysBeforeTravelTo__c": 0,
+        "KaptioTravel__ChargeType__c": "Percentage",
+        "KaptioTravel__Value__c": 100,
+        "KaptioTravel__CancellationConfiguration__c": "a3oe5dd4ca930b2",
+        "KaptioTravel__Sort__c": 4,
+        "CurrencyIsoCode": "EUR"
+      }
+    ],
+    "KaptioTravel__Package__c": [
+      {
+        "Id": "a2967efc70db0da",
+        "Name": "Italian Wine Country",
+        "KaptioTravel__ExternalName__c": "Italian Wine Country",
+        "KaptioTravel__Description__c": "8-day tour of Tuscany wineries",
+        "KaptioTravel__Length__c": 8,
+        "KaptioTravel__Package_Type__c": "Principle",
+        "KaptioTravel__Categories__c": "Land Only;Classic",
+        "KaptioTravel__DepartureType__c": "Fixed",
+        "KaptioTravel__PhysicalInventorySelection__c": "Mandatory",
+        "KaptioTravel__ServiceLevelMode__c": "Standard",
+        "KaptioTravel__Min_Capacity__c": 8,
+        "KaptioTravel__TotalCapacity__c": 16,
+        "KaptioTravel__NetPriceSetupChoice__c": "Dynamic",
+        "KaptioTravel__SellingPriceSetupChoice__c": "Dynamic",
+        "KaptioTravel__IsActive__c": true,
+        "KaptioTravel__MinimumAge__c": null,
+        "KaptioTravel__Pace__c": null,
+        "KaptioTravel__PackageStartLocation__c": "a1g03283831bede",
+        "KaptioTravel__PackageEndLocation__c": "a1g16398cc40376",
+        "KaptioTravel__Supplier__c": null,
+        "KaptioTravel__CommissionGroup__c": null,
+        "KaptioTravel__DiscountGroup__c": null,
+        "CurrencyIsoCode": "EUR",
+        "_OwnerId_mappable": true,
+        "_CurrencyIsoCode_mappable": true
+      }
+    ],
+    "KaptioTravel__Component__c": [
+      {
+        "Id": "a0e397899a21eb2",
+        "Name": "Main Tour",
+        "KaptioTravel__Package__c": "a2967efc70db0da",
+        "KaptioTravel__RecordType__c": "Package_Item",
+        "KaptioTravel__ComponentType__c": "PriceCategories",
+        "KaptioTravel__SelectionType__c": "Required",
+        "KaptioTravel__IsActive__c": true,
+        "KaptioTravel__Sort__c": 1,
+        "KaptioTravel__Start__c": null,
+        "KaptioTravel__End__c": null,
+        "KaptioTravel__MaxNumberOfNights__c": null,
+        "KaptioTravel__PrimaryComponent__c": true,
+        "KaptioTravel__IsMainTourComponent__c": true,
+        "KaptioTravel__InventoryRequired__c": true,
+        "KaptioTravel__PackageTotals__c": "IncludedInPackageTotal",
+        "KaptioTravel__AllocationBehavior__c": "Standard",
+        "CurrencyIsoCode": "EUR"
+      },
+      {
+        "Id": "a0e9be56dce11d0",
+        "Name": "Room Selection",
+        "KaptioTravel__Package__c": "a2967efc70db0da",
+        "KaptioTravel__RecordType__c": "Package_Item",
+        "KaptioTravel__ComponentType__c": "PriceCategories",
+        "KaptioTravel__SelectionType__c": "Required",
+        "KaptioTravel__IsActive__c": true,
+        "KaptioTravel__Sort__c": 2,
+        "KaptioTravel__Start__c": null,
+        "KaptioTravel__End__c": null,
+        "KaptioTravel__MaxNumberOfNights__c": null,
+        "KaptioTravel__PrimaryComponent__c": false,
+        "KaptioTravel__IsMainTourComponent__c": false,
+        "KaptioTravel__InventoryRequired__c": false,
+        "KaptioTravel__PackageTotals__c": "IncludedInPackageTotal",
+        "KaptioTravel__AllocationBehavior__c": "Standard",
+        "CurrencyIsoCode": "EUR"
+      }
+    ],
+    "KaptioTravel__ComponentOption__c": [
+      {
+        "Id": "a0cf6e90df56582",
+        "Name": "Single",
+        "KaptioTravel__Component__c": "a0e9be56dce11d0",
+        "KaptioTravel__PriceCategory__c": "a2O97af4dd2a2b8",
+        "KaptioTravel__Sort__c": 1,
+        "KaptioTravel__IsActive__c": true
+      },
+      {
+        "Id": "a0c307e7e6826ea",
+        "Name": "Double",
+        "KaptioTravel__Component__c": "a0e9be56dce11d0",
+        "KaptioTravel__PriceCategory__c": "a2O226af2264edd",
+        "KaptioTravel__Sort__c": 2,
+        "KaptioTravel__IsActive__c": true
+      }
+    ],
+    "KaptioTravel__Item__c": [
+      {
+        "Id": "a1Fec8e30bfbb30",
+        "Name": "Italian Wine Country - Tour Services",
+        "KaptioTravel__ExternalName__c": "Italian Wine Country - Tour",
+        "KaptioTravel__IsActive__c": true,
+        "KaptioTravel__RecordType__c": "Service",
+        "KaptioTravel__Supplier__c": null,
+        "CurrencyIsoCode": "EUR"
+      }
+    ],
+    "KaptioTravel__Price_Category__c": [
+      {
+        "Id": "a2O97af4dd2a2b8",
+        "Name": "Single",
+        "KaptioTravel__Item__c": "a1Fec8e30bfbb30",
+        "KaptioTravel__IsActive__c": true,
+        "KaptioTravel__Sort__c": 1,
+        "CurrencyIsoCode": "EUR"
+      },
+      {
+        "Id": "a2O226af2264edd",
+        "Name": "Double",
+        "KaptioTravel__Item__c": "a1Fec8e30bfbb30",
+        "KaptioTravel__IsActive__c": true,
+        "KaptioTravel__Sort__c": 1,
+        "CurrencyIsoCode": "EUR"
+      }
+    ],
+    "KaptioTravel__Item_Price__c": [
+      {
+        "Id": "a1E158b8ea2152a",
+        "Name": "Single - Price",
+        "KaptioTravel__Item__c": "a1Fec8e30bfbb30",
+        "KaptioTravel__SellPrice__c": 4500,
+        "KaptioTravel__NetPrice__c": 3825,
+        "CurrencyIsoCode": "EUR"
+      },
+      {
+        "Id": "a1Ee04e35b73c67",
+        "Name": "Double - Price",
+        "KaptioTravel__Item__c": "a1Fec8e30bfbb30",
+        "KaptioTravel__SellPrice__c": 3200,
+        "KaptioTravel__NetPrice__c": 2720,
+        "CurrencyIsoCode": "EUR"
+      }
+    ],
+    "KaptioTravel__PackageDeparture__c": [
+      {
+        "Id": "a2T7693d85b5f04",
+        "Name": "Italian Wine Country - 2026-05-15",
+        "KaptioTravel__Package__c": "a2967efc70db0da",
+        "KaptioTravel__DepartureDate__c": "2026-05-15",
+        "KaptioTravel__Status__c": "Active",
+        "KaptioTravel__IsActive__c": true,
+        "CurrencyIsoCode": "EUR"
+      },
+      {
+        "Id": "a2Tb20153774e41",
+        "Name": "Italian Wine Country - 2026-06-12",
+        "KaptioTravel__Package__c": "a2967efc70db0da",
+        "KaptioTravel__DepartureDate__c": "2026-06-12",
+        "KaptioTravel__Status__c": "Active",
+        "KaptioTravel__IsActive__c": true,
+        "CurrencyIsoCode": "EUR"
+      }
+    ],
+    "KaptioTravel__AllotmentDay__c": [
+      {
+        "Id": "a084f9997014e5f",
+        "Name": "Capacity - 2026-05-15",
+        "KaptioTravel__Date__c": "2026-05-15",
+        "KaptioTravel__TotalUnits__c": 16,
+        "KaptioTravel__UnitsBooked__c": 0,
+        "KaptioTravel__UnitsReserved__c": 0
+      },
+      {
+        "Id": "a08be45b27efd30",
+        "Name": "Capacity - 2026-06-12",
+        "KaptioTravel__Date__c": "2026-06-12",
+        "KaptioTravel__TotalUnits__c": 16,
+        "KaptioTravel__UnitsBooked__c": 0,
+        "KaptioTravel__UnitsReserved__c": 0
+      }
+    ]
+  }
+}

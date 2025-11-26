@@ -1,33 +1,42 @@
-# Sophia Sheet Simplified Contract Specification
+# Kaptio Package Import - Simplified Contract Specification
 
 **Version:** 1.0  
 **Date:** November 26, 2025  
-**For:** Bunnik Tours - Sophia Sheet Integration
+**For:** Tour Operators Using Custom Planning Tools (Excel, CSV, Databases)
 
 ---
 
 ## Overview
 
-This document specifies the **simplified JSON contract** that Bunnik can generate from their Sophia Sheet Excel files. This contract is ~95% simpler than Gold Config format while capturing all essential package data.
+This document specifies the **simplified JSON contract** for importing packages into Kaptio from any source. This contract is ~95% simpler than Kaptio's native format while capturing all essential package data.
 
-### The Translation Layer
+### The Universal Translation Layer
 
 ```
-Sophia Sheet (Excel)
+Your Planning Tool (Excel, CSV, Database, Legacy System)
        ↓
-[Your Python/JS Script]  ← You control this
+Your Extraction Script  ← You control this
        ↓
-Simplified JSON  ← This specification
+Simplified JSON (~150 lines)  ← This specification
        ↓
-[Kaptio Adapter UI]  ← We provide this
+Kaptio Import Adapter  ← We provide this
        ↓
-Gold Config Bundle (135+ records)
+Complete Kaptio Bundle (135+ records)
        ↓
-[Salesforce Deployment]
+Salesforce Deployment
 ```
 
-**You own:** Excel → Simplified JSON  
-**We provide:** Simplified JSON → Salesforce
+**You own:** Data extraction from your source system  
+**We provide:** Transformation and deployment to Kaptio
+
+### Universal Data Sources
+
+This adapter works with:
+- ✅ **Custom Excel sheets** (Sophia Sheets, planning templates)
+- ✅ **CSV exports** from legacy systems
+- ✅ **Database extracts** from reservations systems
+- ✅ **Manual entry** via web form
+- ✅ **API responses** from tour operator platforms
 
 ---
 
@@ -35,10 +44,16 @@ Gold Config Bundle (135+ records)
 
 | Format | Lines | Size | Complexity |
 |--------|-------|------|------------|
-| **Sophia Simplified** | ~100-200 | 1-2 KB | ⭐ Simple |
-| **Gold Config Bundle** | ~3,500 | 200 KB | ⭐⭐⭐⭐⭐ Complex |
+| **Simplified Import Format** | ~100-200 | 1-2 KB | ⭐ Simple |
+| **Native Kaptio Format** | ~3,500 | 200 KB | ⭐⭐⭐⭐⭐ Complex |
 
 **Reduction:** 95% less verbose, ~18x compression
+
+**Example Use Cases:**
+- Bunnik Tours: Sophia planning sheets
+- Adventure operators: Custom Excel templates
+- Rail operators: CSV exports from reservation systems
+- Any tour operator with Excel-based planning
 
 ---
 

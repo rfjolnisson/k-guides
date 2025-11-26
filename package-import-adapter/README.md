@@ -1,30 +1,33 @@
-# Sophia Sheet Adapter for Kaptio
+# Kaptio Package Import Adapter
 
 **Version:** 1.0  
 **Date:** November 26, 2025  
-**For:** Bunnik Tours & Other Operators Using Custom Excel Planning Sheets
+**For:** Tour Operators Using Custom Planning Tools
 
 ---
 
 ## The Problem We're Solving
 
-**Tour operators use complex Excel sheets** (like Bunnik's "Sophia Sheet") to plan tours:
-- Multi-tab workbooks with merged cells, formulas, manual layouts
-- Years of institutional knowledge embedded in the structure
-- Critical planning tool that operations teams rely on
-- But... very difficult to sync with Kaptio Salesforce
+**Tour operators plan tours in diverse systems:**
+- Complex Excel workbooks (Sophia Sheets, custom templates)
+- CSV exports from legacy reservation systems
+- Database extracts from booking platforms
+- Manual spreadsheets with years of operational knowledge
 
-**Gold Config bundles are verbose:**
-- 135+ Salesforce records with full relationship chains
-- Every field must be specified
-- Salesforce IDs, namespaces, RecordTypes
-- Designed for completeness, not human authoring
+**Kaptio's native format is comprehensive but verbose:**
+- 135+ Salesforce records per package
+- Complex parent-child relationships
+- Salesforce-specific fields (RecordTypeId, namespace prefixes)
+- Every field must be explicitly defined
+- Designed for system completeness, not human authoring
+
+**The gap:** Getting data from planning tools into Kaptio is painful.
 
 ---
 
-## The Solution: Simplified Contract Layer
+## The Solution: Universal Import Adapter
 
-We built a **translation layer** that lets you work with simplified data:
+We built a **source-agnostic translation layer**:
 
 ```
 Your Excel Sheet
@@ -49,7 +52,7 @@ Salesforce Deployment  ← Existing wizard
 
 ### 1. Create Your Simplified JSON
 
-Use our contract format (see [`SOPHIA_CONTRACT_SPEC.md`](SOPHIA_CONTRACT_SPEC.md)):
+Use our contract format (see [`IMPORT_CONTRACT_SPEC.md`](IMPORT_CONTRACT_SPEC.md)):
 
 ```json
 {
@@ -75,13 +78,13 @@ Use our contract format (see [`SOPHIA_CONTRACT_SPEC.md`](SOPHIA_CONTRACT_SPEC.md
 
 **That's it!** This minimal JSON generates 25+ Salesforce records.
 
-### 2. Transform to Gold Config
+### 2. Transform to Kaptio Format
 
 ```bash
-node transform-to-gold-config.js --input your-sophia.json --output bundle.json
+node transform-to-gold-config.js --input your-package.json --output bundle.json
 ```
 
-**Output:** Complete Gold Config bundle ready for Salesforce
+**Output:** Complete Kaptio bundle ready for Salesforce
 
 ### 3. Upload to Web UI
 
@@ -91,7 +94,7 @@ cd ../
 ./serve.sh
 
 # Open in browser
-# http://localhost:8000/sophia-adapter/upload-ui.html
+# http://localhost:8000/package-import-adapter/upload-ui.html
 ```
 
 **Or:** Open `upload-ui.html` directly and:
@@ -134,27 +137,28 @@ cd ../
 
 ## Key Benefits
 
-### For Bunnik's Script Writers
+### For Script Writers / Data Engineers
 
 ✅ **Simple Output Format** - No Salesforce knowledge needed  
 ✅ **No ID Management** - We generate deterministic IDs  
 ✅ **No Relationships** - Just provide names, we link records  
 ✅ **Flexible Structure** - Only specify what you have  
-✅ **Validation** - Catch errors before Salesforce
+✅ **Source Agnostic** - Works with any data source
 
-### For Operations Team
+### For Operations Teams
 
 ✅ **Visual Review** - See extracted data before deployment  
 ✅ **Edit Capability** - Adjust values in UI  
 ✅ **Preview** - See exactly what will be created  
-✅ **One-Click Deploy** - Direct to Salesforce from UI
+✅ **One-Click Deploy** - Direct to Salesforce from UI  
+✅ **No Technical Skills** - Drag & drop interface
 
-### For Kaptio
+### For Tour Operators
 
-✅ **Standardized** - Consistent input format across customers  
-✅ **Reusable** - Same adapter for any Excel-based operator  
-✅ **Maintainable** - Changes to Gold Config don't affect Sophia contract  
-✅ **Extensible** - Easy to add new fields/features
+✅ **Keep Your Tools** - Use existing Excel/planning workflows  
+✅ **Fast Migration** - Import packages in minutes, not days  
+✅ **Standardized** - Consistent format across teams  
+✅ **Reusable** - Same adapter for all your packages
 
 ---
 
@@ -162,58 +166,64 @@ cd ../
 
 | File | Purpose | Who Uses It |
 |------|---------|-------------|
-| **simplified-contract-schema.json** | JSON schema definition | Bunnik (for validation) |
-| **SOPHIA_CONTRACT_SPEC.md** | Complete specification | Bunnik (documentation) |
-| **examples/south-american-discovery-example.json** | Full example | Bunnik (template) |
-| **examples/minimal-example.json** | Minimal example | Bunnik (getting started) |
-| **transform-to-gold-config.js** | Transformer script | Kaptio (backend) |
-| **upload-ui.html** | Web interface | Operations team (frontend) |
+| **simplified-contract-schema.json** | JSON schema definition | Data engineers (validation) |
+| **IMPORT_CONTRACT_SPEC.md** | Complete specification | Developers (documentation) |
+| **examples/south-american-discovery-example.json** | Full example | Everyone (template) |
+| **examples/minimal-example.json** | Minimal example | Getting started |
+| **transform-to-gold-config.js** | Transformer script | System (backend) |
+| **upload-ui.html** | Web interface | Operations teams (frontend) |
 | **README.md** | This file | Everyone (overview) |
 
 ---
 
-## Workflow for Bunnik
+## Universal Import Workflow
 
-### Your Side (Excel → JSON)
+### Your Side (Source → JSON)
 
-**Step 1:** Run your Python/JS script on Sophia Sheet Excel file
+**Step 1:** Extract from your planning tool
 ```python
-# Your script (you control this logic)
-python extract_sophia_sheet.py --input "2026 - South American Discovery.xlsx" --output sophia.json
+# Example: Python script for Excel
+python extract_tour_data.py --input "2026 - Tour Planning.xlsx" --output package.json
+
+# Or: Database export
+node export_from_database.js --tour-id 12345 --output package.json
+
+# Or: CSV conversion
+python csv_to_json.py --input tours.csv --output package.json
 ```
 
 **Step 2:** Script outputs simplified JSON
 ```json
-// sophia.json - following our contract spec
+// package.json - following our contract spec
 {
   "package": {...},
-  "components": [...],
+  "components": [...},
   "pricing": {...}
 }
 ```
 
-### Our Side (JSON → Salesforce)
+### Our Side (JSON → Kaptio)
 
-**Step 3:** Upload to web UI
-- Drag & drop sophia.json
+**Step 3:** Upload to import adapter UI
+- Drag & drop your JSON file
 - Or paste JSON directly
 - System validates against schema
 
 **Step 4:** Review in UI
 - See extracted package details
-- Edit if needed
+- Edit any fields if needed
 - Add missing information
 
 **Step 5:** Transform
-- Click "Transform to Gold Config"
-- Generates 135+ Salesforce records
-- Shows preview
+- Click "Transform to Kaptio Format"
+- Generates 135+ Salesforce records automatically
+- Shows complete preview
 
 **Step 6:** Deploy
 - Connect to Salesforce via OAuth
-- Map org-specific fields (Owner, Currency)
-- Deploy bundle
-- Package appears in Kaptio immediately
+- Map org-specific fields (Owner, Currency, Channel)
+- Deploy bundle with one click
+- Package goes live in Kaptio immediately
 
 ---
 
@@ -403,7 +413,7 @@ The upload-ui.html can be:
 
 ## Support
 
-**Questions about the contract?** See [`SOPHIA_CONTRACT_SPEC.md`](SOPHIA_CONTRACT_SPEC.md)
+**Questions about the contract?** See [`IMPORT_CONTRACT_SPEC.md`](IMPORT_CONTRACT_SPEC.md)
 
 **Need examples?** Check `examples/` folder
 
