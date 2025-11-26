@@ -1,0 +1,66 @@
+{
+  "package": {
+    "name": "Italian Wine Country",
+    "duration_days": 8,
+    "type": "land_only",
+    "description": "8-day tour of Tuscany wineries",
+    "capacity": {
+      "min": 8,
+      "max": 16
+    },
+    "start_location": "Florence",
+    "end_location": "Rome"
+  },
+  
+  "components": [
+    {
+      "name": "Main Tour",
+      "type": "tour_inventory",
+      "required": true
+    },
+    {
+      "name": "Room Selection",
+      "type": "room_configuration",
+      "required": true,
+      "room_types": ["single", "double"]
+    }
+  ],
+  
+  "pricing": {
+    "currency": "EUR",
+    "room_prices": {
+      "single": 4500,
+      "double_per_person": 3200
+    }
+  },
+  
+  "departures": [
+    {
+      "date": "2026-05-15"
+    },
+    {
+      "date": "2026-06-12"
+    }
+  ],
+  
+  "payment_schedule": {
+    "type": "standard_3_tier",
+    "deposit": 500,
+    "progress_payment": {
+      "amount": 1500,
+      "days_after_booking": 30
+    },
+    "final_balance_days_before": 60
+  },
+  
+  "cancellation_policy": {
+    "type": "standard_4_tier",
+    "tiers": [
+      {"days_before": "61+", "fee_type": "fixed", "amount": 2000},
+      {"days_before": "60-45", "fee_type": "percentage", "amount": 25},
+      {"days_before": "44-31", "fee_type": "percentage", "amount": 50},
+      {"days_before": "30-0", "fee_type": "percentage", "amount": 100}
+    ]
+  }
+}
+

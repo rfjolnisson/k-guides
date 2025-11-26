@@ -1,0 +1,197 @@
+{
+  "package": {
+    "name": "South American Discovery",
+    "duration_days": 15,
+    "type": "land_only",
+    "description": "15-day guided tour through Peru, Bolivia, and Argentina. Experience Machu Picchu, Lake Titicaca, and Buenos Aires with expert local guides.",
+    "capacity": {
+      "min": 10,
+      "max": 20
+    },
+    "start_location": "Lima",
+    "end_location": "Buenos Aires",
+    "categories": ["classic", "history", "adventure", "food"],
+    "minimum_age": 16,
+    "pace": "moderate"
+  },
+  
+  "components": [
+    {
+      "name": "South American Discovery - Tour Inventory",
+      "type": "tour_inventory",
+      "required": true
+    },
+    {
+      "name": "Room Configuration",
+      "type": "room_configuration",
+      "required": true,
+      "room_types": ["single", "double", "twin"]
+    },
+    {
+      "name": "Pre-Stay Lima",
+      "type": "accommodation",
+      "required": false,
+      "max_nights": 3
+    },
+    {
+      "name": "Post-Stay Buenos Aires",
+      "type": "accommodation",
+      "required": false,
+      "max_nights": 3
+    },
+    {
+      "name": "Wine Tasting in Mendoza",
+      "type": "activity",
+      "required": false
+    }
+  ],
+  
+  "pricing": {
+    "currency": "USD",
+    "room_prices": {
+      "single": 8500,
+      "double_per_person": 6500,
+      "twin_per_person": 6500
+    },
+    "seasonal_pricing": [
+      {
+        "season_name": "High Season",
+        "date_range": {
+          "start": "2026-06-01",
+          "end": "2026-08-31"
+        },
+        "price_modifier": 15
+      }
+    ],
+    "single_supplement": 2000
+  },
+  
+  "departures": [
+    {
+      "date": "2026-03-15",
+      "capacity": 20,
+      "status": "active"
+    },
+    {
+      "date": "2026-04-12",
+      "capacity": 20,
+      "status": "active"
+    },
+    {
+      "date": "2026-05-10",
+      "capacity": 18,
+      "status": "active"
+    },
+    {
+      "date": "2026-06-14",
+      "capacity": 20,
+      "status": "guaranteed"
+    },
+    {
+      "date": "2026-07-19",
+      "capacity": 20,
+      "status": "active"
+    }
+  ],
+  
+  "payment_schedule": {
+    "type": "standard_3_tier",
+    "deposit": 500,
+    "progress_payment": {
+      "amount": 2500,
+      "days_after_booking": 45
+    },
+    "final_balance_days_before": 60
+  },
+  
+  "cancellation_policy": {
+    "type": "standard_4_tier",
+    "tiers": [
+      {
+        "days_before": "61+",
+        "fee_type": "fixed",
+        "amount": 3000
+      },
+      {
+        "days_before": "60-45",
+        "fee_type": "percentage",
+        "amount": 25
+      },
+      {
+        "days_before": "44-31",
+        "fee_type": "percentage",
+        "amount": 50
+      },
+      {
+        "days_before": "30-0",
+        "fee_type": "percentage",
+        "amount": 100
+      }
+    ]
+  },
+  
+  "itinerary": [
+    {
+      "day": 1,
+      "title": "Arrival in Lima",
+      "description": "Transfer from airport to hotel. Welcome dinner and tour orientation.",
+      "meals": ["dinner"],
+      "accommodation": "Costa del Sol Lima",
+      "location": "Lima"
+    },
+    {
+      "day": 2,
+      "title": "Lima City Tour",
+      "description": "Explore historic center, Plaza de Armas, San Francisco Monastery. Afternoon cooking class.",
+      "meals": ["breakfast", "lunch"],
+      "accommodation": "Costa del Sol Lima",
+      "location": "Lima"
+    },
+    {
+      "day": 3,
+      "title": "Fly to Cusco",
+      "description": "Morning flight to Cusco. Afternoon acclimatization walk through San Blas neighborhood.",
+      "meals": ["breakfast", "dinner"],
+      "accommodation": "Hotel Monasterio Cusco",
+      "location": "Cusco"
+    }
+  ],
+  
+  "hotels": [
+    {
+      "name": "Costa del Sol Lima",
+      "location": "Lima",
+      "room_types": [
+        {"type": "single", "capacity": 15},
+        {"type": "double", "capacity": 20},
+        {"type": "twin", "capacity": 20}
+      ],
+      "date_range": {
+        "start": "2026-03-01",
+        "end": "2026-08-31"
+      }
+    },
+    {
+      "name": "Hotel Monasterio Cusco",
+      "location": "Cusco",
+      "room_types": [
+        {"type": "single", "capacity": 10},
+        {"type": "double", "capacity": 15},
+        {"type": "twin", "capacity": 15}
+      ],
+      "date_range": {
+        "start": "2026-03-01",
+        "end": "2026-08-31"
+      }
+    }
+  ],
+  
+  "metadata": {
+    "source": "Sophia Sheet - 2026 South American Discovery.xlsx",
+    "extracted_date": "2025-11-26T10:30:00Z",
+    "extracted_by": "Bunnik Excel Parser v1.0",
+    "version": "2026 Season",
+    "notes": "Extracted from Sophia planning sheet. Prices in USD, capacity based on contracted hotels."
+  }
+}
+
