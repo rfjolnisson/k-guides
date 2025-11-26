@@ -322,6 +322,7 @@
                 <a href="#air-land" class="text-kaptio-grey-300 hover:text-kaptio-primary-400 whitespace-nowrap">Air+Land</a>
                 <a href="#combo" class="text-kaptio-grey-300 hover:text-kaptio-primary-400 whitespace-nowrap">Combo</a>
                 <a href="#linked" class="text-kaptio-grey-300 hover:text-kaptio-primary-400 whitespace-nowrap">Linked</a>
+                <a href="#extensions" class="text-kaptio-grey-300 hover:text-kaptio-primary-400 whitespace-nowrap">Extensions</a>
                 <a href="#payments" class="text-kaptio-grey-300 hover:text-kaptio-primary-400 whitespace-nowrap">Payments</a>
                 <a href="#inventory" class="text-kaptio-grey-300 hover:text-kaptio-primary-400 whitespace-nowrap">Inventory</a>
                 <a href="#content" class="text-kaptio-grey-300 hover:text-kaptio-primary-400 whitespace-nowrap">Content</a>
@@ -337,77 +338,110 @@
         <!-- Quick Decision Guide -->
         <section id="decision" class="section py-16">
             <div class="text-sm font-semibold text-kaptio-primary-400 mb-4 uppercase tracking-wide">Start Here</div>
-            <h2 class="text-4xl font-bold text-kaptio-primary-800 mb-8">Which Package Type Matches Your Products?</h2>
+            <h2 class="text-4xl font-bold text-kaptio-primary-800 mb-8">Understanding the Seven Package Types</h2>
             
             <p class="text-xl text-kaptio-black font-light leading-relaxed mb-12">
-                Before diving into configuration, let's identify which package type fits your tour products. 
-                Answer these four questions:
+                Kaptio supports seven distinct package types. The key distinctions are: how tours combine, whether tours can sell independently, and whether flights are included.
             </p>
+
+            <div class="bg-kaptio-primary-800 text-white rounded-xl p-8 mb-12">
+                <h3 class="text-kaptio-yellow-400 mb-6 font-semibold text-xl">The Core Definitions</h3>
+                <div class="grid md:grid-cols-2 gap-6 text-sm">
+                    <div class="bg-white bg-opacity-10 rounded-lg p-4">
+                        <div class="font-semibold text-kaptio-yellow-400 mb-2">Principle Package</div>
+                        <div class="opacity-90">A standalone tour (single or multi-destination) that can be sold independently</div>
+                        <div class="text-xs opacity-75 mt-2">Examples: Japan Discovery, South American Discovery</div>
+                    </div>
+                    <div class="bg-white bg-opacity-10 rounded-lg p-4">
+                        <div class="font-semibold text-kaptio-yellow-400 mb-2">Combo Package</div>
+                        <div class="opacity-90">Two or more Principle Tours combined into one product</div>
+                        <div class="text-xs opacity-75 mt-2">Example: South Korea tour + Japan tour = Combo</div>
+                    </div>
+                    <div class="bg-white bg-opacity-10 rounded-lg p-4">
+                        <div class="font-semibold text-kaptio-yellow-400 mb-2">Linked Package</div>
+                        <div class="opacity-90">One Principle Tour + one Sub Tour (both in same package)</div>
+                        <div class="text-xs opacity-75 mt-2">Example: Egypt (Principle) + Jordan (Sub) = Linked</div>
+                    </div>
+                    <div class="bg-white bg-opacity-10 rounded-lg p-4">
+                        <div class="font-semibold text-kaptio-yellow-400 mb-2">Extension Tour</div>
+                        <div class="opacity-90">Tour Service that CANNOT be booked separately (must add to base tour)</div>
+                        <div class="text-xs opacity-75 mt-2">Example: Alexandria Extension (only bookable with Egypt)</div>
+                    </div>
+                </div>
+            </div>
 
             <div class="grid grid-cols-1 gap-8 mb-12">
                 <!-- Question 1 -->
                 <div class="bg-white rounded-xl p-8 shadow-lg border-l-4 border-kaptio-yellow-400">
-                    <h3 class="text-kaptio-primary-800 mb-6 font-semibold text-xl">Question 1: How many destinations?</h3>
+                    <h3 class="text-kaptio-primary-800 mb-6 font-semibold text-xl">Question 1: Are flights included in your pricing?</h3>
                     <div class="grid md:grid-cols-2 gap-6">
                         <div class="bg-kaptio-primary-50 rounded-lg p-6">
-                            <div class="font-medium text-kaptio-primary-800 mb-2 text-lg">Single Destination</div>
-                            <div class="text-kaptio-grey-300 mb-4">Example: "Discover Japan" - one country</div>
-                            <div class="text-kaptio-primary-400 font-semibold">→ Classic Package</div>
+                            <div class="font-medium text-kaptio-primary-800 mb-2 text-lg">Land-Only</div>
+                            <div class="text-kaptio-grey-300 mb-4">"Flights not included - customers arrange their own"</div>
+                            <div class="text-kaptio-primary-400 font-semibold">→ Land-Only Package</div>
                         </div>
                         <div class="bg-kaptio-primary-50 rounded-lg p-6">
-                            <div class="font-medium text-kaptio-primary-800 mb-2 text-lg">Multiple Destinations</div>
-                            <div class="text-kaptio-grey-300 mb-4">Example: "South Korea & Japan"</div>
-                            <div class="text-kaptio-primary-400 font-semibold">→ Combo or Linked</div>
+                            <div class="font-medium text-kaptio-primary-800 mb-2 text-lg">All-Inclusive</div>
+                            <div class="text-kaptio-grey-300 mb-4">"Price includes international flights"</div>
+                            <div class="text-kaptio-primary-400 font-semibold">→ Air+Land Package</div>
+                            <div class="text-xs text-kaptio-grey-300 mt-3 italic">Operators like Bunnik differentiate with all-inclusive pricing</div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Question 2 -->
                 <div class="bg-white rounded-xl p-8 shadow-lg border-l-4 border-kaptio-yellow-400">
-                    <h3 class="text-kaptio-primary-800 mb-6 font-semibold text-xl">Question 2: Are flights included in the price?</h3>
+                    <h3 class="text-kaptio-primary-800 mb-6 font-semibold text-xl">Question 2: Are you combining multiple existing tours?</h3>
                     <div class="grid md:grid-cols-2 gap-6">
                         <div class="bg-kaptio-primary-50 rounded-lg p-6">
-                            <div class="font-medium text-kaptio-primary-800 mb-2 text-lg">Land-Only Pricing</div>
-                            <div class="text-kaptio-grey-300 mb-4">"Price excludes international flights"</div>
-                            <div class="text-kaptio-primary-400 font-semibold">→ Land-Only Package</div>
+                            <div class="font-medium text-kaptio-primary-800 mb-2 text-lg">Combining 2+ Tours</div>
+                            <div class="text-kaptio-grey-300 mb-4">"We have a Korea tour and Japan tour - sell them together"</div>
+                            <div class="text-kaptio-primary-400 font-semibold">→ Combo Package</div>
+                            <div class="text-xs text-kaptio-grey-300 mt-2">Both tours are Principle Tours that can also sell separately</div>
                         </div>
                         <div class="bg-kaptio-primary-50 rounded-lg p-6">
-                            <div class="font-medium text-kaptio-primary-800 mb-2 text-lg">All-Inclusive Pricing</div>
-                            <div class="text-kaptio-grey-300 mb-4">"Price includes return flights"</div>
-                            <div class="text-kaptio-primary-400 font-semibold">→ Air+Land Package</div>
+                            <div class="font-medium text-kaptio-primary-800 mb-2 text-lg">Single Tour</div>
+                            <div class="text-kaptio-grey-300 mb-4">"This is one tour product (may visit multiple countries)"</div>
+                            <div class="text-kaptio-primary-400 font-semibold">→ Principle Package</div>
+                            <div class="text-xs text-kaptio-grey-300 mt-2">Example: South American Discovery (5 countries, 1 tour)</div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Question 3 -->
                 <div class="bg-white rounded-xl p-8 shadow-lg border-l-4 border-kaptio-yellow-400">
-                    <h3 class="text-kaptio-primary-800 mb-6 font-semibold text-xl">Question 3: For multi-destination, is it one continuous journey?</h3>
-                    <div class="grid md:grid-cols-2 gap-6">
+                    <h3 class="text-kaptio-primary-800 mb-6 font-semibold text-xl">Question 3: Do you have a base tour with add-on options?</h3>
+                    <div class="grid md:grid-cols-3 gap-4">
                         <div class="bg-kaptio-primary-50 rounded-lg p-6">
-                            <div class="font-medium text-kaptio-primary-800 mb-2 text-lg">One Continuous Tour</div>
-                            <div class="text-kaptio-grey-300 mb-4">"27 days: Korea then Japan"</div>
-                            <div class="text-kaptio-primary-400 font-semibold">→ Combo Package</div>
+                            <div class="font-medium text-kaptio-primary-800 mb-2">Principle + Sub Tour</div>
+                            <div class="text-kaptio-grey-300 mb-3 text-sm">"Egypt tour with optional Jordan add-on"</div>
+                            <div class="text-kaptio-primary-400 font-semibold">→ Linked Package</div>
                         </div>
                         <div class="bg-kaptio-primary-50 rounded-lg p-6">
-                            <div class="font-medium text-kaptio-primary-800 mb-2 text-lg">Base + Optional Extension</div>
-                            <div class="text-kaptio-grey-300 mb-4">"Egypt, optionally add Jordan"</div>
-                            <div class="text-kaptio-primary-400 font-semibold">→ Linked Package</div>
+                            <div class="font-medium text-kaptio-primary-800 mb-2">Mandatory Add-On</div>
+                            <div class="text-kaptio-grey-300 mb-3 text-sm">"Alexandria can only be added to Egypt tour"</div>
+                            <div class="text-kaptio-primary-400 font-semibold">→ Extension Tour</div>
+                        </div>
+                        <div class="bg-kaptio-primary-50 rounded-lg p-6">
+                            <div class="font-medium text-kaptio-primary-800 mb-2">No Add-Ons</div>
+                            <div class="text-kaptio-grey-300 mb-3 text-sm">"Single complete tour"</div>
+                            <div class="text-kaptio-primary-400 font-semibold">→ Principle</div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Question 4 -->
                 <div class="bg-white rounded-xl p-8 shadow-lg border-l-4 border-kaptio-yellow-400">
-                    <h3 class="text-kaptio-primary-800 mb-6 font-semibold text-xl">Question 4: Do you need minimum passengers to guarantee?</h3>
+                    <h3 class="text-kaptio-primary-800 mb-6 font-semibold text-xl">Question 4: What's your capacity and yield strategy?</h3>
                     <div class="grid md:grid-cols-2 gap-6">
                         <div class="bg-kaptio-primary-50 rounded-lg p-6">
-                            <div class="font-medium text-kaptio-primary-800 mb-2 text-lg">Yes, Minimum Required</div>
-                            <div class="text-kaptio-grey-300 mb-4">"Need 10 to cover fixed costs"</div>
+                            <div class="font-medium text-kaptio-primary-800 mb-2 text-lg">Minimum to Guarantee</div>
+                            <div class="text-kaptio-grey-300 mb-4">"Need 10 passengers for yield optimization"</div>
                             <div class="text-kaptio-grey-300 text-sm">Configure minimum capacity</div>
                         </div>
                         <div class="bg-kaptio-primary-50 rounded-lg p-6">
-                            <div class="font-medium text-kaptio-primary-800 mb-2 text-lg">No, Flexible</div>
-                            <div class="text-kaptio-grey-300 mb-4">"Can run with any number"</div>
+                            <div class="font-medium text-kaptio-primary-800 mb-2 text-lg">Flexible Capacity</div>
+                            <div class="text-kaptio-grey-300 mb-4">"Can operate with any number"</div>
                             <div class="text-kaptio-grey-300 text-sm">Leave minimum blank</div>
                         </div>
                     </div>
@@ -421,35 +455,48 @@
                     <table class="w-full">
                         <thead>
                             <tr class="border-b-2 border-kaptio-primary-400">
-                                <th class="text-left py-4 px-4 font-bold text-kaptio-primary-800">Your Product</th>
                                 <th class="text-left py-4 px-4 font-bold text-kaptio-primary-800">Package Type</th>
+                                <th class="text-left py-4 px-4 font-bold text-kaptio-primary-800">Definition</th>
                                 <th class="text-left py-4 px-4 font-bold text-kaptio-primary-800">Real Example</th>
                             </tr>
                         </thead>
                         <tbody class="text-kaptio-black">
                             <tr class="border-b border-kaptio-grey-100">
-                                <td class="py-4 px-4">Single destination, land-only</td>
-                                <td class="py-4 px-4 font-semibold text-kaptio-primary-600">Classic Land-Only</td>
-                                <td class="py-4 px-4 text-sm text-kaptio-grey-300">Japan Discovery - 13 days</td>
+                                <td class="py-4 px-4 font-semibold text-kaptio-primary-600">Principle (Land-Only)</td>
+                                <td class="py-4 px-4">Standalone tour, flights not included</td>
+                                <td class="py-4 px-4 text-sm text-kaptio-grey-300">Japan Discovery, South American Discovery</td>
+                            </tr>
+                            <tr class="border-b border-kaptio-grey-100 bg-kaptio-yellow-200 bg-opacity-30">
+                                <td class="py-4 px-4 font-semibold text-kaptio-primary-600">Principle (Air+Land)</td>
+                                <td class="py-4 px-4">Standalone tour, flights included</td>
+                                <td class="py-4 px-4 text-sm text-kaptio-grey-300">Japan Discovery with Flights</td>
                             </tr>
                             <tr class="border-b border-kaptio-grey-100">
-                                <td class="py-4 px-4">Single destination, flights included</td>
-                                <td class="py-4 px-4 font-semibold text-kaptio-primary-600">Classic Air+Land</td>
-                                <td class="py-4 px-4 text-sm text-kaptio-grey-300">Japan with Flights</td>
+                                <td class="py-4 px-4 font-semibold text-kaptio-primary-600">Combo (Land-Only)</td>
+                                <td class="py-4 px-4">2+ Principle Tours combined, no flights</td>
+                                <td class="py-4 px-4 text-sm text-kaptio-grey-300">South Korea + Japan</td>
                             </tr>
                             <tr class="border-b border-kaptio-grey-100">
-                                <td class="py-4 px-4">Multi-country, one journey</td>
-                                <td class="py-4 px-4 font-semibold text-kaptio-primary-600">Combo Package</td>
-                                <td class="py-4 px-4 text-sm text-kaptio-grey-300">Korea & Japan - 27 days</td>
+                                <td class="py-4 px-4 font-semibold text-kaptio-primary-600">Combo (Air+Land)</td>
+                                <td class="py-4 px-4">2+ Principle Tours combined, with flights</td>
+                                <td class="py-4 px-4 text-sm text-kaptio-grey-300">South Korea + Japan with Flights</td>
                             </tr>
-                            <tr>
-                                <td class="py-4 px-4">Base tour with optional extension</td>
+                            <tr class="border-b border-kaptio-grey-100">
                                 <td class="py-4 px-4 font-semibold text-kaptio-primary-600">Linked Package</td>
-                                <td class="py-4 px-4 text-sm text-kaptio-grey-300">Egypt + Jordan extension</td>
+                                <td class="py-4 px-4">1 Principle Tour + 1 Sub Tour</td>
+                                <td class="py-4 px-4 text-sm text-kaptio-grey-300">Egypt (Principle) + Jordan (Sub)</td>
+                            </tr>
+                            <tr class="bg-kaptio-secondary-400 bg-opacity-10">
+                                <td class="py-4 px-4 font-semibold text-kaptio-primary-600">Extension Tour</td>
+                                <td class="py-4 px-4">Tour Service that cannot book separately</td>
+                                <td class="py-4 px-4 text-sm text-kaptio-grey-300">Alexandria Extension (Egypt only)</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
+                <p class="text-xs text-kaptio-grey-300 mt-4 italic">
+                    Note: Principle Tours can be single or multi-destination. The defining factor is whether it's a standalone tour or a combination of tours.
+                </p>
             </div>
         </section>
 
@@ -1327,20 +1374,10 @@
                     <div class="tree-children">
                         
                         <!-- South Korea Segment -->
-                        <div class="tree-node level-1 required" onclick="toggleNode(this)" style="background: rgba(222, 55, 164, 0.1); border-left-color: #DE37A4;">
-                            <span class="expand-icon">▼</span>
+                        <div class="tree-node level-1 required">
                             <span>🇰🇷 South Korea Tour Inventory</span>
                             <span class="badge-required">Days 1-12</span>
-                            <span class="badge-primary">Primary</span>
-                        </div>
-                        <div class="tree-children">
-                            <div class="tree-node level-2">🏨 Seoul Hotels (Days 1-4)</div>
-                            <div class="tree-node level-2">🚌 Coach Transport (Days 1-12)</div>
-                            <div class="tree-node level-2">👨‍🏫 Korean Guide (Days 1-12)</div>
-                            <div class="tree-node level-2">🏨 Busan Hotels (Days 5-12)</div>
-                            <div class="tree-node level-2">
-                                <span>📦 Inventory: Korean Hotels & Services</span>
-                            </div>
+                            <span class="text-xs text-kaptio-grey-300 ml-2">(Container Service)</span>
                         </div>
 
                         <!-- South Korea Room Config -->
@@ -1370,22 +1407,17 @@
                             <span class="badge" style="background: #FFBC42;">Days 12-13 ⚡ CONNECTS TOURS</span>
                         </div>
 
+                        <!-- Connecting Flight -->
+                        <div class="tree-node level-1 required" style="background: #FFEBC6; border-left-color: #FFBC42;">
+                            <span>✈️ Seoul to Tokyo - Connecting Flight</span>
+                            <span class="badge" style="background: #FFBC42;">Day 12 ⚡</span>
+                        </div>
+
                         <!-- Japan Segment -->
-                        <div class="tree-node level-1 required" onclick="toggleNode(this)" style="background: rgba(5, 111, 130, 0.1); border-left-color: #056F82;">
-                            <span class="expand-icon">▼</span>
+                        <div class="tree-node level-1 required">
                             <span>🇯🇵 Japan Tour Inventory</span>
                             <span class="badge-required">Days 13-26</span>
-                            <span class="badge-primary">Primary</span>
-                        </div>
-                        <div class="tree-children">
-                            <div class="tree-node level-2">🏨 Tokyo Hotels (Days 13-17)</div>
-                            <div class="tree-node level-2">🚌 Coach Transport (Days 13-26)</div>
-                            <div class="tree-node level-2">👨‍🏫 Japanese Guide (Days 13-26)</div>
-                            <div class="tree-node level-2">🏨 Kyoto Hotels (Days 18-22)</div>
-                            <div class="tree-node level-2">🏨 Osaka Hotels (Days 23-26)</div>
-                            <div class="tree-node level-2">
-                                <span>📦 Inventory: Japanese Hotels & Services</span>
-                            </div>
+                            <span class="text-xs text-kaptio-grey-300 ml-2">(Container Service)</span>
                         </div>
 
                         <!-- Japan Room Config -->
@@ -1577,13 +1609,13 @@
         <!-- Linked Packages -->
         <section id="linked" class="section py-16">
             <div class="text-sm font-semibold text-kaptio-primary-400 mb-4 uppercase tracking-wide">Package Type 5 & 6</div>
-            <h2 class="text-4xl font-bold text-kaptio-primary-800 mb-8">Tour Extensions: Linked Packages</h2>
+            <h2 class="text-4xl font-bold text-kaptio-primary-800 mb-8">Linked Packages: Principle + Sub Tour</h2>
             
             <div class="bg-kaptio-yellow-400 bg-opacity-20 rounded-xl p-8 mb-12">
-                <h3 class="font-semibold text-kaptio-black mb-4 text-xl">The Product Strategy</h3>
+                <h3 class="font-semibold text-kaptio-black mb-4 text-xl">The Linked Package Model</h3>
                 <p class="text-kaptio-black text-lg leading-relaxed">
-                    Your Egypt tour (9 days) sells well. Jordan would be a perfect add-on for customers who want more. 
-                    But not everyone wants Jordan—some just want Egypt. How do you offer modular extensions?
+                    A Linked Package contains <strong>one Principle Tour plus one Sub Tour</strong> in the same package. 
+                    Example: Highlights of Egypt (Principle) + Highlights of Jordan (Sub). Jordan is a Sub Tour, not an Extension.
                 </p>
             </div>
 
@@ -1708,23 +1740,17 @@
                     <div class="tree-children">
                         
                         <!-- Egypt Components -->
-                        <div class="tree-node level-1 required" onclick="toggleNode(this)" style="background: rgba(5, 111, 130, 0.1); border-left-color: #056F82;">
-                            <span class="expand-icon">▼</span>
+                        <div class="tree-node level-1 required">
                             <span>🐪 Highlights of Egypt - Tour Inventory</span>
-                            <span class="badge-required">Days 1-9</span>
-                            <span class="badge-primary">Primary</span>
-                        </div>
-                        <div class="tree-children">
-                            <div class="tree-node level-2">🏨 Cairo Hotels (Days 1-3)</div>
-                            <div class="tree-node level-2">🚌 Egypt Transport & Guides</div>
-                            <div class="tree-node level-2">🏺 Luxor/Aswan (Days 4-7)</div>
-                            <div class="tree-node level-2">🏨 Cairo Hotels (Days 8-9)</div>
+                            <span class="badge-required">Principle Tour</span>
+                            <span class="text-xs text-kaptio-grey-300 ml-2">(Container Service - Days 1-9)</span>
                         </div>
 
                         <!-- Egypt Room Config -->
                         <div class="tree-node level-1 required">
                             <span>🏺 Egypt Room Configuration</span>
                             <span class="badge-required">Days 1-9</span>
+                            <span class="badge-primary">Primary</span>
                         </div>
 
                         <!-- Connecting Flight (CRITICAL!) -->
@@ -1733,24 +1759,18 @@
                             <span class="badge" style="background: #FFBC42;">Between Tours ⚡</span>
                         </div>
 
-                        <!-- Jordan Components (THE EXTENSION) -->
-                        <div class="tree-node level-1 required" onclick="toggleNode(this)" style="background: rgba(222, 55, 164, 0.1); border-left-color: #DE37A4;">
-                            <span class="expand-icon">▼</span>
+                        <!-- Jordan Components (SUB TOUR) -->
+                        <div class="tree-node level-1 required" style="background: rgba(222, 55, 164, 0.1); border-left-color: #DE37A4;">
                             <span>🏜️ Highlights of Jordan - Tour Inventory</span>
-                            <span class="badge-required">Days 10-18</span>
-                            <span class="badge" style="background: #DE37A4; color: white;">EXTENSION</span>
-                        </div>
-                        <div class="tree-children">
-                            <div class="tree-node level-2">🏨 Amman Hotels (Days 10-12)</div>
-                            <div class="tree-node level-2">🚌 Jordan Transport & Guides</div>
-                            <div class="tree-node level-2">🏛️ Petra (Days 13-15)</div>
-                            <div class="tree-node level-2">🏨 Dead Sea Hotels (Days 16-18)</div>
+                            <span class="badge" style="background: #DE37A4; color: white;">SUB TOUR</span>
+                            <span class="text-xs text-kaptio-grey-300 ml-2">(Container Service - Days 10-18)</span>
                         </div>
 
                         <!-- Jordan Room Config -->
                         <div class="tree-node level-1 required" style="background: rgba(222, 55, 164, 0.1); border-left-color: #DE37A4;">
                             <span>🛕 Jordan Room Configuration</span>
                             <span class="badge-required">Days 10-18</span>
+                            <span class="badge-primary">Primary</span>
                         </div>
 
                         <!-- Shared Components -->
@@ -1759,9 +1779,14 @@
                             <span class="badge-required">Flight Placeholder</span>
                         </div>
 
-                        <div class="tree-node level-1 optional">
-                            <span>🎧 Audio Headsets, Tipping Packages, etc.</span>
-                            <span class="badge-optional">Optional</span>
+                        <div class="tree-node level-1 required">
+                            <span>🎧 Audio Headsets</span>
+                            <span class="badge-required">Required</span>
+                        </div>
+
+                        <div class="tree-node level-1 required">
+                            <span>💸 Tipping Made Easy</span>
+                            <span class="badge-required">Required</span>
                         </div>
 
                         <div class="tree-node level-1 optional">
@@ -1852,6 +1877,90 @@
                             <li>• Sold as one continuous journey</li>
                             <li>• Don't need standalone versions</li>
                         </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Divider -->
+        <div class="h-px bg-kaptio-grey-100 my-16"></div>
+
+        <!-- Extension Tours -->
+        <section id="extensions" class="section py-16">
+            <div class="text-sm font-semibold text-kaptio-primary-400 mb-4 uppercase tracking-wide">Package Type 7</div>
+            <h2 class="text-4xl font-bold text-kaptio-primary-800 mb-8">Extension Tours</h2>
+            
+            <div class="bg-kaptio-secondary-400 bg-opacity-20 rounded-xl p-8 mb-12">
+                <h3 class="font-semibold text-kaptio-black mb-4 text-xl">The Extension Model</h3>
+                <p class="text-kaptio-black text-lg leading-relaxed">
+                    Extension Tours are different from Linked Packages. An Extension Tour is a Tour Service that <strong>cannot be booked separately</strong>—it must be added to a specific base tour.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 mb-12">
+                <div class="bg-white rounded-xl shadow-lg p-8">
+                    <h4 class="font-semibold text-kaptio-primary-800 mb-4 text-lg">Linked Package (Jordan)</h4>
+                    <div class="space-y-3 text-sm text-kaptio-black">
+                        <div>• Jordan is a Sub Tour in the Linked package</div>
+                        <div>• Can be booked with Egypt or standalone (separate package exists)</div>
+                        <div>• Customer chooses at booking time</div>
+                        <div class="text-green-600 font-medium mt-3">✓ Jordan CAN sell separately</div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-lg p-8 border-l-4 border-kaptio-secondary-400">
+                    <h4 class="font-semibold text-kaptio-primary-800 mb-4 text-lg">Extension Tour (Alexandria)</h4>
+                    <div class="space-y-3 text-sm text-kaptio-black">
+                        <div>• Alexandria is an Extension Tour Service</div>
+                        <div>• CANNOT be booked separately</div>
+                        <div>• Must be added to Egypt base tour</div>
+                        <div class="text-kaptio-action font-medium mt-3">✗ Alexandria CANNOT sell alone</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="scenario-card mb-12">
+                <h3 class="text-kaptio-primary-800 mb-6 font-semibold text-xl">Real-World Example: Alexandria Extension</h3>
+                <p class="text-kaptio-black mb-4">
+                    Your Egypt tour includes Cairo, Luxor, and Aswan (9 days). Some customers want to add Alexandria (2 days). 
+                    But Alexandria doesn't make sense as a standalone product—it's too short and requires Egypt as context.
+                </p>
+                
+                <div class="bg-kaptio-primary-50 rounded-lg p-6 mb-4">
+                    <h4 class="font-semibold text-kaptio-primary-800 mb-3 text-sm">How It Appears in Booking:</h4>
+                    <div class="space-y-2 text-sm">
+                        <div class="border-l-4 border-kaptio-primary-400 pl-4">
+                            <strong>Base Tour:</strong> Highlights of Egypt (9 days, $4,000)
+                        </div>
+                        <div class="border-l-4 border-kaptio-secondary-400 pl-4">
+                            <strong>Available Extension:</strong> Add Alexandria (+2 days, +$800)
+                        </div>
+                        <div class="text-kaptio-grey-300 text-xs mt-3">
+                            Alexandria only appears as an option when booking Egypt—it's not searchable as a standalone tour.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded p-4">
+                    <strong class="text-kaptio-black">Configuration:</strong>
+                    <p class="text-kaptio-black text-sm mt-2">
+                        Extension Tours are configured as Tour Services with a flag marking them as "extension-only." 
+                        They appear in the booking wizard as add-ons to their base tour but don't show up in package search.
+                    </p>
+                </div>
+            </div>
+
+            <div class="bg-kaptio-primary-50 rounded-xl p-8">
+                <h3 class="text-kaptio-primary-800 mb-4 font-semibold text-lg">Extension vs Linked vs Combo: Quick Reference</h3>
+                <div class="space-y-3 text-sm">
+                    <div class="bg-white rounded p-4">
+                        <strong class="text-kaptio-black">Combo Package:</strong> 2+ Principle Tours combined (e.g., Korea + Japan). Both tours can sell separately.
+                    </div>
+                    <div class="bg-white rounded p-4">
+                        <strong class="text-kaptio-black">Linked Package:</strong> 1 Principle Tour + 1 Sub Tour (e.g., Egypt + Jordan). Jordan is a Sub Tour in the package.
+                    </div>
+                    <div class="bg-white rounded p-4 border-l-4 border-kaptio-secondary-400">
+                        <strong class="text-kaptio-black">Extension Tour:</strong> Tour Service that CANNOT book separately (e.g., Alexandria). Must be added to base tour.
                     </div>
                 </div>
             </div>
