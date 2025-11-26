@@ -1016,6 +1016,11 @@
                             <span>🏨 Post-Stay – Osaka</span>
                             <span class="badge-optional">Optional</span>
                         </div>
+
+                        <div class="tree-node level-1 optional">
+                            <span>🎭 Optional Excursion</span>
+                            <span class="badge-optional">Optional</span>
+                        </div>
                     </div>
 
                     <!-- Payment & Cancellation -->
@@ -1201,27 +1206,6 @@
                 </div>
             </div>
 
-            <!-- Setup -->
-            <div class="bg-kaptio-primary-800 text-white rounded-xl p-8">
-                <h3 class="text-kaptio-yellow-400 mb-6 font-semibold text-xl">How to Create Air+Land Package</h3>
-                <p class="text-lg opacity-90 mb-6">
-                    Start with your Land-Only package, then add two flight components:
-                </p>
-                <div class="space-y-4 text-sm">
-                    <div class="bg-white bg-opacity-10 rounded-lg p-4">
-                        <div class="font-semibold mb-2">Add "Return Flight" Component</div>
-                        <div class="opacity-90">Type: Flight Placeholder • Required: Yes • Include in Package Total: Yes</div>
-                    </div>
-                    <div class="bg-white bg-opacity-10 rounded-lg p-4">
-                        <div class="font-semibold mb-2">Add "Flight Upgrade" Component</div>
-                        <div class="opacity-90">Type: Flight Placeholder • Required: No • Include in Package Total: No</div>
-                    </div>
-                    <div class="bg-white bg-opacity-10 rounded-lg p-4">
-                        <div class="font-semibold mb-2">Update Package Settings</div>
-                        <div class="opacity-90">Categories: Change to include "Air & Land" • Remove minimum capacity (flights are flexible)</div>
-                    </div>
-                </div>
-            </div>
         </section>
 
         <!-- Divider -->
@@ -1341,11 +1325,25 @@
                     </div>
                     <div class="tree-children">
                         
+                        <!-- Umbrella Components (Combo Level) -->
+                        <div class="tree-node level-1 required" style="background: #FFEBC6; border-left-color: #FFBC42;">
+                            <span>🏯 Combo Tour Configuration</span>
+                            <span class="badge-primary">Primary</span>
+                            <span class="text-xs text-kaptio-grey-300 ml-2">(Umbrella: Combo-level settings)</span>
+                        </div>
+
+                        <div class="tree-node level-1 required" style="background: #FFEBC6; border-left-color: #FFBC42;">
+                            <span>🏯 Combo Tour Pricing</span>
+                            <span class="badge-primary">Primary</span>
+                            <span class="badge-required">Main Tour</span>
+                            <span class="text-xs text-kaptio-grey-300 ml-2">(Umbrella: Manages pricing & inventory at combo level)</span>
+                        </div>
+
                         <!-- South Korea Segment -->
                         <div class="tree-node level-1 required">
                             <span>🇰🇷 South Korea Tour Inventory</span>
                             <span class="badge-required">Days 1-12</span>
-                            <span class="text-xs text-kaptio-grey-300 ml-2">(Container Service)</span>
+                            <span class="text-xs text-kaptio-grey-300 ml-2">(Ensures proper booking structure)</span>
                         </div>
 
                         <!-- South Korea Room Config -->
@@ -1385,7 +1383,7 @@
                         <div class="tree-node level-1 required">
                             <span>🇯🇵 Japan Tour Inventory</span>
                             <span class="badge-required">Days 13-26</span>
-                            <span class="text-xs text-kaptio-grey-300 ml-2">(Container Service)</span>
+                            <span class="text-xs text-kaptio-grey-300 ml-2">(Ensures proper booking structure)</span>
                         </div>
 
                         <!-- Japan Room Config -->
@@ -1407,6 +1405,13 @@
                                 <span>🟩 Twin Room</span>
                                 <span class="price-detail">$7,700</span>
                             </div>
+                        </div>
+
+                        <!-- Required Extras -->
+                        <div class="tree-node level-1 required">
+                            <span>💸 Tipping Made Easy</span>
+                            <span class="badge-required">Required</span>
+                            <span class="text-xs text-kaptio-grey-300 ml-2">(South Koreans tip, Japanese don't)</span>
                         </div>
 
                         <!-- Optional Components -->
@@ -1445,9 +1450,14 @@
                 </div>
 
                 <div class="mt-6 bg-kaptio-yellow-400 bg-opacity-20 rounded-lg p-4">
+                    <p class="text-sm text-kaptio-black mb-3">
+                        <strong>🔑 Umbrella Components (Yellow):</strong> The Combo Tour Configuration and Combo Tour Pricing components 
+                        manage pricing and inventory at the <strong>combo level</strong>—not by adding up Korea + Japan. This allows you to price the 
+                        combo differently (e.g., discount for booking both tours together).
+                    </p>
                     <p class="text-sm text-kaptio-black">
-                        <strong>🔑 Notice the Day Ranges:</strong> Each segment (highlighted by color) specifies which days it covers. 
-                        The Bridge component (yellow) connects the two tours. Click "Room Configuration" sections to see room type options.
+                        <strong>Segment Components:</strong> Korea and Japan tour inventory + room configuration components ensure proper booking 
+                        structure for each segment. They don't drive combo pricing—the umbrella components do.
                     </p>
                 </div>
 
