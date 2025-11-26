@@ -317,7 +317,8 @@
     <nav class="sticky bg-white bg-opacity-95 border-b border-kaptio-grey-100 shadow-sm">
         <div class="max-w-5xl mx-auto px-8 py-4">
             <div class="flex items-center space-x-6 text-sm overflow-x-auto">
-                <a href="#decision" class="text-kaptio-primary-400 hover:text-kaptio-primary-600 font-medium whitespace-nowrap">Decision Guide</a>
+                <a href="#introduction" class="text-kaptio-grey-300 hover:text-kaptio-primary-400 whitespace-nowrap">Introduction</a>
+                <a href="#decision" class="text-kaptio-primary-400 hover:text-kaptio-primary-600 font-medium whitespace-nowrap">Package Types</a>
                 <a href="#land-only" class="text-kaptio-grey-300 hover:text-kaptio-primary-400 whitespace-nowrap">Land-Only</a>
                 <a href="#air-land" class="text-kaptio-grey-300 hover:text-kaptio-primary-400 whitespace-nowrap">Air+Land</a>
                 <a href="#combo" class="text-kaptio-grey-300 hover:text-kaptio-primary-400 whitespace-nowrap">Combo</a>
@@ -326,8 +327,7 @@
                 <a href="#payments" class="text-kaptio-grey-300 hover:text-kaptio-primary-400 whitespace-nowrap">Payments</a>
                 <a href="#inventory" class="text-kaptio-grey-300 hover:text-kaptio-primary-400 whitespace-nowrap">Inventory</a>
                 <a href="#content" class="text-kaptio-grey-300 hover:text-kaptio-primary-400 whitespace-nowrap">Content</a>
-                <a href="#walkthrough" class="text-kaptio-grey-300 hover:text-kaptio-primary-400 whitespace-nowrap">Walkthrough</a>
-                <a href="#comparison" class="text-kaptio-grey-300 hover:text-kaptio-primary-400 whitespace-nowrap">Comparison</a>
+                <a href="#questions" class="text-kaptio-grey-300 hover:text-kaptio-primary-400 whitespace-nowrap">Q&A</a>
             </div>
         </div>
     </nav>
@@ -1208,6 +1208,82 @@
                 </div>
             </div>
 
+            <!-- JSON Structure Viewer for Air+Land -->
+            <div class="bg-kaptio-primary-800 text-white rounded-xl p-6 mb-12">
+                <div class="flex items-center justify-between mb-4">
+                    <h4 class="font-semibold text-kaptio-yellow-400 text-lg">📋 Package Configuration Structure (JSON)</h4>
+                    <button 
+                        disabled 
+                        class="bg-kaptio-grey-300 text-white px-4 py-2 rounded-lg font-medium cursor-not-allowed opacity-60"
+                        title="Coming soon: Deploy this configuration directly to your environment">
+                        🚀 Deploy to My Environment
+                        <span class="text-xs ml-2">(Coming Soon)</span>
+                    </button>
+                </div>
+                <details class="bg-white bg-opacity-10 rounded-lg">
+                    <summary class="cursor-pointer p-4 font-medium hover:bg-white hover:bg-opacity-20 rounded-lg transition-all">
+                        Click to view package structure →
+                    </summary>
+                    <div class="p-4">
+                        <pre class="text-xs overflow-x-auto bg-kaptio-black bg-opacity-40 rounded p-4"><code>{
+  "packageName": "Japan Discovery - Air & Land",
+  "packageType": "Principle",
+  "duration": 13,
+  "capacity": {
+    "minimum": null,
+    "maximum": 20
+  },
+  "serviceLevelMode": "Standard",
+  "components": [
+    {
+      "name": "Return Flight",
+      "type": "Flight Placeholder",
+      "required": true,
+      "includedInTotal": true,
+      "pricePerPerson": 1310,
+      "currency": "AUD"
+    },
+    {
+      "name": "Flight Upgrade",
+      "type": "Surcharge",
+      "required": false,
+      "includedInTotal": false,
+      "commission": "5%"
+    },
+    {
+      "name": "Tour Inventory & Pricing",
+      "type": "Container Service",
+      "required": true,
+      "inventoryDriver": "Per Pax"
+    },
+    {
+      "name": "Room Configuration",
+      "type": "Price Categories",
+      "required": true,
+      "primary": true,
+      "inventoryDriver": "Room"
+    },
+    {
+      "name": "Pre-Stay - Tokyo",
+      "type": "Accommodation",
+      "required": false
+    },
+    {
+      "name": "Post-Stay - Osaka",
+      "type": "Accommodation",
+      "required": false
+    },
+    {
+      "name": "Optional Excursion",
+      "type": "Activity",
+      "required": false
+    }
+  ]
+}</code></pre>
+                    </div>
+                </details>
+            </div>
+
             <!-- The Timeline -->
             <div class="bg-white rounded-xl shadow-lg p-8 mb-12">
                 <h3 class="text-kaptio-primary-800 mb-6 font-semibold text-xl">How It Actually Works</h3>
@@ -1543,6 +1619,82 @@
                 </div>
             </div>
 
+            <!-- JSON Structure Viewer for Combo -->
+            <div class="bg-kaptio-primary-800 text-white rounded-xl p-6 mb-12">
+                <div class="flex items-center justify-between mb-4">
+                    <h4 class="font-semibold text-kaptio-yellow-400 text-lg">📋 Package Configuration Structure (JSON)</h4>
+                    <button 
+                        disabled 
+                        class="bg-kaptio-grey-300 text-white px-4 py-2 rounded-lg font-medium cursor-not-allowed opacity-60"
+                        title="Coming soon: Deploy this configuration directly to your environment">
+                        🚀 Deploy to My Environment
+                        <span class="text-xs ml-2">(Coming Soon)</span>
+                    </button>
+                </div>
+                <details class="bg-white bg-opacity-10 rounded-lg">
+                    <summary class="cursor-pointer p-4 font-medium hover:bg-white hover:bg-opacity-20 rounded-lg transition-all">
+                        Click to view package structure →
+                    </summary>
+                    <div class="p-4">
+                        <pre class="text-xs overflow-x-auto bg-kaptio-black bg-opacity-40 rounded p-4"><code>{
+  "packageName": "Discover South Korea & Japan - Land Only",
+  "packageType": "Combo",
+  "duration": 27,
+  "capacity": {
+    "minimum": 10,
+    "maximum": 20
+  },
+  "serviceLevelMode": "Package Levels",
+  "components": [
+    {
+      "name": "South Korea Tour Inventory",
+      "type": "Container Service",
+      "required": true,
+      "dayRange": "1-12"
+    },
+    {
+      "name": "South Korea Room Configuration",
+      "type": "Price Categories",
+      "required": true,
+      "primary": true,
+      "dayRange": "1-12"
+    },
+    {
+      "name": "Seoul to Tokyo Connecting Flight",
+      "type": "Flight",
+      "required": true,
+      "dayRange": "12"
+    },
+    {
+      "name": "Tokyo Bridge Hotel",
+      "type": "Accommodation",
+      "required": true,
+      "dayRange": "12-13"
+    },
+    {
+      "name": "Japan Tour Inventory",
+      "type": "Container Service",
+      "required": true,
+      "dayRange": "13-26"
+    },
+    {
+      "name": "Japan Room Configuration",
+      "type": "Price Categories",
+      "required": true,
+      "primary": true,
+      "dayRange": "13-26"
+    },
+    {
+      "name": "Tipping Made Easy",
+      "type": "Extra",
+      "required": true
+    }
+  ]
+}</code></pre>
+                    </div>
+                </details>
+            </div>
+
             <!-- Setup -->
             <div class="bg-white rounded-xl shadow-lg p-8 mb-12">
                 <h3 class="text-kaptio-primary-800 mb-6 font-semibold text-xl">Setting Up Combo Packages</h3>
@@ -1823,9 +1975,86 @@
                         includes components from BOTH tours plus a connecting flight. Jordan extension components (purple) only exist in the combined package.
                     </p>
                     <p class="text-xs text-kaptio-grey-300 mt-3 italic">
-                        💡 Customer books Egypt → System offers "Add Jordan Extension?" → If yes, books combined package. If no, books Egypt only.
+                        💡 Customer books Egypt → System offers "Add Jordan Sub Tour?" → If yes, books combined package. If no, books Egypt only.
                     </p>
                 </div>
+            </div>
+
+            <!-- JSON Structure Viewer for Linked -->
+            <div class="bg-kaptio-primary-800 text-white rounded-xl p-6 mb-12">
+                <div class="flex items-center justify-between mb-4">
+                    <h4 class="font-semibold text-kaptio-yellow-400 text-lg">📋 Package Configuration Structure (JSON)</h4>
+                    <button 
+                        disabled 
+                        class="bg-kaptio-grey-300 text-white px-4 py-2 rounded-lg font-medium cursor-not-allowed opacity-60"
+                        title="Coming soon: Deploy this configuration directly to your environment">
+                        🚀 Deploy to My Environment
+                        <span class="text-xs ml-2">(Coming Soon)</span>
+                    </button>
+                </div>
+                <details class="bg-white bg-opacity-10 rounded-lg">
+                    <summary class="cursor-pointer p-4 font-medium hover:bg-white hover:bg-opacity-20 rounded-lg transition-all">
+                        Click to view package structure →
+                    </summary>
+                    <div class="p-4">
+                        <pre class="text-xs overflow-x-auto bg-kaptio-black bg-opacity-40 rounded p-4"><code>{
+  "packageName": "Highlights of Egypt & Jordan - Air & Land",
+  "packageType": "Linked",
+  "duration": 18,
+  "components": [
+    {
+      "name": "Egypt Tour Inventory",
+      "tourType": "Principle Tour",
+      "type": "Container Service",
+      "required": true,
+      "dayRange": "1-9"
+    },
+    {
+      "name": "Egypt Room Configuration",
+      "type": "Price Categories",
+      "required": true,
+      "primary": true,
+      "dayRange": "1-9"
+    },
+    {
+      "name": "Amman to Cairo Connecting Flight",
+      "type": "Flight",
+      "required": true
+    },
+    {
+      "name": "Jordan Tour Inventory",
+      "tourType": "Sub Tour",
+      "type": "Container Service",
+      "required": true,
+      "dayRange": "10-18"
+    },
+    {
+      "name": "Jordan Room Configuration",
+      "type": "Price Categories",
+      "required": true,
+      "primary": true,
+      "dayRange": "10-18"
+    },
+    {
+      "name": "International Return Flight",
+      "type": "Flight Placeholder",
+      "required": true
+    },
+    {
+      "name": "Audio Headsets",
+      "type": "Extra",
+      "required": true
+    },
+    {
+      "name": "Tipping Made Easy",
+      "type": "Extra",
+      "required": true
+    }
+  ],
+  "note": "Egypt tours (Principle) + Jordan tours (Sub) in one package"
+}</code></pre>
+                    </div>
+                </details>
             </div>
 
             <!-- Setup -->
@@ -1961,6 +2190,58 @@
                     <div class="bg-white rounded p-4 border-l-4 border-kaptio-secondary-400">
                         <strong class="text-kaptio-black">Extension Tour:</strong> Tour Service that CANNOT book separately (e.g., Alexandria). Must be added to base tour.
                     </div>
+                </div>
+
+                <!-- JSON Structure Viewer for Extension -->
+                <div class="bg-kaptio-secondary-400 text-white rounded-xl p-6 mt-8">
+                    <div class="flex items-center justify-between mb-4">
+                        <h4 class="font-semibold text-white text-lg">📋 Extension Tour Configuration (JSON)</h4>
+                        <button 
+                            disabled 
+                            class="bg-kaptio-grey-300 text-white px-4 py-2 rounded-lg font-medium cursor-not-allowed opacity-60"
+                            title="Coming soon: Deploy this configuration directly to your environment">
+                            🚀 Deploy to My Environment
+                            <span class="text-xs ml-2">(Coming Soon)</span>
+                        </button>
+                    </div>
+                    <details class="bg-white bg-opacity-10 rounded-lg">
+                        <summary class="cursor-pointer p-4 font-medium hover:bg-white hover:bg-opacity-20 rounded-lg transition-all">
+                            Click to view extension structure →
+                        </summary>
+                        <div class="p-4">
+                            <pre class="text-xs overflow-x-auto bg-kaptio-black bg-opacity-40 rounded p-4"><code>{
+  "extensionName": "Alexandria Extension",
+  "extensionType": "Tour Service",
+  "canBookSeparately": false,
+  "mustAddToTour": "Highlights of Egypt",
+  "duration": 2,
+  "configuration": {
+    "type": "Extension",
+    "required": false,
+    "showInPackageSearch": false,
+    "showInBookingWizard": true,
+    "applicablePackages": ["Highlights of Egypt - Air & Land"]
+  },
+  "pricing": {
+    "addOnPrice": 800,
+    "currency": "USD",
+    "pricingModel": "Add-on to base package"
+  },
+  "services": [
+    {
+      "name": "Alexandria Hotels",
+      "type": "Accommodation",
+      "nights": 2
+    },
+    {
+      "name": "Alexandria Guide & Transport",
+      "type": "Service Bundle"
+    }
+  ],
+  "note": "Extension Tours are Tour Services marked as extension-only. They appear in booking wizard but not package search."
+}</code></pre>
+                        </div>
+                    </details>
                 </div>
             </div>
         </section>
@@ -2512,111 +2793,6 @@
         <div class="h-px bg-kaptio-grey-100 my-16"></div>
 
 
-        <!-- Complete Walkthrough -->
-        <section id="walkthrough" class="section py-16">
-            <div class="text-sm font-semibold text-kaptio-primary-400 mb-4 uppercase tracking-wide">Hands-On Practice</div>
-            <h2 class="text-4xl font-bold text-kaptio-primary-800 mb-8">Complete Walkthrough: Your First Package</h2>
-            
-            <p class="text-xl text-kaptio-black font-light leading-relaxed mb-12">
-                Let's build a complete Classic Land-Only package from scratch. Follow along in your sandbox.
-            </p>
-
-            <div class="space-y-8">
-                <!-- Detailed Steps -->
-                <div class="bg-white rounded-xl shadow-lg p-8">
-                    <h3 class="text-kaptio-primary-800 mb-6 font-semibold text-xl">Building "Japan Discovery - Land Only"</h3>
-                    
-                    <div class="space-y-6">
-                        <div class="border-l-4 border-kaptio-yellow-400 pl-6 py-2">
-                            <div class="flex items-center space-x-3 mb-3">
-                                <div class="bg-kaptio-yellow-400 text-kaptio-black font-bold rounded-full w-12 h-12 flex items-center justify-center text-lg">1</div>
-                                <h4 class="font-semibold text-kaptio-primary-800 text-lg">Create Package Record</h4>
-                            </div>
-                            <div class="space-y-3">
-                                <div class="bg-kaptio-primary-50 rounded p-3">
-                                    <div class="text-xs text-kaptio-grey-300 mb-2">Navigation Path:</div>
-                                    <div class="text-sm text-kaptio-black">App Launcher → Packages → Click "New" button</div>
-                                </div>
-                                <div class="grid md:grid-cols-2 gap-3">
-                                    <div class="bg-white rounded p-3 border border-kaptio-grey-100">
-                                        <div class="text-xs text-kaptio-grey-300 mb-1">Package Name:</div>
-                                        <input type="text" value="Japan Discovery - Land Only" disabled class="w-full bg-kaptio-background rounded px-2 py-1 text-sm text-kaptio-black" />
-                                    </div>
-                                    <div class="bg-white rounded p-3 border border-kaptio-grey-100">
-                                        <div class="text-xs text-kaptio-grey-300 mb-1">Package Type:</div>
-                                        <select disabled class="w-full bg-kaptio-background rounded px-2 py-1 text-sm text-kaptio-black">
-                                            <option>Classic</option>
-                                        </select>
-                                    </div>
-                                    <div class="bg-white rounded p-3 border border-kaptio-grey-100">
-                                        <div class="text-xs text-kaptio-grey-300 mb-1">Duration (Days):</div>
-                                        <input type="number" value="13" disabled class="w-full bg-kaptio-background rounded px-2 py-1 text-sm text-kaptio-black" />
-                                    </div>
-                                    <div class="bg-white rounded p-3 border border-kaptio-grey-100">
-                                        <div class="text-xs text-kaptio-grey-300 mb-1">Status:</div>
-                                        <select disabled class="w-full bg-kaptio-background rounded px-2 py-1 text-sm text-kaptio-black">
-                                            <option>Active</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="border-l-4 border-kaptio-yellow-400 pl-6 py-2">
-                            <div class="flex items-center space-x-3 mb-3">
-                                <div class="bg-kaptio-yellow-400 text-kaptio-black font-bold rounded-full w-12 h-12 flex items-center justify-center text-lg">2</div>
-                                <h4 class="font-semibold text-kaptio-primary-800 text-lg">Set Capacity Requirements</h4>
-                            </div>
-                            <div class="grid md:grid-cols-2 gap-4">
-                                <div class="bg-kaptio-primary-50 rounded p-4">
-                                    <div class="text-xs text-kaptio-grey-300 mb-2">Minimum Capacity:</div>
-                                    <div class="text-2xl font-bold text-kaptio-primary-800">10</div>
-                                    <div class="text-xs text-kaptio-grey-300 mt-2">Required to guarantee departure</div>
-                                </div>
-                                <div class="bg-kaptio-primary-50 rounded p-4">
-                                    <div class="text-xs text-kaptio-grey-300 mb-2">Maximum Capacity:</div>
-                                    <div class="text-2xl font-bold text-kaptio-primary-800">20</div>
-                                    <div class="text-xs text-kaptio-grey-300 mt-2">Coach holds 20 passengers</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="border-l-4 border-kaptio-yellow-400 pl-6 py-2">
-                            <div class="flex items-center space-x-3 mb-3">
-                                <div class="bg-kaptio-yellow-400 text-kaptio-black font-bold rounded-full w-12 h-12 flex items-center justify-center text-lg">3</div>
-                                <h4 class="font-semibold text-kaptio-primary-800 text-lg">Configure Room Types</h4>
-                            </div>
-                            <div class="bg-kaptio-primary-50 rounded p-4">
-                                <div class="text-xs text-kaptio-grey-300 mb-2">Service Level Mode:</div>
-                                <select disabled class="w-full bg-white rounded px-3 py-2 text-sm text-kaptio-black mb-3">
-                                    <option>Standard</option>
-                                </select>
-                                <div class="text-xs text-kaptio-grey-300">
-                                    Enables room type selection. For combo packages, use "Package Levels" mode for cross-segment bed type defaulting.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="mt-8 bg-kaptio-yellow-400 bg-opacity-20 rounded-lg p-6">
-                        <div class="font-semibold text-kaptio-black mb-3">✅ Test Your Configuration</div>
-                        <div class="text-sm text-kaptio-black">
-                            After saving, go to Package Search and try booking your new package. Create a test booking to verify:
-                        </div>
-                        <div class="mt-3 space-y-1 text-xs text-kaptio-grey-300">
-                            <div>• Departures appear in search</div>
-                            <div>• Room types work correctly</div>
-                            <div>• Payment schedule generates</div>
-                            <div>• Capacity tracking updates</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Divider -->
-        <div class="h-px bg-kaptio-grey-100 my-16"></div>
-
         <!-- Common Questions -->
         <section id="questions" class="section py-16">
             <h2 class="text-4xl font-bold text-kaptio-primary-800 mb-12">Common Questions</h2>
@@ -2690,167 +2866,6 @@
                 </div>
             </div>
         </section>
-
-        <!-- Divider -->
-        <div class="h-px bg-kaptio-grey-100 my-16"></div>
-
-        <!-- Comprehensive Comparison Table -->
-        <section id="comparison" class="section py-16">
-            <h2 class="text-4xl font-bold text-kaptio-primary-800 mb-8">Package Type Comparison: At a Glance</h2>
-            <p class="text-lg text-kaptio-black font-light leading-relaxed mb-8">
-                See all six package types side-by-side. Click column headers to focus on specific types.
-            </p>
-
-            <div class="comparison-table-container">
-                <table class="comparison-table">
-                    <thead>
-                        <tr>
-                            <th class="feature-name">Feature</th>
-                            <th>Classic<br>Land-Only</th>
-                            <th>Classic<br>Air+Land</th>
-                            <th>Combo<br>Land-Only</th>
-                            <th>Combo<br>Air+Land</th>
-                            <th>Linked<br>Combined</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="feature-name">Destinations</td>
-                            <td>Single</td>
-                            <td>Single</td>
-                            <td class="highlight">Multi</td>
-                            <td class="highlight">Multi</td>
-                            <td class="highlight">Base + Extension</td>
-                        </tr>
-                        <tr>
-                            <td class="feature-name">Example</td>
-                            <td>Japan Discovery</td>
-                            <td>Japan with Flights</td>
-                            <td>Korea & Japan</td>
-                            <td>Korea & Japan + Flights</td>
-                            <td>Egypt + Jordan</td>
-                        </tr>
-                        <tr>
-                            <td class="feature-name">Duration</td>
-                            <td>13 days</td>
-                            <td>13 days</td>
-                            <td>27 days</td>
-                            <td>27 days</td>
-                            <td>18 days (9+9)</td>
-                        </tr>
-                        <tr>
-                            <td class="feature-name">Flight Components</td>
-                            <td class="cross">—</td>
-                            <td class="highlight">2 (Return + Upgrade)</td>
-                            <td class="cross">—</td>
-                            <td class="highlight">2 (Return + Upgrade)</td>
-                            <td class="highlight">2-3 (w/ Connecting)</td>
-                        </tr>
-                        <tr>
-                            <td class="feature-name">Day Ranges Used</td>
-                            <td class="cross">No</td>
-                            <td class="cross">No</td>
-                            <td class="highlight">Yes (1-12, 13-26)</td>
-                            <td class="highlight">Yes (1-12, 13-26)</td>
-                            <td class="highlight">Yes (by tour)</td>
-                        </tr>
-                        <tr>
-                            <td class="feature-name">Bridge Components</td>
-                            <td class="cross">—</td>
-                            <td class="cross">—</td>
-                            <td class="highlight">Yes (Day 12-13)</td>
-                            <td class="highlight">Yes (Day 12-13)</td>
-                            <td class="highlight">Yes (Connecting flight)</td>
-                        </tr>
-                        <tr>
-                            <td class="feature-name">Minimum Capacity</td>
-                            <td>10</td>
-                            <td class="highlight">None (flexible)</td>
-                            <td>10</td>
-                            <td>10</td>
-                            <td>Varies</td>
-                        </tr>
-                        <tr>
-                            <td class="feature-name">Maximum Capacity</td>
-                            <td>20</td>
-                            <td>20</td>
-                            <td>20</td>
-                            <td>20</td>
-                            <td>Varies</td>
-                        </tr>
-                        <tr>
-                            <td class="feature-name">Component Count</td>
-                            <td>4-5</td>
-                            <td class="highlight">6-7</td>
-                            <td class="highlight">8-10</td>
-                            <td class="highlight">10-12</td>
-                            <td class="highlight">10-14</td>
-                        </tr>
-                        <tr>
-                            <td class="feature-name">Sells Standalone</td>
-                            <td class="check">✓ Yes</td>
-                            <td class="check">✓ Yes</td>
-                            <td class="check">✓ Yes</td>
-                            <td class="check">✓ Yes</td>
-                            <td class="highlight">Base: Yes<br>Combined: Yes</td>
-                        </tr>
-                        <tr>
-                            <td class="feature-name">Best For</td>
-                            <td>Traditional tours</td>
-                            <td>All-inclusive pricing</td>
-                            <td>Multi-country journeys</td>
-                            <td>Multi-country + flights</td>
-                            <td>Optional extensions</td>
-                        </tr>
-                        <tr>
-                            <td class="feature-name">Setup Complexity</td>
-                            <td>Simple</td>
-                            <td>Medium (+ flights)</td>
-                            <td class="highlight">Medium (+ day ranges)</td>
-                            <td class="highlight">Complex (both)</td>
-                            <td class="highlight">Complex (2 packages)</td>
-                        </tr>
-                        <tr>
-                            <td class="feature-name">Payment Schedule</td>
-                            <td>Standard</td>
-                            <td>Standard</td>
-                            <td>Standard</td>
-                            <td>Standard</td>
-                            <td>Standard</td>
-                        </tr>
-                        <tr>
-                            <td class="feature-name">Cancellation Policy</td>
-                            <td>Tiered</td>
-                            <td>Tiered</td>
-                            <td>Tiered</td>
-                            <td>Tiered</td>
-                            <td>Tiered (full tour)</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="mt-8 bg-kaptio-primary-50 rounded-xl p-6">
-                <h3 class="text-kaptio-primary-800 mb-4 font-semibold">How to Use This Table</h3>
-                <ul class="space-y-2 text-sm text-kaptio-black">
-                    <li class="flex items-start space-x-2">
-                        <span class="text-kaptio-yellow-400">•</span>
-                        <span><strong>Yellow highlights</strong> show key differences between types</span>
-                    </li>
-                    <li class="flex items-start space-x-2">
-                        <span class="text-kaptio-yellow-400">•</span>
-                        <span><strong>"—" or "No"</strong> means that feature isn't used for that type</span>
-                    </li>
-                    <li class="flex items-start space-x-2">
-                        <span class="text-kaptio-yellow-400">•</span>
-                        <span><strong>Setup Complexity</strong> indicates implementation effort (start simple, add complexity as needed)</span>
-                    </li>
-                </ul>
-            </div>
-        </section>
-
-        <!-- Divider -->
-        <div class="h-px bg-kaptio-grey-100 my-16"></div>
 
         <!-- Key Takeaways -->
         <section class="py-16">
