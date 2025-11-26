@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Package Import Adapter | Kaptio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'kaptio-primary-800': '#032E36',
+                        'kaptio-primary-600': '#034955',
+                        'kaptio-primary-400': '#056F82',
+                        'kaptio-primary-300': '#69A9B4',
+                        'kaptio-primary-200': '#B4D4DA',
+                        'kaptio-primary-100': '#E6F1F2',
+                        'kaptio-primary-50': '#EFF5F5',
+                        'kaptio-yellow-400': '#FFBC42',
+                        'kaptio-yellow-300': '#FFD78E',
+                        'kaptio-background': '#F9FAF8',
+                    },
+                    fontFamily: {
+                        'sans': ['Lexend', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Lexend', sans-serif;
+        }
+        .feature-card {
+            transition: transform 0.2s;
+        }
+        .feature-card:hover {
+            transform: translateY(-4px);
+        }
+    </style>
+</head>
+<body class="bg-kaptio-background">
+
+    <!-- Hero -->
+    <header class="bg-gradient-to-br from-kaptio-primary-800 via-kaptio-primary-600 to-kaptio-primary-400 text-white">
+        <div class="max-w-6xl mx-auto px-8 py-20">
+            <h1 class="text-5xl font-bold mb-6">
+                Import Packages from<br>
+                <span class="text-kaptio-yellow-400">Any Data Source</span>
+            </h1>
+            <p class="text-2xl font-light opacity-90 mb-8">
+                Transform your Excel, CSV, or database exports into Kaptio packages using a simplified 150-line format
+            </p>
+            <div class="flex gap-4">
+                <a href="upload-ui.html" class="inline-block bg-kaptio-yellow-400 text-gray-900 px-8 py-4 rounded-lg font-bold text-lg hover:bg-kaptio-yellow-300 transition">
+                    🚀 Start Import
+                </a>
+                <a href="#contract" class="inline-block bg-white bg-opacity-20 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-opacity-30 transition">
+                    📋 View Contract
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-8 py-16">
+
+        <!-- The Problem -->
+        <section class="mb-20">
+            <h2 class="text-4xl font-bold text-kaptio-primary-800 mb-8">The Challenge</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-red-50 border-l-4 border-red-500 rounded-lg p-6">
+                    <h3 class="font-bold text-red-900 mb-4">❌ Traditional Approach</h3>
+                    <ul class="space-y-2 text-red-800 text-sm">
+                        <li>• Manually recreate packages in Kaptio (hours per package)</li>
+                        <li>• Complex Salesforce data model (135+ records)</li>
+                        <li>• Learn RecordTypes, relationships, namespaces</li>
+                        <li>• Risk of configuration errors</li>
+                        <li>• Data lives in two places (Excel + Kaptio)</li>
+                    </ul>
+                </div>
+
+                <div class="bg-green-50 border-l-4 border-green-500 rounded-lg p-6">
+                    <h3 class="font-bold text-green-900 mb-4">✅ Import Adapter</h3>
+                    <ul class="space-y-2 text-green-800 text-sm">
+                        <li>• Extract data from your planning tools (automated)</li>
+                        <li>• Simple 150-line JSON format (95% less complex)</li>
+                        <li>• No Salesforce knowledge required</li>
+                        <li>• Transform + deploy in minutes</li>
+                        <li>• Single source of truth in your planning tool</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works -->
+        <section class="mb-20">
+            <h2 class="text-4xl font-bold text-kaptio-primary-800 mb-8">How It Works</h2>
+            
+            <div class="relative">
+                <div class="absolute top-1/2 left-0 right-0 h-1 bg-kaptio-primary-200 z-0"></div>
+                
+                <div class="relative z-10 grid grid-cols-4 gap-6">
+                    <div class="bg-white rounded-xl shadow-lg p-6 text-center feature-card">
+                        <div class="text-4xl mb-3">📊</div>
+                        <h3 class="font-bold text-kaptio-primary-800 mb-2">Your Data</h3>
+                        <p class="text-sm text-gray-600">Excel, CSV, Database, API</p>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-lg p-6 text-center feature-card">
+                        <div class="text-4xl mb-3">🔧</div>
+                        <h3 class="font-bold text-kaptio-primary-800 mb-2">Your Script</h3>
+                        <p class="text-sm text-gray-600">Extract to simple JSON</p>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-lg p-6 text-center feature-card">
+                        <div class="text-4xl mb-3">⚡</div>
+                        <h3 class="font-bold text-kaptio-primary-800 mb-2">Our Adapter</h3>
+                        <p class="text-sm text-gray-600">Transform to Kaptio</p>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-lg p-6 text-center feature-card">
+                        <div class="text-4xl mb-3">🚀</div>
+                        <h3 class="font-bold text-kaptio-primary-800 mb-2">Deployed</h3>
+                        <p class="text-sm text-gray-600">Live in Salesforce</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- The Contract -->
+        <section id="contract" class="mb-20">
+            <h2 class="text-4xl font-bold text-kaptio-primary-800 mb-8">The Simplified Contract</h2>
+            
+            <div class="bg-kaptio-primary-800 text-white rounded-xl p-8 mb-8">
+                <h3 class="text-2xl font-bold text-kaptio-yellow-400 mb-4">95% Less Complex Than Native Format</h3>
+                <div class="grid md:grid-cols-2 gap-8 text-lg">
+                    <div>
+                        <div class="opacity-75 text-sm mb-2">Your Input:</div>
+                        <div class="text-3xl font-bold">~150 lines</div>
+                        <div class="text-sm opacity-75 mt-1">Simple, human-readable JSON</div>
+                    </div>
+                    <div>
+                        <div class="opacity-75 text-sm mb-2">Our Output:</div>
+                        <div class="text-3xl font-bold">135+ records</div>
+                        <div class="text-sm opacity-75 mt-1">Complete Salesforce bundle</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contract Structure Visual -->
+            <div class="bg-white rounded-xl shadow-lg p-8 mb-8">
+                <h3 class="font-bold text-2xl text-kaptio-primary-800 mb-6">Contract Structure</h3>
+                
+                <div class="space-y-4">
+                    <!-- Package Section -->
+                    <details open class="bg-kaptio-primary-50 rounded-lg">
+                        <summary class="cursor-pointer p-4 font-semibold text-kaptio-primary-800 hover:bg-kaptio-primary-100 rounded-lg">
+                            📦 package (Required)
+                        </summary>
+                        <div class="p-4 pt-0 space-y-2 text-sm">
+                            <div class="grid grid-cols-3 gap-2 font-mono text-xs">
+                                <div><span class="text-red-600">*</span> name <span class="text-gray-500">(string)</span></div>
+                                <div><span class="text-red-600">*</span> duration_days <span class="text-gray-500">(integer)</span></div>
+                                <div><span class="text-red-600">*</span> type <span class="text-gray-500">(enum)</span></div>
+                                <div>description <span class="text-gray-500">(string)</span></div>
+                                <div>capacity.min <span class="text-gray-500">(integer)</span></div>
+                                <div>capacity.max <span class="text-gray-500">(integer)</span></div>
+                                <div>start_location <span class="text-gray-500">(string)</span></div>
+                                <div>end_location <span class="text-gray-500">(string)</span></div>
+                                <div>categories <span class="text-gray-500">(array)</span></div>
+                            </div>
+                            <div class="mt-4 p-3 bg-white rounded border text-xs">
+                                <strong>Example:</strong> <code class="text-kaptio-primary-600">"name": "Italian Wine Country", "duration_days": 8, "type": "land_only"</code>
+                            </div>
+                        </div>
+                    </details>
+
+                    <!-- Components Section -->
+                    <details class="bg-kaptio-primary-50 rounded-lg">
+                        <summary class="cursor-pointer p-4 font-semibold text-kaptio-primary-800 hover:bg-kaptio-primary-100 rounded-lg">
+                            🧩 components[] (Required - Array)
+                        </summary>
+                        <div class="p-4 pt-0 space-y-2 text-sm">
+                            <div class="grid grid-cols-3 gap-2 font-mono text-xs">
+                                <div><span class="text-red-600">*</span> name <span class="text-gray-500">(string)</span></div>
+                                <div><span class="text-red-600">*</span> type <span class="text-gray-500">(enum)</span></div>
+                                <div>required <span class="text-gray-500">(boolean)</span></div>
+                                <div>day_range <span class="text-gray-500">(object)</span></div>
+                                <div>max_nights <span class="text-gray-500">(integer)</span></div>
+                                <div>room_types <span class="text-gray-500">(array)</span></div>
+                            </div>
+                            <div class="mt-4 p-3 bg-white rounded border">
+                                <strong class="text-xs">Component Types:</strong>
+                                <div class="grid grid-cols-3 gap-2 mt-2 text-xs font-mono">
+                                    <div>• tour_inventory</div>
+                                    <div>• room_configuration</div>
+                                    <div>• accommodation</div>
+                                    <div>• activity</div>
+                                    <div>• flight_placeholder</div>
+                                    <div>• extra</div>
+                                </div>
+                            </div>
+                        </div>
+                    </details>
+
+                    <!-- Pricing Section -->
+                    <details class="bg-kaptio-primary-50 rounded-lg">
+                        <summary class="cursor-pointer p-4 font-semibold text-kaptio-primary-800 hover:bg-kaptio-primary-100 rounded-lg">
+                            💰 pricing (Required)
+                        </summary>
+                        <div class="p-4 pt-0 space-y-2 text-sm">
+                            <div class="grid grid-cols-3 gap-2 font-mono text-xs">
+                                <div><span class="text-red-600">*</span> currency <span class="text-gray-500">(string)</span></div>
+                                <div>room_prices.single <span class="text-gray-500">(number)</span></div>
+                                <div>room_prices.double_per_person <span class="text-gray-500">(number)</span></div>
+                                <div>room_prices.twin_per_person <span class="text-gray-500">(number)</span></div>
+                                <div>seasonal_pricing <span class="text-gray-500">(array)</span></div>
+                                <div>single_supplement <span class="text-gray-500">(number)</span></div>
+                            </div>
+                            <div class="mt-4 p-3 bg-white rounded border text-xs">
+                                <strong>Example:</strong> <code class="text-kaptio-primary-600">"currency": "USD", "room_prices": {"single": 8500, "double_per_person": 6500}</code>
+                            </div>
+                        </div>
+                    </details>
+
+                    <!-- Departures Section -->
+                    <details class="bg-kaptio-primary-50 rounded-lg">
+                        <summary class="cursor-pointer p-4 font-semibold text-kaptio-primary-800 hover:bg-kaptio-primary-100 rounded-lg">
+                            📅 departures[] (Required - Array)
+                        </summary>
+                        <div class="p-4 pt-0 space-y-2 text-sm">
+                            <div class="grid grid-cols-3 gap-2 font-mono text-xs">
+                                <div><span class="text-red-600">*</span> date <span class="text-gray-500">(YYYY-MM-DD)</span></div>
+                                <div>capacity <span class="text-gray-500">(integer)</span></div>
+                                <div>status <span class="text-gray-500">(enum)</span></div>
+                            </div>
+                            <div class="mt-4 p-3 bg-white rounded border text-xs">
+                                <strong>Example:</strong> <code class="text-kaptio-primary-600">[{"date": "2026-03-15", "capacity": 20}, {"date": "2026-04-12"}]</code>
+                            </div>
+                        </div>
+                    </details>
+
+                    <!-- Payment Schedule -->
+                    <details class="bg-kaptio-primary-50 rounded-lg">
+                        <summary class="cursor-pointer p-4 font-semibold text-kaptio-primary-800 hover:bg-kaptio-primary-100 rounded-lg">
+                            💳 payment_schedule (Optional)
+                        </summary>
+                        <div class="p-4 pt-0 space-y-2 text-sm">
+                            <div class="grid grid-cols-3 gap-2 font-mono text-xs">
+                                <div>type <span class="text-gray-500">(enum)</span></div>
+                                <div>deposit <span class="text-gray-500">(number)</span></div>
+                                <div>progress_payment <span class="text-gray-500">(object)</span></div>
+                                <div>final_balance_days_before <span class="text-gray-500">(integer)</span></div>
+                            </div>
+                            <div class="mt-4 p-3 bg-white rounded border text-xs">
+                                <strong>Predefined Patterns:</strong> standard_3_tier, long_lead_4_tier, full_payment, custom
+                            </div>
+                        </div>
+                    </details>
+
+                    <!-- Cancellation Policy -->
+                    <details class="bg-kaptio-primary-50 rounded-lg">
+                        <summary class="cursor-pointer p-4 font-semibold text-kaptio-primary-800 hover:bg-kaptio-primary-100 rounded-lg">
+                            ⚠️ cancellation_policy (Optional)
+                        </summary>
+                        <div class="p-4 pt-0 space-y-2 text-sm">
+                            <div class="grid grid-cols-3 gap-2 font-mono text-xs">
+                                <div>type <span class="text-gray-500">(enum)</span></div>
+                                <div>tiers[].days_before <span class="text-gray-500">(string)</span></div>
+                                <div>tiers[].fee_type <span class="text-gray-500">(enum)</span></div>
+                                <div>tiers[].amount <span class="text-gray-500">(number)</span></div>
+                            </div>
+                            <div class="mt-4 p-3 bg-white rounded border text-xs">
+                                <strong>Example:</strong> <code class="text-kaptio-primary-600">{"days_before": "61+", "fee_type": "fixed", "amount": 3000}</code>
+                            </div>
+                        </div>
+                    </details>
+
+                    <!-- Itinerary -->
+                    <details class="bg-kaptio-primary-50 rounded-lg">
+                        <summary class="cursor-pointer p-4 font-semibold text-kaptio-primary-800 hover:bg-kaptio-primary-100 rounded-lg">
+                            🗓️ itinerary[] (Optional - Array)
+                        </summary>
+                        <div class="p-4 pt-0 space-y-2 text-sm">
+                            <div class="grid grid-cols-3 gap-2 font-mono text-xs">
+                                <div>day <span class="text-gray-500">(integer)</span></div>
+                                <div>title <span class="text-gray-500">(string)</span></div>
+                                <div>description <span class="text-gray-500">(string)</span></div>
+                                <div>meals <span class="text-gray-500">(array)</span></div>
+                                <div>accommodation <span class="text-gray-500">(string)</span></div>
+                                <div>location <span class="text-gray-500">(string)</span></div>
+                            </div>
+                            <div class="mt-4 p-3 bg-white rounded border text-xs">
+                                <strong>Note:</strong> Day-by-day itinerary content for customer-facing materials
+                            </div>
+                        </div>
+                    </details>
+                </div>
+            </div>
+
+            <div class="mt-8 text-center">
+                <p class="text-kaptio-grey-300 mb-4">
+                    <span class="text-red-600">*</span> = Required field
+                </p>
+                <a href="IMPORT_CONTRACT_SPEC.md" class="inline-block bg-kaptio-primary-400 text-white px-6 py-3 rounded-lg font-medium hover:bg-kaptio-primary-600 transition">
+                    📖 View Complete Specification
+                </a>
+            </div>
+        </section>
+
+        <!-- Example Comparison -->
+        <section class="mb-20">
+            <h2 class="text-4xl font-bold text-kaptio-primary-800 mb-8">See The Simplification</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Simplified -->
+                <div>
+                    <h3 class="font-bold text-lg text-kaptio-primary-800 mb-4 flex items-center gap-2">
+                        <span class="bg-green-500 text-white px-3 py-1 rounded text-sm">Your Input</span>
+                        Simplified Format
+                    </h3>
+                    <div class="bg-gray-900 text-green-400 rounded-lg p-4 font-mono text-xs overflow-x-auto">
+<pre>{
+  "package": {
+    "name": "Italian Wine Country",
+    "duration_days": 8,
+    "type": "land_only"
+  },
+  "components": [
+    {
+      "name": "Main Tour",
+      "type": "tour_inventory"
+    },
+    {
+      "name": "Room Selection",
+      "type": "room_configuration",
+      "room_types": ["single", "double"]
+    }
+  ],
+  "pricing": {
+    "currency": "EUR",
+    "room_prices": {
+      "single": 4500,
+      "double_per_person": 3200
+    }
+  },
+  "departures": [
+    {"date": "2026-05-15"},
+    {"date": "2026-06-12"}
+  ]
+}</pre>
+                    </div>
+                    <div class="mt-2 text-center text-sm text-gray-600">
+                        <strong>~30 lines</strong> • Easy to read and write
+                    </div>
+                </div>
+
+                <!-- Native Kaptio -->
+                <div>
+                    <h3 class="font-bold text-lg text-kaptio-primary-800 mb-4 flex items-center gap-2">
+                        <span class="bg-kaptio-primary-600 text-white px-3 py-1 rounded text-sm">Our Output</span>
+                        Native Kaptio Format
+                    </h3>
+                    <div class="bg-gray-900 text-gray-400 rounded-lg p-4 font-mono text-xs overflow-x-auto">
+<pre>{
+  "records": {
+    "KaptioTravel__Package__c": [{
+      "Id": "a29abc123...",
+      "Name": "Italian Wine Country",
+      "KaptioTravel__Length__c": 8,
+      "KaptioTravel__Package_Type__c": "Principle",
+      "KaptioTravel__Categories__c": "Classic;Land Only",
+      "KaptioTravel__PhysicalInventorySelection__c": "Mandatory",
+      "KaptioTravel__ServiceLevelMode__c": "Standard",
+      "KaptioTravel__DepartureType__c": "Fixed",
+      "KaptioTravel__NetPriceSetupChoice__c": "Dynamic",
+      // ... 40+ more fields
+    }],
+    "KaptioTravel__Component__c": [/* 2 records */],
+    "KaptioTravel__Item__c": [/* 1 record */],
+    "KaptioTravel__Price_Category__c": [/* 2 records */],
+    "KaptioTravel__Item_Price__c": [/* 2 records */],
+    "KaptioTravel__ComponentOption__c": [/* 2 records */],
+    "KaptioTravel__PackageDeparture__c": [/* 2 records */],
+    // ... +18 more object types
+  }
+}</pre>
+                    </div>
+                    <div class="mt-2 text-center text-sm text-gray-600">
+                        <strong>25 records, ~1000 lines</strong> • Complex Salesforce structure
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-8 bg-kaptio-yellow-400 bg-opacity-20 rounded-xl p-6 text-center">
+                <div class="text-4xl font-bold text-kaptio-primary-800 mb-2">Same Result, 95% Less Work</div>
+                <p class="text-kaptio-grey-300">Both create identical packages in Kaptio. The adapter handles all complexity.</p>
+            </div>
+        </section>
+
+        <!-- Downloads -->
+        <section class="mb-20">
+            <h2 class="text-4xl font-bold text-kaptio-primary-800 mb-8">Download Templates</h2>
+            
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- JSON Schema -->
+                <div class="bg-white rounded-xl shadow-lg p-6 feature-card">
+                    <div class="text-4xl mb-4">📋</div>
+                    <h3 class="font-bold text-lg text-kaptio-primary-800 mb-2">JSON Schema</h3>
+                    <p class="text-sm text-gray-600 mb-4">Complete schema definition for validation</p>
+                    <a href="simplified-contract-schema.json" download class="block text-center bg-kaptio-primary-400 text-white px-4 py-2 rounded-lg font-medium hover:bg-kaptio-primary-600 transition text-sm">
+                        Download Schema
+                    </a>
+                </div>
+
+                <!-- Minimal Template -->
+                <div class="bg-white rounded-xl shadow-lg p-6 feature-card">
+                    <div class="text-4xl mb-4">📄</div>
+                    <h3 class="font-bold text-lg text-kaptio-primary-800 mb-2">Minimal Template</h3>
+                    <p class="text-sm text-gray-600 mb-4">Simplest valid package (30 lines)</p>
+                    <a href="examples/minimal-example.json" download class="block text-center bg-kaptio-primary-400 text-white px-4 py-2 rounded-lg font-medium hover:bg-kaptio-primary-600 transition text-sm">
+                        Download JSON
+                    </a>
+                </div>
+
+                <!-- Complete Template -->
+                <div class="bg-white rounded-xl shadow-lg p-6 feature-card">
+                    <div class="text-4xl mb-4">📦</div>
+                    <h3 class="font-bold text-lg text-kaptio-primary-800 mb-2">Complete Example</h3>
+                    <p class="text-sm text-gray-600 mb-4">Full featured package (150 lines)</p>
+                    <a href="examples/south-american-discovery-example.json" download class="block text-center bg-kaptio-primary-400 text-white px-4 py-2 rounded-lg font-medium hover:bg-kaptio-primary-600 transition text-sm">
+                        Download JSON
+                    </a>
+                </div>
+            </div>
+
+            <div class="mt-8 bg-kaptio-primary-50 rounded-xl p-6">
+                <h4 class="font-bold text-kaptio-primary-800 mb-4">🔧 CSV Template (Coming Soon)</h4>
+                <p class="text-sm text-gray-600 mb-4">
+                    For operators who prefer CSV/spreadsheet format, we're creating a template with these columns:
+                </p>
+                <div class="grid md:grid-cols-4 gap-4 text-xs font-mono">
+                    <div>package_name</div>
+                    <div>duration_days</div>
+                    <div>type</div>
+                    <div>currency</div>
+                    <div>single_price</div>
+                    <div>double_price</div>
+                    <div>departure_date</div>
+                    <div>departure_capacity</div>
+                    <div>component_name</div>
+                    <div>component_type</div>
+                    <div>...</div>
+                </div>
+                <p class="text-xs text-gray-500 mt-4 italic">
+                    CSV importer will flatten the hierarchical structure for spreadsheet-based workflows
+                </p>
+            </div>
+        </section>
+
+        <!-- Use Cases -->
+        <section class="mb-20">
+            <h2 class="text-4xl font-bold text-kaptio-primary-800 mb-8">Universal Data Sources</h2>
+            
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <h3 class="font-bold text-xl text-kaptio-primary-800 mb-4">📊 Excel-Based Planning</h3>
+                    <p class="text-gray-600 mb-4 text-sm">
+                        Most tour operators plan in Excel with custom templates, formulas, and layouts built over years.
+                    </p>
+                    <div class="bg-kaptio-primary-50 rounded p-4 text-sm">
+                        <strong>Your workflow:</strong>
+                        <ol class="mt-2 space-y-1 text-xs text-gray-700">
+                            <li>1. Build Python/JS script to read your Excel structure</li>
+                            <li>2. Extract relevant fields (name, dates, pricing)</li>
+                            <li>3. Output simplified JSON following our contract</li>
+                            <li>4. Upload to adapter UI</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <h3 class="font-bold text-xl text-kaptio-primary-800 mb-4">💾 Database Exports</h3>
+                    <p class="text-gray-600 mb-4 text-sm">
+                        Tour data in legacy databases or reservation systems that can export to CSV/JSON.
+                    </p>
+                    <div class="bg-kaptio-primary-50 rounded p-4 text-sm">
+                        <strong>Your workflow:</strong>
+                        <ol class="mt-2 space-y-1 text-xs text-gray-700">
+                            <li>1. Query your database for tour records</li>
+                            <li>2. Map database columns to our contract fields</li>
+                            <li>3. Export as simplified JSON</li>
+                            <li>4. Import to Kaptio via adapter</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <h3 class="font-bold text-xl text-kaptio-primary-800 mb-4">📁 CSV Workflows</h3>
+                    <p class="text-gray-600 mb-4 text-sm">
+                        Simple CSV files with tour data from any system.
+                    </p>
+                    <div class="bg-kaptio-primary-50 rounded p-4 text-sm">
+                        <strong>Your workflow:</strong>
+                        <ol class="mt-2 space-y-1 text-xs text-gray-700">
+                            <li>1. Export tour data as CSV</li>
+                            <li>2. Convert CSV to JSON using script</li>
+                            <li>3. Follow our simplified contract structure</li>
+                            <li>4. Upload and deploy</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <h3 class="font-bold text-xl text-kaptio-primary-800 mb-4">🔌 API Integrations</h3>
+                    <p class="text-gray-600 mb-4 text-sm">
+                        Pull tour data from external APIs or booking platforms.
+                    </p>
+                    <div class="bg-kaptio-primary-50 rounded p-4 text-sm">
+                        <strong>Your workflow:</strong>
+                        <ol class="mt-2 space-y-1 text-xs text-gray-700">
+                            <li>1. Call API to fetch tour details</li>
+                            <li>2. Transform API response to our format</li>
+                            <li>3. Automate import process</li>
+                            <li>4. Keep Kaptio synced with source system</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Getting Started -->
+        <section class="mb-20">
+            <div class="bg-gradient-to-r from-kaptio-primary-800 to-kaptio-primary-600 text-white rounded-xl p-12 text-center">
+                <h2 class="text-4xl font-bold mb-6">Ready to Start Importing?</h2>
+                <p class="text-xl opacity-90 mb-8">
+                    Download templates, write your extraction script, and import packages in minutes
+                </p>
+                <div class="flex justify-center gap-4">
+                    <a href="upload-ui.html" class="bg-kaptio-yellow-400 text-gray-900 px-8 py-4 rounded-lg font-bold text-lg hover:bg-kaptio-yellow-300 transition inline-block">
+                        🚀 Launch Import Adapter
+                    </a>
+                    <a href="IMPORT_CONTRACT_SPEC.md" class="bg-white bg-opacity-20 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-opacity-30 transition inline-block">
+                        📚 Read Documentation
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technical Details -->
+        <section>
+            <h2 class="text-4xl font-bold text-kaptio-primary-800 mb-8">Technical Details</h2>
+            
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <h4 class="font-bold text-kaptio-primary-800 mb-3">📏 Field Count</h4>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Simplified:</span>
+                            <span class="font-bold">~50 fields</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Native Kaptio:</span>
+                            <span class="font-bold">~200 fields</span>
+                        </div>
+                        <div class="flex justify-between border-t pt-2">
+                            <span class="text-gray-600">Reduction:</span>
+                            <span class="font-bold text-green-600">75%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <h4 class="font-bold text-kaptio-primary-800 mb-3">📊 Record Generation</h4>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Input lines:</span>
+                            <span class="font-bold">~150</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Output records:</span>
+                            <span class="font-bold">25-40</span>
+                        </div>
+                        <div class="flex justify-between border-t pt-2">
+                            <span class="text-gray-600">Expansion:</span>
+                            <span class="font-bold text-kaptio-primary-600">9-12x</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <h4 class="font-bold text-kaptio-primary-800 mb-3">⚡ Performance</h4>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Validation:</span>
+                            <span class="font-bold">&lt;1 sec</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Transformation:</span>
+                            <span class="font-bold">&lt;2 sec</span>
+                        </div>
+                        <div class="flex justify-between border-t pt-2">
+                            <span class="text-gray-600">Total:</span>
+                            <span class="font-bold text-green-600">~3 seconds</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-kaptio-primary-800 text-white py-12 mt-20">
+        <div class="max-w-6xl mx-auto px-8 text-center">
+            <p class="text-lg mb-4">Kaptio Package Import Adapter</p>
+            <p class="text-sm opacity-75">Universal tool for importing packages from any data source</p>
+            <p class="text-xs opacity-60 mt-4">Built for tour operators • Part of Kaptio Gold Config toolkit</p>
+        </div>
+    </footer>
+
+</body>
+</html>
+
