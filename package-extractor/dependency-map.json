@@ -1,0 +1,427 @@
+{
+  "Package__c": {
+    "description": "Master product definition for tours",
+    "direct_children": [
+      {
+        "object": "Component__c",
+        "relationship_field": "KaptioTravel__Package__c",
+        "description": "Package components (accommodations, activities, flights, etc.)"
+      },
+      {
+        "object": "PackageServiceLevelAssignment__c",
+        "relationship_field": "KaptioTravel__Package__c",
+        "description": "Service level assignments (Single, Double, Twin room types)"
+      },
+      {
+        "object": "PackageDeparture__c",
+        "relationship_field": "KaptioTravel__Package__c",
+        "description": "Fixed departure dates with capacity and status"
+      },
+      {
+        "object": "PackageDay__c",
+        "relationship_field": "KaptioTravel__Package__c",
+        "description": "Day-by-day itinerary content"
+      },
+      {
+        "object": "PaymentScheduleAssignment__c",
+        "relationship_field": "KaptioTravel__Package__c",
+        "description": "Links package to payment schedule configuration"
+      },
+      {
+        "object": "CancellationAssignment__c",
+        "relationship_field": "KaptioTravel__Package__c",
+        "description": "Links package to cancellation policy configuration"
+      },
+      {
+        "object": "PackageInformation__c",
+        "relationship_field": "KaptioTravel__Package__c",
+        "description": "Additional package information and content"
+      }
+    ],
+    "lookup_fields": [
+      {
+        "field": "KaptioTravel__CommissionGroup__c",
+        "target_object": "CommissionGroup__c",
+        "description": "Commission rates for this package",
+        "include_in_bundle": true
+      },
+      {
+        "field": "KaptioTravel__DiscountGroup__c",
+        "target_object": "DiscountGroup__c",
+        "description": "Discount rules for this package",
+        "include_in_bundle": true
+      },
+      {
+        "field": "KaptioTravel__ProfitabilityGroup__c",
+        "target_object": "ProfitabilityGroup__c",
+        "description": "Profitability tracking group",
+        "include_in_bundle": true
+      },
+      {
+        "field": "KaptioTravel__PackageStartLocation__c",
+        "target_object": "Location__c",
+        "description": "Starting location (city/airport)",
+        "include_in_bundle": true,
+        "shared": true
+      },
+      {
+        "field": "KaptioTravel__PackageEndLocation__c",
+        "target_object": "Location__c",
+        "description": "Ending location (city/airport)",
+        "include_in_bundle": true,
+        "shared": true
+      }
+    ]
+  },
+  "Component__c": {
+    "description": "Individual components that make up a package",
+    "direct_children": [
+      {
+        "object": "ComponentOption__c",
+        "relationship_field": "KaptioTravel__Component__c",
+        "description": "Options within a component (e.g., different hotels for pre-stay)"
+      },
+      {
+        "object": "ComponentPricelistAssignment__c",
+        "relationship_field": "KaptioTravel__Component__c",
+        "description": "Pricelist assignments for component"
+      }
+    ],
+    "lookup_fields": [
+      {
+        "field": "KaptioTravel__Item__c",
+        "target_object": "Item__c",
+        "description": "Linked item (accommodation, activity, etc.)",
+        "include_in_bundle": true
+      }
+    ],
+    "text_fields_that_look_like_lookups": [
+      "KaptioTravel__ComponentType__c",
+      "KaptioTravel__RecordType__c"
+    ]
+  },
+  "ComponentOption__c": {
+    "description": "Specific options within a component",
+    "direct_children": [
+      {
+        "object": "ComponentOptionDepartureAssignment__c",
+        "relationship_field": "KaptioTravel__ComponentOption__c",
+        "description": "Date-restricted availability for options"
+      }
+    ],
+    "lookup_fields": [
+      {
+        "field": "KaptioTravel__Item__c",
+        "target_object": "Item__c",
+        "description": "Item for this option",
+        "include_in_bundle": true
+      },
+      {
+        "field": "KaptioTravel__ServiceLevel__c",
+        "target_object": "ServiceLevel__c",
+        "description": "Service level (room type) for this option",
+        "include_in_bundle": true
+      },
+      {
+        "field": "KaptioTravel__PriceCategory__c",
+        "target_object": "PriceCategory__c",
+        "description": "Price category (Single, Double, Twin)",
+        "include_in_bundle": true
+      }
+    ]
+  },
+  "PackageDeparture__c": {
+    "description": "Fixed departure dates for a package",
+    "direct_children": [
+      {
+        "object": "PackageDepartureAllotmentAssignment__c",
+        "relationship_field": "KaptioTravel__PackageDeparture__c",
+        "description": "Links departure to inventory allotments"
+      },
+      {
+        "object": "PackageDepartureNoteAssignment__c",
+        "relationship_field": "KaptioTravel__PackageDeparture__c",
+        "description": "Notes specific to this departure"
+      }
+    ],
+    "lookup_fields": []
+  },
+  "PackageDepartureAllotmentAssignment__c": {
+    "description": "Links departures to inventory allotments",
+    "direct_children": [],
+    "lookup_fields": [
+      {
+        "field": "KaptioTravel__AllotmentCategory__c",
+        "target_object": "AllotmentCategory__c",
+        "description": "Inventory category (hotel room blocks, etc.)",
+        "include_in_bundle": true
+      },
+      {
+        "field": "KaptioTravel__AllotmentDay__c",
+        "target_object": "AllotmentDay__c",
+        "description": "Specific date's inventory allocation",
+        "include_in_bundle": true
+      }
+    ]
+  },
+  "AllotmentCategory__c": {
+    "description": "Inventory contracts (hotel room blocks, transport capacity)",
+    "direct_children": [
+      {
+        "object": "AllotmentDay__c",
+        "relationship_field": "KaptioTravel__AllotmentCategory__c",
+        "description": "Capacity by specific date"
+      }
+    ],
+    "lookup_fields": [
+      {
+        "field": "KaptioTravel__Item__c",
+        "target_object": "Item__c",
+        "description": "Item this inventory is for",
+        "include_in_bundle": true
+      }
+    ]
+  },
+  "Item__c": {
+    "description": "Items represent services (hotels, activities, transport)",
+    "direct_children": [
+      {
+        "object": "ItemPrice__c",
+        "relationship_field": "KaptioTravel__Item__c",
+        "description": "Pricing for the item"
+      },
+      {
+        "object": "ItemPriceCategoryAssignment__c",
+        "relationship_field": "KaptioTravel__Item__c",
+        "description": "Price category assignments (Single/Double/Twin pricing)"
+      }
+    ],
+    "lookup_fields": [
+      {
+        "field": "KaptioTravel__Supplier__c",
+        "target_object": "Account",
+        "description": "Supplier providing this service",
+        "include_in_bundle": false,
+        "shared": true,
+        "note": "Suppliers are org-wide, not package-specific"
+      },
+      {
+        "field": "KaptioTravel__Location__c",
+        "target_object": "Location__c",
+        "description": "Location of this service",
+        "include_in_bundle": true,
+        "shared": true
+      },
+      {
+        "field": "KaptioTravel__CommissionGroup__c",
+        "target_object": "CommissionGroup__c",
+        "description": "Commission group for this item",
+        "include_in_bundle": true,
+        "shared": true
+      },
+      {
+        "field": "KaptioTravel__TaxGroup__c",
+        "target_object": "TaxGroup__c",
+        "description": "Tax group for this item",
+        "include_in_bundle": true,
+        "shared": true
+      }
+    ],
+    "text_fields_that_look_like_lookups": [
+      "KaptioTravel__DateTimeVisibility__c",
+      "KaptioTravel__RecordType__c"
+    ]
+  },
+  "PackageServiceLevelAssignment__c": {
+    "description": "Links package to service levels (room types)",
+    "direct_children": [],
+    "lookup_fields": [
+      {
+        "field": "KaptioTravel__ServiceLevel__c",
+        "target_object": "ServiceLevel__c",
+        "description": "Service level (Single, Double, Twin)",
+        "include_in_bundle": true
+      }
+    ]
+  },
+  "ServiceLevel__c": {
+    "description": "Service levels (room types, cabin classes)",
+    "direct_children": [],
+    "lookup_fields": [
+      {
+        "field": "KaptioTravel__PriceCategory__c",
+        "target_object": "PriceCategory__c",
+        "description": "Price category for this service level",
+        "include_in_bundle": true
+      }
+    ]
+  },
+  "PaymentScheduleAssignment__c": {
+    "description": "Links package to payment schedule",
+    "direct_children": [],
+    "lookup_fields": [
+      {
+        "field": "KaptioTravel__PaymentScheduleConfiguration__c",
+        "target_object": "PaymentScheduleConfiguration__c",
+        "description": "Payment schedule configuration",
+        "include_in_bundle": true
+      }
+    ]
+  },
+  "PaymentScheduleConfiguration__c": {
+    "description": "Container for payment rules",
+    "direct_children": [
+      {
+        "object": "PaymentScheduleRule__c",
+        "relationship_field": "KaptioTravel__PaymentScheduleConfiguration__c",
+        "description": "Individual payment milestones (deposit, balance, etc.)"
+      }
+    ],
+    "lookup_fields": []
+  },
+  "CancellationAssignment__c": {
+    "description": "Links package to cancellation policy",
+    "direct_children": [],
+    "lookup_fields": [
+      {
+        "field": "KaptioTravel__CancellationConfiguration__c",
+        "target_object": "CancellationConfiguration__c",
+        "description": "Cancellation policy configuration",
+        "include_in_bundle": true
+      },
+      {
+        "field": "KaptioTravel__Channel__c",
+        "target_object": "Channel__c",
+        "description": "Sales channel this assignment applies to",
+        "include_in_bundle": false,
+        "shared": true,
+        "note": "Channels are org-wide, will be mapped in wizard"
+      }
+    ]
+  },
+  "CancellationConfiguration__c": {
+    "description": "Container for cancellation rules",
+    "direct_children": [
+      {
+        "object": "CancellationRule__c",
+        "relationship_field": "KaptioTravel__CancellationConfiguration__c",
+        "description": "Tiered cancellation fees (61+ days, 60-45 days, etc.)"
+      }
+    ],
+    "lookup_fields": []
+  },
+  "PackageDay__c": {
+    "description": "Day-by-day itinerary content",
+    "direct_children": [
+      {
+        "object": "PackageDayLocation__c",
+        "relationship_field": "KaptioTravel__PackageDay__c",
+        "description": "Locations visited on this day"
+      }
+    ],
+    "lookup_fields": []
+  },
+  "Location__c": {
+    "description": "Geographic locations (cities, airports, landmarks)",
+    "direct_children": [
+      {
+        "object": "LocationNote__c",
+        "relationship_field": "KaptioTravel__Location__c",
+        "description": "Notes about the location"
+      }
+    ],
+    "lookup_fields": [
+      {
+        "field": "KaptioTravel__Location__c",
+        "target_object": "Location__c",
+        "description": "Parent location (e.g., city's country)",
+        "include_in_bundle": true,
+        "shared": true,
+        "note": "Self-referencing - location hierarchy"
+      }
+    ],
+    "note": "Locations are shared across packages"
+  },
+  "PackageInformation__c": {
+    "description": "Package content sections (itinerary, highlights, etc.)",
+    "direct_children": [],
+    "lookup_fields": [
+      {
+        "field": "KaptioTravel__Language__c",
+        "target_object": "Language__c",
+        "description": "Language for this content",
+        "include_in_bundle": true,
+        "shared": true
+      }
+    ]
+  },
+  "CommissionGroup__c": {
+    "description": "Commission rate configurations (shared org-wide)",
+    "direct_children": [],
+    "lookup_fields": [],
+    "note": "Shared object - multiple packages may use same commission group"
+  },
+  "TaxGroup__c": {
+    "description": "Tax configurations (shared org-wide)",
+    "direct_children": [],
+    "lookup_fields": [],
+    "note": "Shared object - tax rules applied org-wide"
+  },
+  "Language__c": {
+    "description": "Language configurations for multi-language content",
+    "direct_children": [],
+    "lookup_fields": [],
+    "note": "Shared object - org-wide language settings"
+  },
+  "Channel__c": {
+    "description": "Sales channels (Direct, Partner, Online, etc.)",
+    "direct_children": [],
+    "lookup_fields": [],
+    "note": "Shared object - org-wide sales channel definitions"
+  },
+  "extraction_notes": {
+    "shared_objects": [
+      "Location__c: Geographic locations are org-wide, shared across packages",
+      "Account: Suppliers are org-wide",
+      "CommissionGroup__c: May be shared across packages",
+      "DiscountGroup__c: May be shared across packages"
+    ],
+    "deployment_order": [
+      "1. Location__c (no dependencies)",
+      "2. Account (Suppliers - optional, may already exist)",
+      "3. CommissionGroup__c, DiscountGroup__c, ProfitabilityGroup__c (lookup dependencies)",
+      "4. PaymentScheduleConfiguration__c",
+      "5. PaymentScheduleRule__c (child of PaymentScheduleConfiguration)",
+      "6. CancellationConfiguration__c",
+      "7. CancellationRule__c (child of CancellationConfiguration)",
+      "8. PriceCategory__c",
+      "9. ServiceLevel__c (depends on PriceCategory)",
+      "10. Package__c (depends on lookups above)",
+      "11. PackageServiceLevelAssignment__c (depends on Package + ServiceLevel)",
+      "12. PaymentScheduleAssignment__c (depends on Package + PaymentScheduleConfiguration)",
+      "13. CancellationAssignment__c (depends on Package + CancellationConfiguration)",
+      "14. PackageDay__c (depends on Package)",
+      "15. PackageDayLocation__c (depends on PackageDay + Location)",
+      "16. Component__c (depends on Package)",
+      "17. Item__c (depends on Location, optionally Supplier)",
+      "18. ItemPrice__c (depends on Item)",
+      "19. ItemPriceCategoryAssignment__c (depends on Item + PriceCategory)",
+      "20. ComponentOption__c (depends on Component, Item, ServiceLevel)",
+      "21. ComponentPricelistAssignment__c (depends on Component)",
+      "22. PackageDeparture__c (depends on Package)",
+      "23. AllotmentCategory__c (depends on Item)",
+      "24. AllotmentDay__c (depends on AllotmentCategory)",
+      "25. PackageDepartureAllotmentAssignment__c (depends on PackageDeparture + AllotmentCategory)",
+      "26. ComponentOptionDepartureAssignment__c (depends on ComponentOption + PackageDeparture)",
+      "27. PackageDepartureNoteAssignment__c (depends on PackageDeparture)"
+    ],
+    "circular_dependencies": "None identified in standard package configuration",
+    "excluded_objects": [
+      "Itinerary__c: Actual bookings (not part of package template)",
+      "ItineraryItem__c: Booking line items (not part of package template)",
+      "Passenger__c: Customer data (not part of package template)",
+      "Transaction__c: Financial transactions (not part of package template)"
+    ]
+  }
+}
+

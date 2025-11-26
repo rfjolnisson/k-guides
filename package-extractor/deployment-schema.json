@@ -1,0 +1,350 @@
+{
+  "version": "1.0",
+  "schemaName": "Kaptio Package Bundle Format",
+  "description": "Schema definition for deployable package configuration bundles extracted from Gold Config",
+  "lastUpdated": "2025-11-26",
+  "schemaDefinition": {
+    "bundleMetadata": {
+      "description": "Metadata about the extracted package bundle",
+      "required": ["packageName", "packageType", "extractedFrom", "extractionDate", "totalRecords"],
+      "properties": {
+        "packageName": {
+          "type": "string",
+          "description": "Name of the package",
+          "example": "Japan Discovery - Land Only"
+        },
+        "packageType": {
+          "type": "string",
+          "description": "Descriptive package type classification",
+          "enum": [
+            "Classic Land-Only (Principle)",
+            "Classic Air+Land (Principle)",
+            "Combo Land-Only",
+            "Combo Air+Land",
+            "Linked Package (Principle + Sub Tour)"
+          ]
+        },
+        "extractedFrom": {
+          "type": "string",
+          "description": "Source org identifier",
+          "example": "ktdev45"
+        },
+        "extractionDate": {
+          "type": "string",
+          "format": "date",
+          "description": "Date bundle was extracted (YYYY-MM-DD)"
+        },
+        "totalRecords": {
+          "type": "integer",
+          "description": "Total number of records in bundle"
+        },
+        "requiresMapping": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "List of fields that require mapping in deployment wizard",
+          "example": ["OwnerId", "CurrencyIsoCode"]
+        },
+        "recordsByType": {
+          "type": "object",
+          "description": "Count of records by object type",
+          "example": {
+            "KaptioTravel__Package__c": 1,
+            "KaptioTravel__Component__c": 5,
+            "KaptioTravel__PackageDay__c": 14
+          }
+        }
+      }
+    },
+    "deploymentOrder": {
+      "description": "Order in which objects must be inserted to satisfy dependencies",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "description": "Object API name with namespace"
+      },
+      "example": [
+        "KaptioTravel__Location__c",
+        "KaptioTravel__Package__c",
+        "KaptioTravel__Component__c"
+      ],
+      "note": "Deploy in this order to ensure parent records exist before children"
+    },
+    "records": {
+      "description": "All extracted records organized by object type",
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": ["Id"],
+          "properties": {
+            "Id": {
+              "type": "string",
+              "description": "Original record Id from source org (will be remapped during deployment)"
+            }
+          }
+        }
+      },
+      "example": {
+        "KaptioTravel__Package__c": [
+          {
+            "Id": "a29J8000000IKF9IAO",
+            "Name": "Japan Discovery - Land Only",
+            "KaptioTravel__Length__c": 13
+          }
+        ]
+      }
+    }
+  },
+  "specialFieldMarkers": {
+    "description": "Special markers added to fields to indicate required processing during deployment",
+    "_[field]_mappable": {
+      "type": "boolean",
+      "description": "Indicates this field requires mapping in deployment wizard (e.g., _OwnerId_mappable: true)",
+      "action": "Present in wizard for user to map to target org value"
+    },
+    "_[field]_lookup": {
+      "type": "boolean",
+      "description": "Indicates this field references another record and needs ID remapping (e.g., _KaptioTravel__Package__c_lookup: true)",
+      "action": "Remap to new Id after parent record is inserted in target org"
+    },
+    "_RecordTypeId_resolve": {
+      "type": "boolean",
+      "description": "Indicates RecordTypeId needs to be resolved by DeveloperName in target org",
+      "action": "Query RecordType by DeveloperName in target org and use that Id"
+    },
+    "_shared": {
+      "type": "boolean",
+      "description": "Indicates this is a shared record (e.g., Location) that may already exist in target org",
+      "action": "Check if record with same key field exists before inserting"
+    }
+  },
+  "mappingRequirements": {
+    "description": "Configuration for deployment wizard mapping interface",
+    "mappingTypes": [
+      {
+        "object": "Package__c",
+        "field": "OwnerId",
+        "fieldType": "User",
+        "displayLabel": "Package Owner",
+        "prompt": "Select the user who should own this package in the target org",
+        "required": true,
+        "lookupObject": "User"
+      },
+      {
+        "object": "Package__c",
+        "field": "CurrencyIsoCode",
+        "fieldType": "Currency",
+        "displayLabel": "Package Currency",
+        "prompt": "Select currency for this package. Source currency: {value}",
+        "required": true,
+        "note": "Only required if target org is multi-currency enabled"
+      },
+      {
+        "object": "Package__c",
+        "field": "KaptioTravel__Channel__c",
+        "fieldType": "Lookup",
+        "displayLabel": "Sales Channel",
+        "prompt": "Select the sales channel for this package (optional)",
+        "required": false,
+        "lookupObject": "KaptioTravel__Channel__c"
+      },
+      {
+        "object": "Item__c",
+        "field": "KaptioTravel__Supplier__c",
+        "fieldType": "Lookup",
+        "displayLabel": "Supplier",
+        "prompt": "Map to existing supplier in target org or leave blank",
+        "required": false,
+        "lookupObject": "Account",
+        "note": "Suppliers usually pre-exist in target org"
+      }
+    ]
+  },
+  "deploymentWorkflow": {
+    "description": "Step-by-step deployment process for wizard implementation",
+    "steps": [
+      {
+        "step": 1,
+        "name": "Upload & Validate",
+        "description": "User uploads bundle JSON, system validates against this schema",
+        "validation": [
+          "Check bundle structure matches schema",
+          "Verify all required metadata fields present",
+          "Validate deployment order has no circular dependencies",
+          "Check all record Ids are unique within bundle"
+        ]
+      },
+      {
+        "step": 2,
+        "name": "Map Dependencies",
+        "description": "Present mapping interface for org-specific fields",
+        "userActions": [
+          "Select Package Owner from Users in target org",
+          "Select Currency (if multi-currency org)",
+          "Optionally map Suppliers to existing Accounts",
+          "Optionally select Business Unit/Channel"
+        ],
+        "validation": [
+          "Ensure all required mappings have values",
+          "Verify mapped users exist and are active",
+          "Check currency is enabled in target org if multi-currency"
+        ]
+      },
+      {
+        "step": 3,
+        "name": "Preview Deployment",
+        "description": "Show user what will be created",
+        "display": [
+          "Summary: X records across Y object types",
+          "Breakdown by object type with record counts",
+          "List of key records (package name, component names, etc.)",
+          "Warnings for any potential issues"
+        ]
+      },
+      {
+        "step": 4,
+        "name": "Transform IDs",
+        "description": "Create ID mapping table for deployment",
+        "process": [
+          "Create empty mapping table: { oldId: newId }",
+          "For each record in deployment order:",
+          "  - Remove system fields (CreatedDate, LastModifiedDate, etc.)",
+          "  - Remove Id field (will get new Id on insert)",
+          "  - Apply user mappings (OwnerId, CurrencyIsoCode, etc.)",
+          "  - Replace lookup Ids with mapped new Ids from table",
+          "  - Resolve RecordTypeId by DeveloperName",
+          "  - Check for existing shared records (Locations, etc.)",
+          "  - Insert record in target org",
+          "  - Store mapping: oldId → newId from insert result"
+        ]
+      },
+      {
+        "step": 5,
+        "name": "Deploy Records",
+        "description": "Insert records in dependency order",
+        "method": "Salesforce Bulk API or Composite API",
+        "errorHandling": [
+          "Catch insert errors and display to user",
+          "Rollback option if deployment fails",
+          "Partial success handling (show what succeeded/failed)"
+        ]
+      },
+      {
+        "step": 6,
+        "name": "Post-Deployment",
+        "description": "Finalize and report results",
+        "actions": [
+          "Display deployment summary",
+          "Show new record Ids",
+          "Provide link to package in target org",
+          "Export ID mapping table (for reference)",
+          "Option to deploy another package"
+        ]
+      }
+    ]
+  },
+  "idTransformationStrategy": {
+    "description": "How Salesforce record IDs are transformed during deployment",
+    "approach": "Dynamic remapping during deployment",
+    "process": {
+      "1_initialization": "Create empty ID mapping table: Map<String, String>",
+      "2_ordered_insertion": "Insert records in deploymentOrder sequence",
+      "3_for_each_record": {
+        "a": "Remove original Id field",
+        "b": "Replace lookup fields with new Ids from mapping table",
+        "c": "Apply user mappings from wizard (OwnerId, etc.)",
+        "d": "Insert record in target org",
+        "e": "Store: oldId → newId in mapping table"
+      },
+      "4_subsequent_records": "Use mapping table to remap parent references"
+    },
+    "example": {
+      "original_bundle": {
+        "Package__c": {
+          "Id": "a29OLD",
+          "KaptioTravel__CommissionGroup__c": "a14OLD"
+        },
+        "CommissionGroup__c": {
+          "Id": "a14OLD",
+          "Name": "Standard"
+        }
+      },
+      "deployment_process": {
+        "step_1": "Insert CommissionGroup → get new Id: a14NEW",
+        "step_2": "Store mapping: a14OLD → a14NEW",
+        "step_3": "Before inserting Package, replace KaptioTravel__CommissionGroup__c value: a14OLD → a14NEW",
+        "step_4": "Insert Package → get new Id: a29NEW",
+        "step_5": "Store mapping: a29OLD → a29NEW"
+      }
+    }
+  },
+  "sharedObjectHandling": {
+    "description": "Strategy for handling shared objects (Locations, etc.)",
+    "sharedObjects": [
+      "KaptioTravel__Location__c",
+      "Account (Suppliers)"
+    ],
+    "strategy": {
+      "KaptioTravel__Location__c": {
+        "approach": "Check if exists before inserting",
+        "matchingLogic": "Query by Name + Country__c",
+        "action": "If exists: use existing Id. If not: insert new.",
+        "rationale": "Locations are org-wide, multiple packages share same locations"
+      },
+      "Account": {
+        "approach": "Present in wizard for mapping",
+        "matchingLogic": "User selects from existing Accounts",
+        "action": "Map to user-selected Account or leave null",
+        "rationale": "Suppliers usually pre-exist, don't duplicate"
+      }
+    }
+  },
+  "validation": {
+    "description": "Validation rules for bundle integrity",
+    "checks": [
+      {
+        "rule": "all_referenced_ids_exist",
+        "description": "All Ids referenced in lookup fields exist within the bundle",
+        "example": "If Component.Package__c = 'a29XXX', then Package record with Id 'a29XXX' must exist in bundle"
+      },
+      {
+        "rule": "deployment_order_valid",
+        "description": "Deployment order has no forward references",
+        "example": "If Component depends on Package, Package must appear before Component in deploymentOrder"
+      },
+      {
+        "rule": "no_circular_dependencies",
+        "description": "No circular dependency chains",
+        "example": "A → B → C is valid, but A → B → A is not"
+      },
+      {
+        "rule": "required_metadata_present",
+        "description": "All required metadata fields have values",
+        "requiredFields": ["packageName", "packageType", "extractionDate", "totalRecords"]
+      }
+    ]
+  },
+  "implementationNotes": {
+    "recommendedTechnologies": [
+      "Salesforce Lightning Web Component (for wizard UI)",
+      "Apex REST API (for deployment processing)",
+      "Salesforce Composite API (for bulk record insertion)",
+      "JavaScript (for bundle validation and transformation)"
+    ],
+    "alternativeApproaches": [
+      "External web app (React/Vue) calling Salesforce APIs",
+      "Salesforce CLI plugin",
+      "Node.js script for automated deployments"
+    ],
+    "securityConsiderations": [
+      "Validate user has Create permission on all object types",
+      "Check field-level security for all fields being inserted",
+      "Use with sharing Apex classes to respect org sharing rules",
+      "Sanitize all user inputs in mapping interface"
+    ]
+  }
+}
+

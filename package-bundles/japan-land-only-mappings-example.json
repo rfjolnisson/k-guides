@@ -1,0 +1,158 @@
+{
+  "mappingMetadata": {
+    "description": "Example mapping file for Japan Discovery - Land Only deployment",
+    "bundleName": "japan-discovery-land-only.json",
+    "targetOrg": "Production Org (example)",
+    "createdBy": "Implementation Consultant",
+    "createdDate": "2025-11-26"
+  },
+  "mappings": {
+    "User": {
+      "description": "Map source user IDs to target org users",
+      "00509000009AtSSAA0": {
+        "targetId": "005xx000001234AAA",
+        "targetName": "John Smith",
+        "targetEmail": "john.smith@touroperator.com",
+        "note": "Package owner in target org"
+      }
+    },
+    "Currency": {
+      "description": "Currency mappings (only if target org is multi-currency)",
+      "EUR": {
+        "targetCurrency": "USD",
+        "conversionRate": 1.09,
+        "note": "Converting EUR prices to USD for US market"
+      }
+    },
+    "Channel": {
+      "description": "Sales channel mappings",
+      "default": {
+        "targetId": "a0Xxx000000XyZEEA0",
+        "targetName": "Direct Sales",
+        "note": "Assign package to Direct Sales channel"
+      },
+      "a0XJ8000000TXOGMA4": {
+        "targetId": "a0Xxx000000XyZEEA0",
+        "targetName": "Direct Sales",
+        "note": "Map source channel to target Direct Sales"
+      },
+      "a0XJ8000000TXNhMAO": {
+        "targetId": "a0Xxx000000XyZFFA0",
+        "targetName": "Partner Network",
+        "note": "Map source channel to target Partner Network"
+      }
+    },
+    "Supplier": {
+      "description": "Supplier (Account) mappings - map to existing suppliers or leave null",
+      "001J800000FwwWlIAJ": {
+        "action": "map_to_existing",
+        "targetId": "001xx000003ABCDEA4",
+        "targetName": "Japan Travel Services Inc.",
+        "note": "Map to existing supplier account"
+      },
+      "unmapped_suppliers": {
+        "action": "leave_null",
+        "note": "Leave supplier fields null, assign manually after deployment"
+      }
+    },
+    "RecordType": {
+      "description": "RecordType mappings - resolved by DeveloperName in target org",
+      "01209000001lXh1AAE": {
+        "sourceRecordTypeName": "Package",
+        "targetQuery": "SELECT Id FROM RecordType WHERE SObjectType = 'KaptioTravel__Package__c' AND DeveloperName = 'Package' LIMIT 1",
+        "note": "System will query target org for RecordType by DeveloperName"
+      }
+    },
+    "SharedObjects": {
+      "description": "Strategy for shared objects like Locations",
+      "Location__c": {
+        "strategy": "check_and_reuse",
+        "matchingFields": ["Name", "KaptioTravel__Country__c"],
+        "action": "Query for existing Location with same Name + Country. If exists, use that Id. If not, insert new Location.",
+        "examples": {
+          "a1gJ80000004uvQIAQ": {
+            "sourceName": "Tokyo",
+            "sourceCountry": "Japan",
+            "queryInTarget": "SELECT Id FROM KaptioTravel__Location__c WHERE Name = 'Tokyo' AND KaptioTravel__Country__c = 'Japan' LIMIT 1",
+            "possibleOutcomes": [
+              "Existing found: Use existing Id → No insert needed",
+              "Not found: Insert new Location → Get new Id"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "deploymentSettings": {
+    "batchSize": 200,
+    "description": "Deployment configuration",
+    "useCompositeAPI": true,
+    "validateOnly": false,
+    "rollbackOnError": true,
+    "skipExistingSharedRecords": true,
+    "allowPartialSuccess": false
+  },
+  "postDeploymentActions": {
+    "description": "Actions to take after successful deployment",
+    "actions": [
+      "Link package to Business Unit (if applicable)",
+      "Upload package images from Gold Config",
+      "Configure online booking settings",
+      "Set visibility rules",
+      "Create test booking to verify configuration"
+    ],
+    "automation": {
+      "autoLinkBusinessUnit": false,
+      "autoUploadImages": false,
+      "autoConfigureOnlineBooking": false
+    }
+  },
+  "usageExamples": {
+    "singleCurrency_org": {
+      "description": "Deploying to single-currency org",
+      "mappings": {
+        "User": {
+          "00509000009AtSSAA0": "005xx000001234AAA"
+        },
+        "Currency": "not_applicable",
+        "Channel": {
+          "default": "a0Xxx000000XyZEEA0"
+        }
+      }
+    },
+    "multiCurrency_org": {
+      "description": "Deploying to multi-currency org with currency conversion",
+      "mappings": {
+        "User": {
+          "00509000009AtSSAA0": "005xx000001234AAA"
+        },
+        "Currency": {
+          "EUR": "USD"
+        },
+        "Channel": {
+          "default": "a0Xxx000000XyZEEA0"
+        }
+      },
+      "priceConversion": {
+        "note": "When converting EUR to USD, all price fields will be multiplied by conversion rate",
+        "affectedFields": [
+          "Component prices",
+          "Item prices",
+          "Payment schedule amounts",
+          "Cancellation fee amounts"
+        ],
+        "conversionRate": 1.09
+      }
+    },
+    "minimal_mapping": {
+      "description": "Minimal deployment (only required mappings)",
+      "mappings": {
+        "User": {
+          "00509000009AtSSAA0": "005xx000001234AAA"
+        }
+      },
+      "note": "Currency uses source currency (EUR), no channel assignment, no supplier mapping"
+    }
+  }
+}
+

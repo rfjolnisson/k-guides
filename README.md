@@ -44,6 +44,12 @@ Unlike typical documentation that explains "what" fields do, these guides explai
 
 **To View:** Open in browser, use Cmd+P / Ctrl+P to generate PDF
 
+**NEW: Deployable Package Bundles**
+- Real JSON bundles extracted from ktdev45 with all dependencies
+- 85+ records per package, deployment-ready format
+- Interactive JSON viewer integrated in guide
+- See [`package-extractor/`](package-extractor/) for extraction system
+
 ---
 
 #### [Why Separate Booking Numbers Enable Better Guest Service](../quanta-docs-duvine/transfer-architecture-magazine.html)
@@ -150,6 +156,34 @@ All HTML guides follow the **Kaptio Design System**:
 
 ---
 
+## Viewing HTML Guides with JSON Bundles
+
+The Gold Config Package guide includes interactive JSON bundle viewers that load real extracted data. To view these properly:
+
+### Option 1: Start Local HTTP Server (Recommended)
+
+```bash
+# In the k-guides directory
+./serve.sh
+
+# Then open in browser:
+# http://localhost:8000/gold-config-package-showcase.html
+```
+
+This enables the JavaScript to fetch JSON bundles and display them in the guide.
+
+### Option 2: View Files Directly
+
+Open the bundle JSON files directly in your editor:
+- `package-bundles/japan-discovery-land-only.json`
+- `package-bundles/[other-packages].json`
+
+### Option 3: Open HTML Directly (Limited)
+
+You can open the HTML file directly (`file://` protocol), but JavaScript bundle loading will be blocked by browser security. The guide will show instructions for generating bundles instead.
+
+---
+
 ## Generating PDFs
 
 To create PDF versions of HTML guides:
@@ -207,11 +241,76 @@ To create PDF versions of HTML guides:
 ```
 k-guides/
 ├── index.html                           # Central navigation (16 KB)
-├── gold-config-package-showcase.html    # Complete package guide (103 KB)
+├── gold-config-package-showcase.html    # Complete package guide (109 KB)
+├── serve.sh                             # Local HTTP server for viewing
 ├── PACKAGE_SCHEMA_ANALYSIS.md           # Field reference (33 KB)
 ├── COMPLETE_DATA_MODEL_REFERENCE.md     # Object relationships (31 KB)
-└── README.md                            # This file
+├── README.md                            # This file
+│
+├── package-extractor/                   # NEW: Package extraction system
+│   ├── extract-package.js               # Extraction script
+│   ├── validate-bundle.js               # Validation script
+│   ├── dependency-map.json              # Object relationships
+│   ├── field-mapping-rules.json         # Field categorization
+│   ├── deployment-schema.json           # Bundle format spec
+│   ├── README.md                        # System overview
+│   ├── QUICK_START.md                   # 5-minute guide
+│   ├── DEPLOYMENT_WIZARD_DESIGN.md      # Complete wizard spec
+│   ├── EXTERNAL_DEPENDENCIES.md         # Dependency strategy
+│   └── IMPLEMENTATION_SUMMARY.md        # What was built
+│
+├── package-bundles/                     # NEW: Extracted bundles
+│   ├── japan-discovery-land-only.json   # 85 records, deployment-ready
+│   └── japan-land-only-mappings-example.json  # Sample mappings
+│
+└── ktdev45/                             # Source data from Gold Config
+    └── 000000000000000001/              # 150+ JSON files
+        ├── KaptioTravel__Package__c.json
+        ├── KaptioTravel__Component__c.json
+        └── ... (all org data)
 ```
+
+---
+
+## Package Extraction System (NEW)
+
+The package-extractor system enables you to extract complete package configurations from the Gold Config and prepare them for deployment to any Kaptio org.
+
+### Quick Usage
+
+```bash
+# Extract a package
+cd package-extractor
+node extract-package.js --packageId a29J8000000IKF9IAO --output ../package-bundles/my-package.json
+
+# Validate the bundle
+node validate-bundle.js --bundle ../package-bundles/my-package.json
+
+# View in HTML guide (with HTTP server running)
+./serve.sh
+# Open: http://localhost:8000/gold-config-package-showcase.html
+```
+
+### What You Get
+
+Each extracted bundle contains:
+- 80-150 records across 15-20 object types
+- Complete package with all components
+- Payment schedules and cancellation policies
+- Inventory contracts and departures
+- Day-by-day itinerary content
+- Deployment order and metadata
+
+### Deployment Strategy
+
+Bundles are ready for future deployment via wizard that will:
+1. Upload bundle
+2. Map org-specific fields (Owner, Currency, Channel)
+3. Preview what will be created
+4. Deploy with ID transformation
+5. Handle rollback on error
+
+See [`package-extractor/README.md`](package-extractor/README.md) for complete documentation.
 
 ---
 
@@ -285,5 +384,7 @@ For questions about these guides:
 **Built with ❤️ for the Kaptio ecosystem**  
 **By:** Business Systems Analyst (20 years tour operations experience)  
 **For:** Implementation teams, business analysts, developers
+
+
 
 

@@ -2,13 +2,16 @@
   publish = "."
   command = "echo 'Static site - no build needed'"
 
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
-
 [build.environment]
   NODE_VERSION = "20"
+
+# Headers for JSON bundle files
+[[headers]]
+  for = "/package-bundles/*.json"
+  [headers.values]
+    Content-Type = "application/json"
+    Access-Control-Allow-Origin = "*"
+    Cache-Control = "public, max-age=3600"
 
 [[headers]]
   for = "/*"
@@ -27,4 +30,17 @@
   for = "/*.md"
   [headers.values]
     Cache-Control = "public, max-age=3600"
+
+# Redirects - but exclude actual files and JSON bundles
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  force = false
+  conditions = {Role = ["missing"]}
+  
+# Note: force = false means only redirect if the file doesn't exist
+# This allows JSON files, HTML files, and other assets to be served normally
+
+
 

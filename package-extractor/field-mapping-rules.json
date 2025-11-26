@@ -1,0 +1,603 @@
+{
+  "field_categories": {
+    "mappable": "Fields that require mapping in deployment wizard (org-specific)",
+    "portable": "Fields that can be directly copied to target org",
+    "dependency_lookup": "Fields that reference other records (include in bundle)",
+    "system": "System-managed fields (exclude from deployment)",
+    "excluded": "Fields to exclude from extraction"
+  },
+  "Package__c": {
+    "mappable_fields": {
+      "OwnerId": {
+        "type": "User",
+        "description": "Package owner - requires mapping in deployment wizard",
+        "wizard_prompt": "Select package owner in target org"
+      },
+      "CurrencyIsoCode": {
+        "type": "Currency",
+        "description": "Package currency - may require mapping if target org uses different currency",
+        "wizard_prompt": "Select currency for this package (Source: {value})"
+      }
+    },
+    "portable_fields": [
+      "Name",
+      "KaptioTravel__Description__c",
+      "KaptioTravel__ExternalName__c",
+      "KaptioTravel__IsActive__c",
+      "KaptioTravel__Length__c",
+      "KaptioTravel__Categories__c",
+      "KaptioTravel__Package_Type__c",
+      "KaptioTravel__DepartureType__c",
+      "KaptioTravel__PhysicalInventorySelection__c",
+      "KaptioTravel__ServiceLevelMode__c",
+      "KaptioTravel__Min_Capacity__c",
+      "KaptioTravel__TotalCapacity__c",
+      "KaptioTravel__NetPriceSetupChoice__c",
+      "KaptioTravel__SellingPriceSetupChoice__c",
+      "KaptioTravel__SellPriceRounding__c",
+      "KaptioTravel__IsCalculatedAsDayRate__c",
+      "KaptioTravel__PrepackagedBySingleSupplier__c",
+      "KaptioTravel__Unpriced__c",
+      "KaptioTravel__VisibilitySetting__c",
+      "KaptioTravel__MinimumAge__c",
+      "KaptioTravel__Pace__c",
+      "KaptioTravel__ActivityLevel__c",
+      "KaptioTravel__PackageCode__c",
+      "KaptioTravel__ExternalCode__c",
+      "KaptioTravel__PackageTypeIcon__c",
+      "KaptioTravel__PackageSummary__c",
+      "KaptioTravel__IncludedinPackage__c",
+      "KaptioTravel__PackageInformationHeading__c",
+      "KaptioTravel__TourKey__c"
+    ],
+    "dependency_lookups": {
+      "KaptioTravel__CommissionGroup__c": {
+        "target_object": "CommissionGroup__c",
+        "description": "Include CommissionGroup in bundle, deploy before Package",
+        "include_in_bundle": true
+      },
+      "KaptioTravel__DiscountGroup__c": {
+        "target_object": "DiscountGroup__c",
+        "description": "Include DiscountGroup in bundle, deploy before Package",
+        "include_in_bundle": true
+      },
+      "KaptioTravel__ProfitabilityGroup__c": {
+        "target_object": "ProfitabilityGroup__c",
+        "description": "Include ProfitabilityGroup in bundle, deploy before Package",
+        "include_in_bundle": true
+      },
+      "KaptioTravel__PackageStartLocation__c": {
+        "target_object": "Location__c",
+        "description": "Include Location in bundle (shared object)",
+        "include_in_bundle": true,
+        "shared": true
+      },
+      "KaptioTravel__PackageEndLocation__c": {
+        "target_object": "Location__c",
+        "description": "Include Location in bundle (shared object)",
+        "include_in_bundle": true,
+        "shared": true
+      },
+      "KaptioTravel__Supplier__c": {
+        "target_object": "Account",
+        "description": "Supplier account - usually pre-existing in target org",
+        "include_in_bundle": false,
+        "wizard_prompt": "Map to existing supplier in target org"
+      }
+    },
+    "system_fields": [
+      "Id",
+      "CreatedDate",
+      "CreatedById",
+      "LastModifiedDate",
+      "LastModifiedById",
+      "SystemModstamp",
+      "IsDeleted"
+    ],
+    "excluded_fields": [
+      "KaptioTravel__AccessRule__c",
+      "KaptioTravel__PrimaryComponentAmount__c",
+      "KaptioTravel__PrimaryPricingComponent__c",
+      "KaptioTravel__SecondaryComponentAmount__c",
+      "KaptioTravel__SecondaryPricingComponent__c",
+      "KaptioTravel__NetPriceSetupId__c",
+      "KaptioTravel__NetPriceSetup__c",
+      "KaptioTravel__SellingPriceSetupId__c",
+      "KaptioTravel__SellingPriceSetup__c",
+      "KaptioTravel__DepartureTypeId__c",
+      "KaptioTravel__DepartureTypeName__c"
+    ]
+  },
+  "Component__c": {
+    "mappable_fields": {
+      "CurrencyIsoCode": {
+        "type": "Currency",
+        "description": "Component currency - inherit from package or map separately",
+        "wizard_prompt": "Use package currency or select different currency"
+      }
+    },
+    "portable_fields": [
+      "Name",
+      "KaptioTravel__AllocationBehavior__c",
+      "KaptioTravel__ComponentBehaviourChoice__c",
+      "KaptioTravel__ComponentType__c",
+      "KaptioTravel__End__c",
+      "KaptioTravel__Start__c",
+      "KaptioTravel__ExternalCode__c",
+      "KaptioTravel__InventoryRequired__c",
+      "KaptioTravel__IsActive__c",
+      "KaptioTravel__IsAvailableAnyday__c",
+      "KaptioTravel__IsControllingDepartureDates__c",
+      "KaptioTravel__MaxTimes__c",
+      "KaptioTravel__PackageTotals__c",
+      "KaptioTravel__PricingBehaviorChoice__c",
+      "KaptioTravel__RecordType__c",
+      "KaptioTravel__SelectionType__c",
+      "KaptioTravel__Sort__c",
+      "KaptioTravel__TimeAvailability__c",
+      "KaptioTravel__BookingWizardTab__c",
+      "KaptioTravel__CreateItineraryItemPerNightPerRoom__c",
+      "KaptioTravel__DayByDayDisplay__c",
+      "KaptioTravel__DepartureMode__c",
+      "KaptioTravel__IsMainComponent__c",
+      "KaptioTravel__IsMainTourComponent__c",
+      "KaptioTravel__IsMandatoryOptional__c",
+      "KaptioTravel__MaxNumberOfNights__c",
+      "KaptioTravel__MinNumberOfNights__c",
+      "KaptioTravel__OnGroundPaymentRequired__c",
+      "KaptioTravel__PrimaryComponent__c",
+      "KaptioTravel__ResellerCommissionSettings__c"
+    ],
+    "dependency_lookups": {
+      "KaptioTravel__Package__c": {
+        "target_object": "Package__c",
+        "description": "Parent package (will be remapped during deployment)",
+        "include_in_bundle": false,
+        "note": "Parent-child relationship handled automatically"
+      },
+      "KaptioTravel__Item__c": {
+        "target_object": "Item__c",
+        "description": "Linked item - include in bundle",
+        "include_in_bundle": true
+      },
+      "KaptioTravel__ResellerCommissionGroup__c": {
+        "target_object": "CommissionGroup__c",
+        "description": "Reseller commission group",
+        "include_in_bundle": true
+      }
+    },
+    "system_fields": [
+      "Id",
+      "CreatedDate",
+      "CreatedById",
+      "LastModifiedDate",
+      "LastModifiedById",
+      "SystemModstamp",
+      "IsDeleted"
+    ],
+    "excluded_fields": []
+  },
+  "Item__c": {
+    "mappable_fields": {
+      "CurrencyIsoCode": {
+        "type": "Currency",
+        "description": "Item currency",
+        "wizard_prompt": "Select currency for item pricing"
+      },
+      "OwnerId": {
+        "type": "User",
+        "description": "Item owner",
+        "wizard_prompt": "Select item owner in target org"
+      }
+    },
+    "portable_fields": [
+      "Name",
+      "KaptioTravel__ExternalName__c",
+      "KaptioTravel__ExternalCode__c",
+      "KaptioTravel__Description__c",
+      "KaptioTravel__IsActive__c",
+      "KaptioTravel__ItemCode__c",
+      "KaptioTravel__RecordType__c",
+      "KaptioTravel__CheckInTime__c",
+      "KaptioTravel__CheckOutTime__c",
+      "KaptioTravel__DefaultBoardBasis__c",
+      "KaptioTravel__MaxOccupancy__c",
+      "KaptioTravel__MinOccupancy__c",
+      "KaptioTravel__VisibilitySetting__c"
+    ],
+    "dependency_lookups": {
+      "KaptioTravel__Supplier__c": {
+        "target_object": "Account",
+        "description": "Supplier - usually pre-existing",
+        "include_in_bundle": false,
+        "wizard_prompt": "Map to supplier in target org (optional)"
+      },
+      "KaptioTravel__Location__c": {
+        "target_object": "Location__c",
+        "description": "Item location",
+        "include_in_bundle": true,
+        "shared": true
+      }
+    },
+    "system_fields": [
+      "Id",
+      "CreatedDate",
+      "CreatedById",
+      "LastModifiedDate",
+      "LastModifiedById",
+      "SystemModstamp",
+      "IsDeleted"
+    ],
+    "excluded_fields": []
+  },
+  "Location__c": {
+    "mappable_fields": {},
+    "portable_fields": [
+      "Name",
+      "KaptioTravel__ExternalCode__c",
+      "KaptioTravel__Country__c",
+      "KaptioTravel__Region__c",
+      "KaptioTravel__TimeZone__c",
+      "KaptioTravel__LocationType__c",
+      "KaptioTravel__IATACode__c",
+      "KaptioTravel__Latitude__c",
+      "KaptioTravel__Longitude__c"
+    ],
+    "dependency_lookups": {},
+    "system_fields": [
+      "Id",
+      "CreatedDate",
+      "CreatedById",
+      "LastModifiedDate",
+      "LastModifiedById",
+      "SystemModstamp",
+      "IsDeleted",
+      "OwnerId"
+    ],
+    "excluded_fields": [],
+    "note": "Locations are shared objects - check if exists before inserting"
+  },
+  "PaymentScheduleConfiguration__c": {
+    "mappable_fields": {
+      "OwnerId": {
+        "type": "User",
+        "description": "Configuration owner",
+        "wizard_prompt": "Select owner for payment schedule config"
+      }
+    },
+    "portable_fields": [
+      "Name",
+      "KaptioTravel__IsActive__c",
+      "KaptioTravel__Description__c"
+    ],
+    "dependency_lookups": {},
+    "system_fields": [
+      "Id",
+      "CreatedDate",
+      "CreatedById",
+      "LastModifiedDate",
+      "LastModifiedById",
+      "SystemModstamp",
+      "IsDeleted"
+    ],
+    "excluded_fields": []
+  },
+  "PaymentScheduleRule__c": {
+    "mappable_fields": {},
+    "portable_fields": [
+      "Name",
+      "KaptioTravel__Type__c",
+      "KaptioTravel__DateType__c",
+      "KaptioTravel__DaysOffset__c",
+      "KaptioTravel__ChargeType__c",
+      "KaptioTravel__Value__c",
+      "KaptioTravel__Sort__c"
+    ],
+    "dependency_lookups": {
+      "KaptioTravel__PaymentScheduleConfiguration__c": {
+        "target_object": "PaymentScheduleConfiguration__c",
+        "description": "Parent configuration",
+        "include_in_bundle": false,
+        "note": "Parent-child relationship"
+      }
+    },
+    "system_fields": [
+      "Id",
+      "CreatedDate",
+      "CreatedById",
+      "LastModifiedDate",
+      "LastModifiedById",
+      "SystemModstamp",
+      "IsDeleted",
+      "OwnerId"
+    ],
+    "excluded_fields": []
+  },
+  "CancellationConfiguration__c": {
+    "mappable_fields": {
+      "OwnerId": {
+        "type": "User",
+        "description": "Configuration owner",
+        "wizard_prompt": "Select owner for cancellation config"
+      }
+    },
+    "portable_fields": [
+      "Name",
+      "KaptioTravel__IsActive__c",
+      "KaptioTravel__Description__c"
+    ],
+    "dependency_lookups": {},
+    "system_fields": [
+      "Id",
+      "CreatedDate",
+      "CreatedById",
+      "LastModifiedDate",
+      "LastModifiedById",
+      "SystemModstamp",
+      "IsDeleted"
+    ],
+    "excluded_fields": []
+  },
+  "CancellationRule__c": {
+    "mappable_fields": {
+      "CurrencyIsoCode": {
+        "type": "Currency",
+        "description": "Currency for fixed cancellation fees",
+        "wizard_prompt": "Select currency for cancellation fees"
+      }
+    },
+    "portable_fields": [
+      "Name",
+      "KaptioTravel__DaysBeforeTravelFrom__c",
+      "KaptioTravel__DaysBeforeTravelTo__c",
+      "KaptioTravel__ChargeType__c",
+      "KaptioTravel__Value__c",
+      "KaptioTravel__Sort__c"
+    ],
+    "dependency_lookups": {
+      "KaptioTravel__CancellationConfiguration__c": {
+        "target_object": "CancellationConfiguration__c",
+        "description": "Parent configuration",
+        "include_in_bundle": false,
+        "note": "Parent-child relationship"
+      }
+    },
+    "system_fields": [
+      "Id",
+      "CreatedDate",
+      "CreatedById",
+      "LastModifiedDate",
+      "LastModifiedById",
+      "SystemModstamp",
+      "IsDeleted",
+      "OwnerId"
+    ],
+    "excluded_fields": []
+  },
+  "ServiceLevel__c": {
+    "mappable_fields": {
+      "OwnerId": {
+        "type": "User",
+        "description": "Service level owner",
+        "wizard_prompt": "Select owner for service level"
+      }
+    },
+    "portable_fields": [
+      "Name",
+      "KaptioTravel__ExternalName__c",
+      "KaptioTravel__IsActive__c",
+      "KaptioTravel__Sort__c",
+      "KaptioTravel__Type__c"
+    ],
+    "dependency_lookups": {
+      "KaptioTravel__PriceCategory__c": {
+        "target_object": "PriceCategory__c",
+        "description": "Price category (Single, Double, Twin)",
+        "include_in_bundle": true
+      }
+    },
+    "system_fields": [
+      "Id",
+      "CreatedDate",
+      "CreatedById",
+      "LastModifiedDate",
+      "LastModifiedById",
+      "SystemModstamp",
+      "IsDeleted"
+    ],
+    "excluded_fields": []
+  },
+  "PriceCategory__c": {
+    "mappable_fields": {
+      "OwnerId": {
+        "type": "User",
+        "description": "Price category owner",
+        "wizard_prompt": "Select owner for price category"
+      }
+    },
+    "portable_fields": [
+      "Name",
+      "KaptioTravel__ExternalName__c",
+      "KaptioTravel__IsActive__c",
+      "KaptioTravel__AdultEquivalentValue__c",
+      "KaptioTravel__CategoryType__c",
+      "KaptioTravel__MaxOccupancy__c",
+      "KaptioTravel__MinOccupancy__c",
+      "KaptioTravel__Sort__c"
+    ],
+    "dependency_lookups": {
+      "KaptioTravel__PriceCategoryType__c": {
+        "target_object": "PriceCategoryType__c",
+        "description": "Category type (Room, Passenger, etc.)",
+        "include_in_bundle": true
+      }
+    },
+    "system_fields": [
+      "Id",
+      "CreatedDate",
+      "CreatedById",
+      "LastModifiedDate",
+      "LastModifiedById",
+      "SystemModstamp",
+      "IsDeleted"
+    ],
+    "excluded_fields": []
+  },
+  "PackageDay__c": {
+    "mappable_fields": {},
+    "portable_fields": [
+      "Name",
+      "KaptioTravel__Day__c",
+      "KaptioTravel__Title__c",
+      "KaptioTravel__Description__c",
+      "KaptioTravel__Meals__c",
+      "KaptioTravel__Accommodation__c",
+      "KaptioTravel__Activities__c"
+    ],
+    "dependency_lookups": {
+      "KaptioTravel__Package__c": {
+        "target_object": "Package__c",
+        "description": "Parent package",
+        "include_in_bundle": false,
+        "note": "Parent-child relationship"
+      }
+    },
+    "system_fields": [
+      "Id",
+      "CreatedDate",
+      "CreatedById",
+      "LastModifiedDate",
+      "LastModifiedById",
+      "SystemModstamp",
+      "IsDeleted",
+      "OwnerId"
+    ],
+    "excluded_fields": []
+  },
+  "PackageDeparture__c": {
+    "mappable_fields": {
+      "CurrencyIsoCode": {
+        "type": "Currency",
+        "description": "Departure currency",
+        "wizard_prompt": "Use package currency or select different"
+      }
+    },
+    "portable_fields": [
+      "Name",
+      "KaptioTravel__DepartureDate__c",
+      "KaptioTravel__Status__c",
+      "KaptioTravel__IsActive__c",
+      "KaptioTravel__Comments__c",
+      "KaptioTravel__OnlineBookingStatus__c",
+      "KaptioTravel__AbsoluteMode__c"
+    ],
+    "dependency_lookups": {
+      "KaptioTravel__Package__c": {
+        "target_object": "Package__c",
+        "description": "Parent package",
+        "include_in_bundle": false,
+        "note": "Parent-child relationship"
+      }
+    },
+    "system_fields": [
+      "Id",
+      "CreatedDate",
+      "CreatedById",
+      "LastModifiedDate",
+      "LastModifiedById",
+      "SystemModstamp",
+      "IsDeleted",
+      "OwnerId"
+    ],
+    "excluded_fields": []
+  },
+  "AllotmentCategory__c": {
+    "mappable_fields": {
+      "CurrencyIsoCode": {
+        "type": "Currency",
+        "description": "Allotment currency",
+        "wizard_prompt": "Select currency for inventory pricing"
+      },
+      "OwnerId": {
+        "type": "User",
+        "description": "Inventory owner",
+        "wizard_prompt": "Select owner for inventory contract"
+      }
+    },
+    "portable_fields": [
+      "Name",
+      "KaptioTravel__IsActive__c",
+      "KaptioTravel__StartDate__c",
+      "KaptioTravel__EndDate__c",
+      "KaptioTravel__DefaultCapacity__c",
+      "KaptioTravel__ContractReference__c"
+    ],
+    "dependency_lookups": {
+      "KaptioTravel__Item__c": {
+        "target_object": "Item__c",
+        "description": "Item this inventory is for",
+        "include_in_bundle": true
+      }
+    },
+    "system_fields": [
+      "Id",
+      "CreatedDate",
+      "CreatedById",
+      "LastModifiedDate",
+      "LastModifiedById",
+      "SystemModstamp",
+      "IsDeleted"
+    ],
+    "excluded_fields": []
+  },
+  "AllotmentDay__c": {
+    "mappable_fields": {},
+    "portable_fields": [
+      "Name",
+      "KaptioTravel__Date__c",
+      "KaptioTravel__TotalUnits__c",
+      "KaptioTravel__UnitsReserved__c",
+      "KaptioTravel__UnitsBooked__c"
+    ],
+    "dependency_lookups": {
+      "KaptioTravel__AllotmentCategory__c": {
+        "target_object": "AllotmentCategory__c",
+        "description": "Parent allotment category",
+        "include_in_bundle": false,
+        "note": "Parent-child relationship"
+      }
+    },
+    "system_fields": [
+      "Id",
+      "CreatedDate",
+      "CreatedById",
+      "LastModifiedDate",
+      "LastModifiedById",
+      "SystemModstamp",
+      "IsDeleted",
+      "OwnerId"
+    ],
+    "excluded_fields": []
+  },
+  "extraction_guidelines": {
+    "field_extraction_order": [
+      "1. Always extract system_fields for record identification (Id is crucial for relationship mapping)",
+      "2. Extract all portable_fields (safe to copy directly)",
+      "3. Extract mappable_fields with their current values (will be remapped in wizard)",
+      "4. Extract dependency_lookups with current Ids (will be remapped during deployment)",
+      "5. Skip excluded_fields entirely"
+    ],
+    "special_handling": {
+      "RecordTypeId": "Extract the RecordType name, not Id. Match by DeveloperName in target org during deployment.",
+      "CurrencyIsoCode": "Always extract. If target org is single-currency, use that. If multi-currency, present in wizard.",
+      "OwnerId": "Extract but always present in wizard for mapping to target org user.",
+      "Lookups_to_null": "If a lookup field is null in source, keep it null in bundle (don't try to extract)."
+    },
+    "shared_object_strategy": {
+      "Location__c": "Check if location with same Name+Country already exists. If yes, use existing Id. If no, insert.",
+      "CommissionGroup__c": "Can be shared. Check by Name before inserting.",
+      "Account (Suppliers)": "Almost always pre-existing. Present in wizard: 'Map to supplier' or 'Skip supplier assignment'."
+    }
+  }
+}
+
