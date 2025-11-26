@@ -470,7 +470,8 @@
             </div>
 
             <div class="scenario-card mb-12">
-                <h3 class="text-kaptio-primary-800 mb-6 font-semibold text-xl">Real-World Example: "Japan Discovery - 13 Days"</h3>
+                <h3 class="text-kaptio-primary-800 mb-6 font-semibold text-xl">Example 1: Single Destination Model</h3>
+                <h4 class="text-kaptio-primary-600 mb-6 font-semibold text-lg">"Japan Discovery - 13 Days"</h4>
                 
                 <div class="grid md:grid-cols-2 gap-8 mb-8">
                     <div>
@@ -1035,6 +1036,149 @@
         </section>
 
         <!-- Divider -->
+
+        <!-- South American Discovery Example -->
+        <section class="section py-16 bg-kaptio-primary-50">
+            <div class="scenario-card mb-12">
+                <h3 class="text-kaptio-primary-800 mb-6 font-semibold text-xl">Example 2: Multi-Country Principle Model</h3>
+                <h4 class="text-kaptio-primary-600 mb-6 font-semibold text-lg">"South American Discovery - 33 Days"</h4>
+                
+                <div class="grid md:grid-cols-2 gap-8 mb-8">
+                    <div>
+                        <h4 class="font-semibold text-kaptio-primary-800 mb-4">What You're Selling:</h4>
+                        <ul class="space-y-2 text-kaptio-black">
+                            <li class="flex items-start space-x-2">
+                                <span class="text-kaptio-yellow-400">•</span>
+                                <span>33-day guided tour across Peru, Ecuador, Brazil, and Argentina</span>
+                            </li>
+                            <li class="flex items-start space-x-2">
+                                <span class="text-kaptio-yellow-400">•</span>
+                                <span>Lima → Quito → Amazon → Machu Picchu → Rio → Buenos Aires</span>
+                            </li>
+                            <li class="flex items-start space-x-2">
+                                <span class="text-kaptio-yellow-400">•</span>
+                                <span>Multiple DMC suppliers per country/region</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-kaptio-primary-800 mb-4">What Makes It Complex:</h4>
+                        <ul class="space-y-2 text-kaptio-black">
+                            <li class="flex items-start space-x-2">
+                                <span class="text-kaptio-secondary-400">★</span>
+                                <span><strong>5 Regional DMCs:</strong> Encounter Latin America, Explorama, Coltur, Blumar, Gateways</span>
+                            </li>
+                            <li class="flex items-start space-x-2">
+                                <span class="text-kaptio-secondary-400">★</span>
+                                <span><strong>Still Principle:</strong> Sold as ONE unified tour product</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bg-kaptio-yellow-400 bg-opacity-20 rounded-lg p-4 mt-6">
+                    <p class="text-sm text-kaptio-black">
+                        <strong>Key Insight:</strong> Despite spanning 4 countries with multiple suppliers, this is configured as a 
+                        <strong>Principle Land-Only package</strong> (not a Combo). Package classification is about <em>how it sells</em> 
+                        (standalone tour), not <em>geographic scope</em>.
+                    </p>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-lg p-8 mb-12">
+                <h3 class="text-kaptio-primary-800 mb-6 font-semibold text-2xl">Multi-Country Principle Package: Same Configuration</h3>
+                
+                <div class="grid md:grid-cols-3 gap-6 text-sm mb-6">
+                    <div class="bg-kaptio-primary-50 rounded p-4">
+                        <div class="text-kaptio-primary-600 font-medium mb-2">Package_Type__c</div>
+                        <div class="text-2xl font-bold text-kaptio-primary-800 mb-1">Principle</div>
+                        <div class="text-kaptio-grey-300 text-xs">Same as Japan</div>
+                    </div>
+                    <div class="bg-kaptio-primary-50 rounded p-4">
+                        <div class="text-kaptio-primary-600 font-medium mb-2">Categories__c</div>
+                        <div class="text-xl font-bold text-kaptio-primary-800 mb-1">Land Only</div>
+                        <div class="text-kaptio-grey-300 text-xs">Classic;Wildlife;History;Land Only</div>
+                    </div>
+                    <div class="bg-kaptio-primary-50 rounded p-4">
+                        <div class="text-kaptio-primary-600 font-medium mb-2">Geographic Scope</div>
+                        <div class="text-2xl font-bold text-kaptio-primary-800 mb-1">4 Countries</div>
+                        <div class="text-kaptio-grey-300 text-xs">vs 1 for Japan</div>
+                    </div>
+                </div>
+
+                <div class="bg-kaptio-yellow-400 bg-opacity-20 rounded-lg p-6">
+                    <p class="text-kaptio-black mb-3">
+                        <strong>Why This Isn't a "Combo" Package:</strong>
+                    </p>
+                    <ul class="space-y-2 text-kaptio-black text-sm">
+                        <li class="flex items-start space-x-2">
+                            <span class="text-kaptio-primary-400">✓</span>
+                            <span><strong>Single Product:</strong> Customer books ONE tour, not separate tours per country</span>
+                        </li>
+                        <li class="flex items-start space-x-2">
+                            <span class="text-kaptio-primary-400">✓</span>
+                            <span><strong>Unified Pricing:</strong> Single total price, not additive pricing</span>
+                        </li>
+                        <li class="flex items-start space-x-2">
+                            <span class="text-kaptio-primary-400">✓</span>
+                            <span><strong>Package_Type__c = "Principle":</strong> Configured as standalone principle tour</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Comparison Table -->
+        <section class="section py-16 bg-white">
+            <h3 class="text-kaptio-primary-800 mb-8 font-semibold text-2xl text-center">Principle Package Variations: Same Configuration, Different Scale</h3>
+            
+            <div class="overflow-x-auto mb-8">
+                <table class="w-full">
+                    <thead>
+                        <tr class="border-b-2 border-kaptio-primary-400">
+                            <th class="text-left py-4 px-4 font-bold text-kaptio-primary-800">Aspect</th>
+                            <th class="text-left py-4 px-4 font-bold text-kaptio-primary-800">Japan Discovery</th>
+                            <th class="text-left py-4 px-4 font-bold text-kaptio-primary-800">South American Discovery</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-kaptio-black">
+                        <tr class="border-b border-kaptio-grey-100 bg-kaptio-yellow-200 bg-opacity-20">
+                            <td class="py-4 px-4 font-semibold text-kaptio-primary-600">Package Classification</td>
+                            <td class="py-4 px-4">Principle Land-Only</td>
+                            <td class="py-4 px-4">Principle Land-Only</td>
+                        </tr>
+                        <tr class="border-b border-kaptio-grey-100">
+                            <td class="py-4 px-4 font-semibold">Geography</td>
+                            <td class="py-4 px-4">Single country (Japan)</td>
+                            <td class="py-4 px-4">4 countries (Peru, Ecuador, Brazil, Argentina)</td>
+                        </tr>
+                        <tr class="border-b border-kaptio-grey-100">
+                            <td class="py-4 px-4 font-semibold">Duration</td>
+                            <td class="py-4 px-4">13 days</td>
+                            <td class="py-4 px-4">33 days</td>
+                        </tr>
+                        <tr class="border-b border-kaptio-grey-100">
+                            <td class="py-4 px-4 font-semibold">Suppliers</td>
+                            <td class="py-4 px-4">1-2 DMCs</td>
+                            <td class="py-4 px-4">5 Regional DMCs</td>
+                        </tr>
+                        <tr class="border-b border-kaptio-grey-100">
+                            <td class="py-4 px-4 font-semibold">Components</td>
+                            <td class="py-4 px-4">5 components</td>
+                            <td class="py-4 px-4">11 components (regional segmentation)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="bg-kaptio-secondary-400 bg-opacity-10 rounded-lg p-6 border-l-4 border-kaptio-secondary-400">
+                <h4 class="font-semibold text-kaptio-primary-800 mb-3">The Key Takeaway</h4>
+                <p class="text-kaptio-black text-sm">
+                    Package classification in Kaptio is <strong>behavior-based, not geography-based</strong>. Whether your tour covers one city or four countries doesn't change the configuration—what matters is whether it sells as a standalone product (Principle) or as combined separate tours (Combo).
+                </p>
+            </div>
+        </section>
+
         <div class="h-px bg-kaptio-grey-100 my-16"></div>
 
 
