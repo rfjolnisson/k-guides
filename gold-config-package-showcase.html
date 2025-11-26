@@ -438,15 +438,10 @@
                                 <td class="py-4 px-4">2+ Principle Tours combined, with flights</td>
                                 <td class="py-4 px-4 text-sm text-kaptio-grey-300">South Korea + Japan with Flights</td>
                             </tr>
-                            <tr class="border-b border-kaptio-grey-100">
+                            <tr>
                                 <td class="py-4 px-4 font-semibold text-kaptio-primary-600">Linked Package</td>
                                 <td class="py-4 px-4">1 Principle Tour + 1 Sub Tour</td>
                                 <td class="py-4 px-4 text-sm text-kaptio-grey-300">Egypt (Principle) + Jordan (Sub)</td>
-                            </tr>
-                            <tr class="bg-kaptio-secondary-400 bg-opacity-10">
-                                <td class="py-4 px-4 font-semibold text-kaptio-primary-600">Extension Tour</td>
-                                <td class="py-4 px-4">Tour Service that cannot book separately</td>
-                                <td class="py-4 px-4 text-sm text-kaptio-grey-300">Alexandria Extension (Egypt only)</td>
                             </tr>
                         </tbody>
                     </table>
@@ -689,6 +684,139 @@
                 </details>
             </div>
 
+            <!-- Pre/Post Hotel Variations -->
+            <div id="pre-post-hotels" class="mt-12 bg-white rounded-xl shadow-lg p-8">
+                <h3 class="text-kaptio-primary-800 mb-6 font-semibold text-xl">Pre/Post Hotel Variations by Departure Date</h3>
+                <p class="text-kaptio-black mb-6">
+                    Your pre-stay and post-stay hotels might change throughout the season. March departures use Park Hyatt, 
+                    April departures use Conrad, etc. Here's how to configure multiple properties under a single component.
+                </p>
+
+                <div class="scenario-card mb-6">
+                    <h4 class="text-kaptio-primary-800 mb-4 font-semibold">The Gold Config Pattern: Single Component, Multiple Properties</h4>
+                    
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="bg-kaptio-action bg-opacity-10 rounded-lg p-4">
+                            <h5 class="font-semibold text-kaptio-action mb-3 text-sm">❌ Don't Do This:</h5>
+                            <div class="space-y-2 text-xs text-kaptio-black">
+                                <div class="bg-white rounded p-2">Component: "Pre-Stay - Park Hyatt" (1-15 Mar)</div>
+                                <div class="bg-white rounded p-2">Component: "Pre-Stay - Conrad" (16-31 Mar)</div>
+                                <div class="bg-white rounded p-2">Component: "Pre-Stay - Andaz" (1-30 Apr)</div>
+                            </div>
+                            <div class="text-kaptio-action text-xs mt-3">
+                                Problems: 3 separate pre-stay options in booking wizard (confusing!), 
+                                changing hotels breaks existing bookings
+                            </div>
+                        </div>
+
+                        <div class="bg-green-50 rounded-lg p-4">
+                            <h5 class="font-semibold text-green-800 mb-3 text-sm">✅ Gold Config Approach:</h5>
+                            <div class="space-y-2 text-xs text-kaptio-black">
+                                <div class="bg-white rounded p-2 font-semibold">Component: "Pre-Stay - Tokyo"</div>
+                                <div class="ml-4 space-y-1 text-kaptio-grey-300">
+                                    <div>→ Property Option: Park Hyatt (1-15 Mar)</div>
+                                    <div>→ Property Option: Conrad (16-31 Mar)</div>
+                                    <div>→ Property Option: Andaz (1-30 Apr)</div>
+                                </div>
+                            </div>
+                            <div class="text-green-600 text-xs mt-3">
+                                Benefits: One pre-stay choice, system filters hotels by departure date, 
+                                ops can change hotel assignments without breaking bookings
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="component-tree mb-6">
+                    <div class="tree-node level-0" onclick="toggleNode(this)">
+                        <span class="expand-icon">▼</span>
+                        <span>🏨 Pre-Stay – Tokyo (Single Component)</span>
+                        <span class="badge">Optional</span>
+                    </div>
+                    <div class="tree-children">
+                        <div class="tree-node level-1" onclick="toggleNode(this)">
+                            <span class="expand-icon">▼</span>
+                            <span>Hotel Option: Park Hyatt Tokyo</span>
+                            <span class="badge-optional">Available: Mar 1-15, 2026</span>
+                        </div>
+                        <div class="tree-children">
+                            <div class="tree-node level-2">Max nights: 3</div>
+                            <div class="tree-node level-2">Room types: Single, Double, Twin</div>
+                            <div class="tree-node level-2">Price: $250/night</div>
+                        </div>
+
+                        <div class="tree-node level-1" onclick="toggleNode(this)">
+                            <span class="expand-icon">▼</span>
+                            <span>Hotel Option: Conrad Tokyo</span>
+                            <span class="badge-optional">Available: Mar 16-31, 2026</span>
+                        </div>
+                        <div class="tree-children">
+                            <div class="tree-node level-2">Max nights: 3</div>
+                            <div class="tree-node level-2">Room types: Single, Double, Twin</div>
+                            <div class="tree-node level-2">Price: $220/night</div>
+                        </div>
+
+                        <div class="tree-node level-1" onclick="toggleNode(this)">
+                            <span class="expand-icon">▼</span>
+                            <span>Hotel Option: Andaz Tokyo</span>
+                            <span class="badge-optional">Available: Mar 1-31, Apr 1-30, 2026</span>
+                        </div>
+                        <div class="tree-children">
+                            <div class="tree-node level-2">Max nights: 3</div>
+                            <div class="tree-node level-2">Room types: Single, Double, Twin</div>
+                            <div class="tree-node level-2">Price: $200/night</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-kaptio-primary-50 rounded-lg p-6">
+                    <h4 class="font-semibold text-kaptio-primary-800 mb-4 text-sm">How It Works in the Booking Wizard:</h4>
+                    <div class="space-y-3 text-sm text-kaptio-black">
+                        <div class="border-l-4 border-kaptio-primary-400 pl-4">
+                            <strong>Customer books March 10 departure:</strong>
+                            <div class="text-xs text-kaptio-grey-300 mt-1">
+                                System filters: Shows only "Park Hyatt" (available Mar 1-15)
+                            </div>
+                        </div>
+                        <div class="border-l-4 border-kaptio-yellow-400 pl-4">
+                            <strong>Customer books March 25 departure:</strong>
+                            <div class="text-xs text-kaptio-grey-300 mt-1">
+                                System filters: Shows "Conrad" (Mar 16-31) and "Andaz" (Mar 1-31)
+                            </div>
+                        </div>
+                        <div class="border-l-4 border-green-500 pl-4">
+                            <strong>Customer books April 10 departure:</strong>
+                            <div class="text-xs text-kaptio-grey-300 mt-1">
+                                System filters: Shows only "Andaz" (available Apr 1-30)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-6 bg-kaptio-yellow-400 bg-opacity-20 rounded-lg p-6">
+                    <h4 class="font-semibold text-kaptio-black mb-3 text-sm">💡 Operational Control: Change Hotels Mid-Season</h4>
+                    <div class="text-kaptio-black text-sm leading-relaxed space-y-2">
+                        <p>
+                            <strong>Scenario:</strong> Your Park Hyatt contract ends early. You need to switch March 10-15 departures to Conrad.
+                        </p>
+                        <p>
+                            <strong>Action:</strong> Update date availability on hotel options (Park Hyatt: Mar 1-9, Conrad: Mar 10-31)
+                        </p>
+                        <p>
+                            <strong>Result:</strong> 
+                            • Existing bookings unchanged (they keep Park Hyatt)
+                            • New bookings for March 10+ see Conrad
+                            • No component changes, no pricing breaks
+                        </p>
+                    </div>
+                </div>
+
+                <div class="mt-6 bg-kaptio-primary-50 rounded-lg p-4 text-xs">
+                    <strong class="text-kaptio-primary-800">For Implementation Teams:</strong> 
+                    Configure using ComponentOptionDepartureAssignment objects or date-restricted ComponentOption records. 
+                    DepartureMode = "Applicable to All" with date filtering at the option level.
+                </div>
+            </div>
             <!-- Customer Experience Flow -->
                 
                 <div class="space-y-6">
@@ -1779,18 +1907,31 @@
                     </div>
                     <div class="tree-children">
                         
-                        <!-- Egypt Components -->
+                        <!-- Umbrella Components (Linked Package Level) -->
+                        <div class="tree-node level-1 required" style="background: #FFEBC6; border-left-color: #FFBC42;">
+                            <span>🇪🇬🇯🇴 Highlights Egypt & Jordan - Tour Inventory</span>
+                            <span class="badge-primary">Primary</span>
+                            <span class="badge-required">Main Tour</span>
+                            <span class="text-xs text-kaptio-grey-300 ml-2">(Umbrella: Linked package level)</span>
+                        </div>
+
+                        <div class="tree-node level-1 required" style="background: #FFEBC6; border-left-color: #FFBC42;">
+                            <span>🇪🇬🇯🇴 Highlights Egypt & Jordan - Room Configuration</span>
+                            <span class="badge-primary">Primary</span>
+                            <span class="text-xs text-kaptio-grey-300 ml-2">(Umbrella: Manages pricing at linked package level)</span>
+                        </div>
+
+                        <!-- Egypt Components (Principle Tour) -->
                         <div class="tree-node level-1 required">
                             <span>🐪 Highlights of Egypt - Tour Inventory</span>
                             <span class="badge-required">Principle Tour</span>
-                            <span class="text-xs text-kaptio-grey-300 ml-2">(Container Service - Days 1-9)</span>
+                            <span class="text-xs text-kaptio-grey-300 ml-2">(Days 1-9, ensures proper booking structure)</span>
                         </div>
 
                         <!-- Egypt Room Config -->
                         <div class="tree-node level-1 required">
                             <span>🏺 Egypt Room Configuration</span>
                             <span class="badge-required">Days 1-9</span>
-                            <span class="badge-primary">Primary</span>
                         </div>
 
                         <!-- Connecting Flight (CRITICAL!) -->
@@ -2431,139 +2572,6 @@
                 </div>
             </div>
 
-            <!-- Pre/Post Hotel Variations -->
-            <div id="pre-post-hotels" class="mt-12 bg-white rounded-xl shadow-lg p-8">
-                <h3 class="text-kaptio-primary-800 mb-6 font-semibold text-xl">Pre/Post Hotel Variations by Departure Date</h3>
-                <p class="text-kaptio-black mb-6">
-                    Your pre-stay and post-stay hotels might change throughout the season. March departures use Park Hyatt, 
-                    April departures use Conrad, etc. Here's how to configure multiple properties under a single component.
-                </p>
-
-                <div class="scenario-card mb-6">
-                    <h4 class="text-kaptio-primary-800 mb-4 font-semibold">The Gold Config Pattern: Single Component, Multiple Properties</h4>
-                    
-                    <div class="grid md:grid-cols-2 gap-6">
-                        <div class="bg-kaptio-action bg-opacity-10 rounded-lg p-4">
-                            <h5 class="font-semibold text-kaptio-action mb-3 text-sm">❌ Don't Do This:</h5>
-                            <div class="space-y-2 text-xs text-kaptio-black">
-                                <div class="bg-white rounded p-2">Component: "Pre-Stay - Park Hyatt" (1-15 Mar)</div>
-                                <div class="bg-white rounded p-2">Component: "Pre-Stay - Conrad" (16-31 Mar)</div>
-                                <div class="bg-white rounded p-2">Component: "Pre-Stay - Andaz" (1-30 Apr)</div>
-                            </div>
-                            <div class="text-kaptio-action text-xs mt-3">
-                                Problems: 3 separate pre-stay options in booking wizard (confusing!), 
-                                changing hotels breaks existing bookings
-                            </div>
-                        </div>
-
-                        <div class="bg-green-50 rounded-lg p-4">
-                            <h5 class="font-semibold text-green-800 mb-3 text-sm">✅ Gold Config Approach:</h5>
-                            <div class="space-y-2 text-xs text-kaptio-black">
-                                <div class="bg-white rounded p-2 font-semibold">Component: "Pre-Stay - Tokyo"</div>
-                                <div class="ml-4 space-y-1 text-kaptio-grey-300">
-                                    <div>→ Property Option: Park Hyatt (1-15 Mar)</div>
-                                    <div>→ Property Option: Conrad (16-31 Mar)</div>
-                                    <div>→ Property Option: Andaz (1-30 Apr)</div>
-                                </div>
-                            </div>
-                            <div class="text-green-600 text-xs mt-3">
-                                Benefits: One pre-stay choice, system filters hotels by departure date, 
-                                ops can change hotel assignments without breaking bookings
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="component-tree mb-6">
-                    <div class="tree-node level-0" onclick="toggleNode(this)">
-                        <span class="expand-icon">▼</span>
-                        <span>🏨 Pre-Stay – Tokyo (Single Component)</span>
-                        <span class="badge">Optional</span>
-                    </div>
-                    <div class="tree-children">
-                        <div class="tree-node level-1" onclick="toggleNode(this)">
-                            <span class="expand-icon">▼</span>
-                            <span>Hotel Option: Park Hyatt Tokyo</span>
-                            <span class="badge-optional">Available: Mar 1-15, 2026</span>
-                        </div>
-                        <div class="tree-children">
-                            <div class="tree-node level-2">Max nights: 3</div>
-                            <div class="tree-node level-2">Room types: Single, Double, Twin</div>
-                            <div class="tree-node level-2">Price: $250/night</div>
-                        </div>
-
-                        <div class="tree-node level-1" onclick="toggleNode(this)">
-                            <span class="expand-icon">▼</span>
-                            <span>Hotel Option: Conrad Tokyo</span>
-                            <span class="badge-optional">Available: Mar 16-31, 2026</span>
-                        </div>
-                        <div class="tree-children">
-                            <div class="tree-node level-2">Max nights: 3</div>
-                            <div class="tree-node level-2">Room types: Single, Double, Twin</div>
-                            <div class="tree-node level-2">Price: $220/night</div>
-                        </div>
-
-                        <div class="tree-node level-1" onclick="toggleNode(this)">
-                            <span class="expand-icon">▼</span>
-                            <span>Hotel Option: Andaz Tokyo</span>
-                            <span class="badge-optional">Available: Mar 1-31, Apr 1-30, 2026</span>
-                        </div>
-                        <div class="tree-children">
-                            <div class="tree-node level-2">Max nights: 3</div>
-                            <div class="tree-node level-2">Room types: Single, Double, Twin</div>
-                            <div class="tree-node level-2">Price: $200/night</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-kaptio-primary-50 rounded-lg p-6">
-                    <h4 class="font-semibold text-kaptio-primary-800 mb-4 text-sm">How It Works in the Booking Wizard:</h4>
-                    <div class="space-y-3 text-sm text-kaptio-black">
-                        <div class="border-l-4 border-kaptio-primary-400 pl-4">
-                            <strong>Customer books March 10 departure:</strong>
-                            <div class="text-xs text-kaptio-grey-300 mt-1">
-                                System filters: Shows only "Park Hyatt" (available Mar 1-15)
-                            </div>
-                        </div>
-                        <div class="border-l-4 border-kaptio-yellow-400 pl-4">
-                            <strong>Customer books March 25 departure:</strong>
-                            <div class="text-xs text-kaptio-grey-300 mt-1">
-                                System filters: Shows "Conrad" (Mar 16-31) and "Andaz" (Mar 1-31)
-                            </div>
-                        </div>
-                        <div class="border-l-4 border-green-500 pl-4">
-                            <strong>Customer books April 10 departure:</strong>
-                            <div class="text-xs text-kaptio-grey-300 mt-1">
-                                System filters: Shows only "Andaz" (available Apr 1-30)
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="mt-6 bg-kaptio-yellow-400 bg-opacity-20 rounded-lg p-6">
-                    <h4 class="font-semibold text-kaptio-black mb-3 text-sm">💡 Operational Control: Change Hotels Mid-Season</h4>
-                    <div class="text-kaptio-black text-sm leading-relaxed space-y-2">
-                        <p>
-                            <strong>Scenario:</strong> Your Park Hyatt contract ends early. You need to switch March 10-15 departures to Conrad.
-                        </p>
-                        <p>
-                            <strong>Action:</strong> Update date availability on hotel options (Park Hyatt: Mar 1-9, Conrad: Mar 10-31)
-                        </p>
-                        <p>
-                            <strong>Result:</strong> 
-                            • Existing bookings unchanged (they keep Park Hyatt)
-                            • New bookings for March 10+ see Conrad
-                            • No component changes, no pricing breaks
-                        </p>
-                    </div>
-                </div>
-
-                <div class="mt-6 bg-kaptio-primary-50 rounded-lg p-4 text-xs">
-                    <strong class="text-kaptio-primary-800">For Implementation Teams:</strong> 
-                    Configure using ComponentOptionDepartureAssignment objects or date-restricted ComponentOption records. 
-                    DepartureMode = "Applicable to All" with date filtering at the option level.
-                </div>
-            </div>
         </section>
 
         <!-- Divider -->
