@@ -17,8 +17,8 @@ const path = require('path');
 const dependencyMap = require('./dependency-map.json');
 const fieldMappingRules = require('./field-mapping-rules.json');
 
-// Path to ktdev45 data
-const KTDEV45_DATA_PATH = path.join(__dirname, '../ktdev45/000000000000000001');
+// Path to ktdev45 data (multiple folders)
+const KTDEV45_BASE_PATH = path.join(__dirname, '../ktdev45');
 
 class PackageExtractor {
   constructor(packageId, outputPath) {
@@ -44,12 +44,12 @@ class PackageExtractor {
    * Main extraction entry point
    */
   async extract() {
-    console.log(`\n📦 Extracting package: ${this.packageId}`);
-    console.log(`📂 Data source: ${KTDEV45_DATA_PATH}\n`);
+      console.log(`\n📦 Extracting package: ${this.packageId}`);
+    console.log(`📂 Data source: ${KTDEV45_BASE_PATH}\n`);
 
     try {
-      // Load all data files
-      console.log('Loading ktdev45 data files...');
+      // Load all data files from all folders
+      console.log('Loading ktdev45 data files from all folders...');
       const allData = this.loadAllData();
       
       // Extract the package
@@ -92,29 +92,50 @@ class PackageExtractor {
   }
 
   /**
-   * Load all ktdev45 JSON data files
+   * Load all ktdev45 JSON data files from all folders
    */
   loadAllData() {
     const allData = {};
-    const files = fs.readdirSync(KTDEV45_DATA_PATH);
     
-    for (const file of files) {
-      if (file.endsWith('.json')) {
-        const objectName = file.replace('.json', '');
-        const filePath = path.join(KTDEV45_DATA_PATH, file);
-        const content = JSON.parse(fs.readFileSync(filePath, 'utf8'));
-        
-        // Handle both {records: [...]} and direct array formats
-        const records = Array.isArray(content) 
-          ? content 
-          : (content.records || []).map(r => r.record || r);
+    // Read all subdirectories in ktdev45
+    const folders = fs.readdirSync(KTDEV45_BASE_PATH)
+      .filter(f => fs.statSync(path.join(KTDEV45_BASE_PATH, f)).isDirectory())
+      .sort();
+    
+    console.log(`  Found ${folders.length} data folders`);
+    
+    for (const folder of folders) {
+      const folderPath = path.join(KTDEV45_BASE_PATH, folder);
+      const files = fs.readdirSync(folderPath);
+      
+      for (const file of files) {
+        if (file.endsWith('.json')) {
+          const objectName = file.replace('.json', '');
+          const filePath = path.join(folderPath, file);
+          const content = JSON.parse(fs.readFileSync(filePath, 'utf8'));
           
-        allData[objectName] = records;
-        console.log(`    Loaded ${records.length} records from ${objectName}`);
+          // Handle both {records: [...]} and direct array formats
+          const records = Array.isArray(content) 
+            ? content 
+            : (content.records || []).map(r => r.record || r);
+          
+          // Merge records if object type already exists
+          if (!allData[objectName]) {
+            allData[objectName] = [];
+          }
+          allData[objectName] = allData[objectName].concat(records);
+        }
       }
     }
     
+    // Log summary
     console.log(`  Total object types loaded: ${Object.keys(allData).length}`);
+    let totalRecords = 0;
+    for (const records of Object.values(allData)) {
+      totalRecords += records.length;
+    }
+    console.log(`  Total records loaded: ${totalRecords}`);
+    
     return allData;
   }
 
@@ -419,11 +440,21 @@ class PackageExtractor {
     for (const item of fullOrder) {
       // Extract object name from the deployment order line
       // Format: "1. Location__c (no dependencies)"
-      const match = item.match(/\d+\.\s+(\w+__c)/);
+      const match = item.match(/\d+\.\s+([\w]+(?:__c)?)/);
       if (match) {
-        const objectName = this.getKaptioObjectName(match[1]);
-        if (extractedObjects.includes(objectName)) {
-          order.push(objectName);
+        let objectName = match[1];
+        
+        // Handle standard objects
+        if (objectName === 'Account' || objectName === 'Contact' || objectName === 'User') {
+          if (extractedObjects.includes(objectName)) {
+            order.push(objectName);
+          }
+        } else {
+          // Custom objects
+          objectName = this.getKaptioObjectName(objectName);
+          if (extractedObjects.includes(objectName)) {
+            order.push(objectName);
+          }
         }
       }
     }

@@ -17,3 +17,8 @@ Thumbs.db
 *.log
 npm-debug.log*
 
+# ktdev45 source data (contains sensitive data - use locally only)
+ktdev45/
+
+
+

@@ -124,7 +124,7 @@
       },
       {
         "field": "KaptioTravel__PriceCategory__c",
-        "target_object": "PriceCategory__c",
+        "target_object": "Price_Category__c",
         "description": "Price category (Single, Double, Twin)",
         "include_in_bundle": true
       }
@@ -171,6 +171,11 @@
         "object": "AllotmentDay__c",
         "relationship_field": "KaptioTravel__AllotmentCategory__c",
         "description": "Capacity by specific date"
+      },
+      {
+        "object": "InventorySeasonStatus__c",
+        "relationship_field": "KaptioTravel__AllotmentCategory__c",
+        "description": "Seasonal status for inventory (active, inactive, etc.)"
       }
     ],
     "lookup_fields": [
@@ -180,13 +185,33 @@
         "description": "Item this inventory is for",
         "include_in_bundle": true
       }
-    ]
+    ],
+    "note": "Critical for package departures - must be included"
+  },
+  "AllotmentDay__c": {
+    "description": "Daily inventory capacity for specific dates",
+    "direct_children": [],
+    "lookup_fields": [
+      {
+        "field": "KaptioTravel__AllotmentCategory__c",
+        "target_object": "AllotmentCategory__c",
+        "description": "Parent inventory category/contract",
+        "include_in_bundle": true
+      }
+    ],
+    "note": "Critical - holds actual bookable capacity by date"
+  },
+  "InventorySeasonStatus__c": {
+    "description": "Seasonal status assignments for inventory",
+    "direct_children": [],
+    "lookup_fields": [],
+    "note": "Optional - controls seasonal availability"
   },
   "Item__c": {
     "description": "Items represent services (hotels, activities, transport)",
     "direct_children": [
       {
-        "object": "ItemPrice__c",
+        "object": "Item_Price__c",
         "relationship_field": "KaptioTravel__Item__c",
         "description": "Pricing for the item"
       },
@@ -194,6 +219,11 @@
         "object": "ItemPriceCategoryAssignment__c",
         "relationship_field": "KaptioTravel__Item__c",
         "description": "Price category assignments (Single/Double/Twin pricing)"
+      },
+      {
+        "object": "Price_Category__c",
+        "relationship_field": "KaptioTravel__Item__c",
+        "description": "Price categories defined for this item (Single, Double, Twin)"
       }
     ],
     "lookup_fields": [
@@ -201,9 +231,9 @@
         "field": "KaptioTravel__Supplier__c",
         "target_object": "Account",
         "description": "Supplier providing this service",
-        "include_in_bundle": false,
+        "include_in_bundle": true,
         "shared": true,
-        "note": "Suppliers are org-wide, not package-specific"
+        "note": "Include supplier accounts - they provide context even if mapped later"
       },
       {
         "field": "KaptioTravel__Location__c",
@@ -255,6 +285,59 @@
         "include_in_bundle": true
       }
     ]
+  },
+  "Price_Category__c": {
+    "description": "Price categories (Single Room, Double Room, Twin Room, etc.)",
+    "direct_children": [],
+    "lookup_fields": [
+      {
+        "field": "KaptioTravel__PriceCategoryType__c",
+        "target_object": "PriceCategoryType__c",
+        "description": "Category type definition",
+        "include_in_bundle": true
+      },
+      {
+        "field": "KaptioTravel__Item__c",
+        "target_object": "Item__c",
+        "description": "Item this price category belongs to",
+        "include_in_bundle": false,
+        "note": "Parent relationship"
+      }
+    ],
+    "note": "Critical for room type selection - must be included in bundle"
+  },
+  "PriceCategoryType__c": {
+    "description": "Price category type definitions (Room, Passenger, etc.)",
+    "direct_children": [],
+    "lookup_fields": [],
+    "note": "System-level definitions, usually pre-exist in target org"
+  },
+  "Item_Price__c": {
+    "description": "Item pricing records (may include seasonal pricing)",
+    "direct_children": [],
+    "lookup_fields": [
+      {
+        "field": "KaptioTravel__PriceSeason__c",
+        "target_object": "PriceSeason__c",
+        "description": "Price season for seasonal pricing variations",
+        "include_in_bundle": true
+      }
+    ],
+    "note": "Holds actual prices for items"
+  },
+  "PriceSeason__c": {
+    "description": "Seasonal pricing periods (high season, low season, shoulder)",
+    "direct_children": [],
+    "lookup_fields": [
+      {
+        "field": "KaptioTravel__Item__c",
+        "target_object": "Item__c",
+        "description": "Item this price season belongs to",
+        "include_in_bundle": false,
+        "note": "Parent relationship - Item already extracted"
+      }
+    ],
+    "note": "Used for dynamic seasonal pricing - must come after Item in deployment"
   },
   "PaymentScheduleAssignment__c": {
     "description": "Links package to payment schedule",
@@ -359,13 +442,19 @@
     "description": "Commission rate configurations (shared org-wide)",
     "direct_children": [],
     "lookup_fields": [],
-    "note": "Shared object - multiple packages may use same commission group"
+    "note": "Include for completeness - shows commission structure"
   },
   "TaxGroup__c": {
     "description": "Tax configurations (shared org-wide)",
     "direct_children": [],
     "lookup_fields": [],
-    "note": "Shared object - tax rules applied org-wide"
+    "note": "Include for completeness - shows tax structure"
+  },
+  "Account": {
+    "description": "Supplier accounts",
+    "direct_children": [],
+    "lookup_fields": [],
+    "note": "Supplier records - included for context, may need mapping in deployment"
   },
   "Language__c": {
     "description": "Language configurations for multi-language content",
@@ -388,32 +477,36 @@
     ],
     "deployment_order": [
       "1. Location__c (no dependencies)",
-      "2. Account (Suppliers - optional, may already exist)",
-      "3. CommissionGroup__c, DiscountGroup__c, ProfitabilityGroup__c (lookup dependencies)",
-      "4. PaymentScheduleConfiguration__c",
-      "5. PaymentScheduleRule__c (child of PaymentScheduleConfiguration)",
-      "6. CancellationConfiguration__c",
-      "7. CancellationRule__c (child of CancellationConfiguration)",
-      "8. PriceCategory__c",
-      "9. ServiceLevel__c (depends on PriceCategory)",
+      "2. Language__c (no dependencies)",
+      "3. Account (Suppliers - may already exist)",
+      "4. CommissionGroup__c, DiscountGroup__c, ProfitabilityGroup__c, TaxGroup__c (lookup dependencies - may not exist in export)",
+      "5. PriceCategoryType__c (category type definitions)",
+      "6. PaymentScheduleConfiguration__c",
+      "7. PaymentScheduleRule__c (child of PaymentScheduleConfiguration)",
+      "8. CancellationConfiguration__c",
+      "9. CancellationRule__c (child of CancellationConfiguration)",
       "10. Package__c (depends on lookups above)",
       "11. PackageServiceLevelAssignment__c (depends on Package + ServiceLevel)",
       "12. PaymentScheduleAssignment__c (depends on Package + PaymentScheduleConfiguration)",
       "13. CancellationAssignment__c (depends on Package + CancellationConfiguration)",
       "14. PackageDay__c (depends on Package)",
       "15. PackageDayLocation__c (depends on PackageDay + Location)",
-      "16. Component__c (depends on Package)",
-      "17. Item__c (depends on Location, optionally Supplier)",
-      "18. ItemPrice__c (depends on Item)",
-      "19. ItemPriceCategoryAssignment__c (depends on Item + PriceCategory)",
-      "20. ComponentOption__c (depends on Component, Item, ServiceLevel)",
-      "21. ComponentPricelistAssignment__c (depends on Component)",
-      "22. PackageDeparture__c (depends on Package)",
+      "16. PackageInformation__c (depends on Package + Language)",
+      "17. Component__c (depends on Package)",
+      "18. Item__c (depends on Location, Account)",
+      "19. PriceSeason__c (depends on Item - seasonal pricing)",
+      "20. Item_Price__c (depends on Item, PriceSeason)",
+      "21. Price_Category__c (depends on Item, PriceCategoryType)",
+      "22. ItemPriceCategoryAssignment__c (depends on Item + Price_Category)",
       "23. AllotmentCategory__c (depends on Item)",
       "24. AllotmentDay__c (depends on AllotmentCategory)",
-      "25. PackageDepartureAllotmentAssignment__c (depends on PackageDeparture + AllotmentCategory)",
-      "26. ComponentOptionDepartureAssignment__c (depends on ComponentOption + PackageDeparture)",
-      "27. PackageDepartureNoteAssignment__c (depends on PackageDeparture)"
+      "25. InventorySeasonStatus__c (depends on AllotmentCategory)",
+      "26. ComponentOption__c (depends on Component, Item, Price_Category)",
+      "27. ComponentPricelistAssignment__c (depends on Component)",
+      "28. PackageDeparture__c (depends on Package)",
+      "29. PackageDepartureAllotmentAssignment__c (depends on PackageDeparture + AllotmentCategory + AllotmentDay)",
+      "30. ComponentOptionDepartureAssignment__c (depends on ComponentOption + PackageDeparture)",
+      "31. PackageDepartureNoteAssignment__c (depends on PackageDeparture)"
     ],
     "circular_dependencies": "None identified in standard package configuration",
     "excluded_objects": [
