@@ -559,12 +559,17 @@
                         <!-- Tour Inventory Component -->
                         <div class="tree-node level-1 required" onclick="toggleNode(this)">
                             <span class="expand-icon">▼</span>
-                            <span>🎎 Tour Inventory & Pricing</span>
+                            <span>🎎 Tour Inventory (Per Pax)</span>
                             <span class="badge-required">Required</span>
-                            <span class="badge-primary">Primary</span>
                         </div>
                         <div class="tree-children">
-                            <div class="tree-node level-2">Includes all tour services: hotels, transport, guides, entrance fees, most meals</div>
+                            <div class="tree-node level-2">Represents all tour services: hotels, transport, guides, entrance fees, most meals</div>
+                            <div class="tree-node level-2">
+                                <span>📊 Per Pax Allotment</span>
+                                <div class="inventory-detail">
+                                    Inventory driver: Per Person (each passenger consumes 1 unit of capacity)
+                                </div>
+                            </div>
                             <div class="tree-node level-2">
                                 <span>📦 Inventory Contracts linked to this component</span>
                                 <div class="inventory-detail">
@@ -1069,10 +1074,9 @@
 
                         <!-- All Land Components (Same as Land-Only) -->
                         <div class="tree-node level-1 required">
-                            <span>🎎 Tour Inventory & Pricing</span>
+                            <span>🎎 Tour Inventory (Per Pax)</span>
                             <span class="badge-required">Required</span>
-                            <span class="badge-primary">Primary</span>
-                            <div class="text-xs text-kaptio-grey-300 ml-2">(All tour services included)</div>
+                            <div class="text-xs text-kaptio-grey-300 ml-2">(Represents all tour services)</div>
                         </div>
 
                         <!-- Room Configuration -->
@@ -1218,10 +1222,11 @@
       "commission": "5%"
     },
     {
-      "name": "Tour Inventory & Pricing",
+      "name": "Tour Inventory (Per Pax)",
       "type": "Container Service",
       "required": true,
-      "inventoryDriver": "Per Pax"
+      "inventoryDriver": "Per Pax",
+      "note": "Per Pax = each passenger consumes 1 unit of capacity. Represents all tour services."
     },
     {
       "name": "Room Configuration",
@@ -2440,26 +2445,49 @@
                     </p>
                 </div>
 
-                <div class="mt-6 bg-kaptio-yellow-400 bg-opacity-20 rounded-lg p-4">
-                    <h4 class="font-semibold text-kaptio-black mb-3 text-sm">💡 Advanced: Room Type-Specific Inventory</h4>
-                    <p class="text-kaptio-black text-sm leading-relaxed mb-3">
-                        You can control inventory separately for each room type. This is useful when you have limited single rooms but plenty of doubles.
-                    </p>
-                    <div class="bg-white rounded p-3 text-xs">
-                        <div class="mb-2 font-semibold text-kaptio-primary-800">Example Scenario:</div>
-                        <div class="space-y-1 text-kaptio-grey-300">
-                            <div>• Hotel Contract: 20 total rooms</div>
-                            <div>• But only: 5 singles, 15 doubles/twins</div>
+                <div class="mt-6 bg-kaptio-primary-50 rounded-lg p-6">
+                    <h4 class="font-semibold text-kaptio-primary-800 mb-4 text-lg">🔑 Understanding Inventory Drivers</h4>
+                    
+                    <div class="mb-6">
+                        <h5 class="font-semibold text-kaptio-black mb-3 text-sm">Per Pax (Per Person Allotment)</h5>
+                        <p class="text-kaptio-black text-sm leading-relaxed mb-3">
+                            <strong>Tour Inventory (Per Pax)</strong> means each passenger consumes <strong>1 unit</strong> of capacity. 
+                            If you have 20 capacity and book 12 passengers, you have 8 units remaining—regardless of room configuration.
+                        </p>
+                        <div class="bg-white rounded p-4 text-xs">
+                            <div class="space-y-2 text-kaptio-black">
+                                <div><strong>Example:</strong> 12 passengers book (6 singles, 3 couples in doubles)</div>
+                                <div>Per Pax inventory: <strong>12 units consumed</strong> (one per person)</div>
+                                <div>Room inventory: 9 rooms consumed (6 singles + 3 doubles)</div>
+                                <div class="text-kaptio-grey-300 mt-2">
+                                    Per Pax tracks people count. Room inventory tracks physical rooms. Both work together.
+                                </div>
+                            </div>
                         </div>
-                        <div class="mt-3 mb-2 font-semibold text-kaptio-primary-800">How to Configure:</div>
-                        <div class="space-y-1 text-kaptio-black">
-                            <div>1. Create Inventory Contract A: "Hotel - Single Rooms" (5 capacity)</div>
-                            <div>2. Create Inventory Contract B: "Hotel - Double/Twin Rooms" (15 capacity)</div>
-                            <div>3. Link Contract A to Single room price category</div>
-                            <div>4. Link Contract B to Double/Twin price categories</div>
-                        </div>
-                        <div class="mt-3 text-kaptio-grey-300">
-                            Result: Single rooms sell out after 5 bookings, but Double/Twin still available up to 15 bookings.
+                    </div>
+
+                    <div>
+                        <h5 class="font-semibold text-kaptio-black mb-3 text-sm">Room Allotment</h5>
+                        <p class="text-kaptio-black text-sm leading-relaxed mb-3">
+                            <strong>Room Configuration</strong> uses Room-based inventory. A Twin/Double room consumes <strong>1 room unit</strong>, 
+                            regardless of how many people occupy it.
+                        </p>
+                    </div>
+
+                    <div class="mt-6 pt-6 border-t border-kaptio-grey-200">
+                        <h5 class="font-semibold text-kaptio-black mb-3 text-sm">💡 Advanced: Room Type-Specific Inventory</h5>
+                        <p class="text-kaptio-black text-sm leading-relaxed mb-3">
+                            You can control inventory separately for each room type. Useful when you have limited singles.
+                        </p>
+                        <div class="bg-white rounded p-3 text-xs">
+                            <div class="mb-2 font-semibold text-kaptio-primary-800">Example:</div>
+                            <div class="space-y-1 text-kaptio-grey-300">
+                                <div>• Total capacity: 20 passengers (Per Pax)</div>
+                                <div>• Room inventory: 5 singles, 15 doubles/twins</div>
+                            </div>
+                            <div class="mt-2 text-kaptio-black">
+                                Result: Singles sell out after 5 bookings. Doubles still available for remaining 15 pax capacity.
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -3045,7 +3073,12 @@
         function loadBundleJSON(bundleName, elementId) {
             const bundleUrl = `package-bundles/${bundleName}.json`;
             fetch(bundleUrl)
-                .then(response => response.json())
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`Bundle not found (${response.status}). Generate it by running: node package-extractor/extract-package.js`);
+                    }
+                    return response.json();
+                })
                 .then(data => {
                     const element = document.getElementById(elementId);
                     if (element) {
@@ -3055,7 +3088,12 @@
                 .catch(error => {
                     const element = document.getElementById(elementId);
                     if (element) {
-                        element.textContent = `Error loading bundle: ${error.message}\n\nNote: Bundle JSON files are generated by running the extraction script.`;
+                        const errorMessage = error.message.includes('not found') || error.message.includes('NetworkError') || error.message.includes('Failed to fetch')
+                            ? `📦 Bundle Generation Required\n\nThis JSON bundle hasn't been generated yet or the HTML file isn't being served via HTTP.\n\n🔧 To generate the bundle, run:\n   cd package-extractor\n   node extract-package.js --packageId a29J8000000IKF9IAO --output ../package-bundles/${bundleName}.json\n\n🌐 To view bundles in browser:\n   Option 1: Serve this directory with a local HTTP server:\n             python3 -m http.server 8000\n             Then open: http://localhost:8000/gold-config-package-showcase.html\n   \n   Option 2: View the bundle directly:\n             Open package-bundles/${bundleName}.json in your editor\n\n📄 The bundle contains 85+ records with all package dependencies ready for deployment.`
+                            : `Error loading bundle: ${error.message}`;
+                        element.textContent = errorMessage;
+                        element.style.whiteSpace = 'pre-wrap';
+                        element.style.fontSize = '0.85rem';
                     }
                 });
         }
