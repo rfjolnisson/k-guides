@@ -323,7 +323,6 @@
                 <a href="#air-land" class="text-kaptio-grey-300 hover:text-kaptio-primary-400 whitespace-nowrap">Air+Land</a>
                 <a href="#combo" class="text-kaptio-grey-300 hover:text-kaptio-primary-400 whitespace-nowrap">Combo</a>
                 <a href="#linked" class="text-kaptio-grey-300 hover:text-kaptio-primary-400 whitespace-nowrap">Linked</a>
-                <a href="#extensions" class="text-kaptio-grey-300 hover:text-kaptio-primary-400 whitespace-nowrap">Extensions</a>
                 <a href="#payments" class="text-kaptio-grey-300 hover:text-kaptio-primary-400 whitespace-nowrap">Payments</a>
                 <a href="#inventory" class="text-kaptio-grey-300 hover:text-kaptio-primary-400 whitespace-nowrap">Inventory</a>
                 <a href="#content" class="text-kaptio-grey-300 hover:text-kaptio-primary-400 whitespace-nowrap">Content</a>
@@ -386,7 +385,7 @@
 
             <div class="bg-kaptio-primary-800 text-white rounded-xl p-8 mb-12">
                 <h3 class="text-kaptio-yellow-400 mb-6 font-semibold text-xl">The Core Definitions</h3>
-                <div class="grid md:grid-cols-2 gap-6 text-sm">
+                <div class="grid md:grid-cols-3 gap-6 text-sm">
                     <div class="bg-white bg-opacity-10 rounded-lg p-4">
                         <div class="font-semibold text-kaptio-yellow-400 mb-2">Principle Package</div>
                         <div class="opacity-90">A standalone tour (single or multi-destination) that can be sold independently</div>
@@ -395,17 +394,12 @@
                     <div class="bg-white bg-opacity-10 rounded-lg p-4">
                         <div class="font-semibold text-kaptio-yellow-400 mb-2">Combo Package</div>
                         <div class="opacity-90">Two or more Principle Tours combined into one product</div>
-                        <div class="text-xs opacity-75 mt-2">Example: South Korea tour + Japan tour = Combo</div>
+                        <div class="text-xs opacity-75 mt-2">Example: South Korea + Japan</div>
                     </div>
                     <div class="bg-white bg-opacity-10 rounded-lg p-4">
                         <div class="font-semibold text-kaptio-yellow-400 mb-2">Linked Package</div>
                         <div class="opacity-90">One Principle Tour + one Sub Tour (both in same package)</div>
-                        <div class="text-xs opacity-75 mt-2">Example: Egypt (Principle) + Jordan (Sub) = Linked</div>
-                    </div>
-                    <div class="bg-white bg-opacity-10 rounded-lg p-4">
-                        <div class="font-semibold text-kaptio-yellow-400 mb-2">Extension Tour</div>
-                        <div class="opacity-90">Tour Service that CANNOT be booked separately (must add to base tour)</div>
-                        <div class="text-xs opacity-75 mt-2">Example: Alexandria Extension (only bookable with Egypt)</div>
+                        <div class="text-xs opacity-75 mt-2">Example: Egypt (Principle) + Jordan (Sub)</div>
                     </div>
                 </div>
             </div>
@@ -1339,18 +1333,12 @@
                             <span class="text-xs text-kaptio-grey-300 ml-2">(Umbrella: Manages pricing & inventory at combo level)</span>
                         </div>
 
-                        <!-- South Korea Segment -->
-                        <div class="tree-node level-1 required">
-                            <span>🇰🇷 South Korea Tour Inventory</span>
-                            <span class="badge-required">Days 1-12</span>
-                            <span class="text-xs text-kaptio-grey-300 ml-2">(Ensures proper booking structure)</span>
-                        </div>
-
-                        <!-- South Korea Room Config -->
-                        <div class="tree-node level-1 required" onclick="toggleNode(this)">
+                        <!-- Combo Room Configuration (Umbrella) -->
+                        <div class="tree-node level-1 required" onclick="toggleNode(this)" style="background: #FFEBC6; border-left-color: #FFBC42;">
                             <span class="expand-icon">▼</span>
-                            <span>🛌 South Korea Room Configuration</span>
-                            <span class="badge-required">Days 1-12</span>
+                            <span>🛌 Combo Room Configuration</span>
+                            <span class="badge-primary">Primary</span>
+                            <span class="text-xs text-kaptio-grey-300 ml-2">(Umbrella: Combo-level pricing)</span>
                         </div>
                         <div class="tree-children">
                             <div class="tree-node level-2">
@@ -1365,6 +1353,26 @@
                                 <span>🟩 Twin Room</span>
                                 <span class="price-detail">$7,700</span>
                             </div>
+                        </div>
+
+                        <!-- South Korea Segment -->
+                        <div class="tree-node level-1 required">
+                            <span>🇰🇷 South Korea Tour Inventory</span>
+                            <span class="badge-required">Days 1-12</span>
+                            <span class="text-xs text-kaptio-grey-300 ml-2">(Ensures proper booking structure)</span>
+                        </div>
+
+                        <!-- South Korea Room Config -->
+                        <div class="tree-node level-1 required" onclick="toggleNode(this)">
+                            <span class="expand-icon">▼</span>
+                            <span>🛌 South Korea Room Configuration</span>
+                            <span class="badge-required">Days 1-12</span>
+                        </div>
+                        <div class="tree-children">
+                            <div class="tree-node level-2">🟦 Single Room</div>
+                            <div class="tree-node level-2">🟩 Double Room</div>
+                            <div class="tree-node level-2">🟩 Twin Room</div>
+                            <div class="tree-node level-2 text-xs text-kaptio-grey-300">Ensures proper bed type assignment (pricing at combo level)</div>
                         </div>
 
                         <!-- Bridge Component (CRITICAL!) -->
@@ -1393,18 +1401,10 @@
                             <span class="badge-required">Days 13-26</span>
                         </div>
                         <div class="tree-children">
-                            <div class="tree-node level-2">
-                                <span>🟦 Single Room</span>
-                                <span class="price-detail">$9,200 <span class="supplement">(+$1,500)</span></span>
-                            </div>
-                            <div class="tree-node level-2">
-                                <span>🟩 Double Room</span>
-                                <span class="price-detail">$7,700</span>
-                            </div>
-                            <div class="tree-node level-2">
-                                <span>🟩 Twin Room</span>
-                                <span class="price-detail">$7,700</span>
-                            </div>
+                            <div class="tree-node level-2">🟦 Single Room</div>
+                            <div class="tree-node level-2">🟩 Double Room</div>
+                            <div class="tree-node level-2">🟩 Twin Room</div>
+                            <div class="tree-node level-2 text-xs text-kaptio-grey-300">Ensures proper bed type assignment (pricing at combo level)</div>
                         </div>
 
                         <!-- Required Extras -->
@@ -2003,141 +2003,6 @@
         <div class="h-px bg-kaptio-grey-100 my-16"></div>
 
         <!-- Extension Tours -->
-        <section id="extensions" class="section py-16">
-            <div class="text-sm font-semibold text-kaptio-primary-400 mb-4 uppercase tracking-wide">Package Type 7</div>
-            <h2 class="text-4xl font-bold text-kaptio-primary-800 mb-8">Extension Tours</h2>
-            
-            <div class="bg-kaptio-secondary-400 bg-opacity-20 rounded-xl p-8 mb-12">
-                <h3 class="font-semibold text-kaptio-black mb-4 text-xl">The Extension Model</h3>
-                <p class="text-kaptio-black text-lg leading-relaxed">
-                    Extension Tours are different from Linked Packages. An Extension Tour is a Tour Service that <strong>cannot be booked separately</strong>—it must be added to a specific base tour.
-                </p>
-            </div>
-
-            <div class="grid md:grid-cols-2 gap-8 mb-12">
-                <div class="bg-white rounded-xl shadow-lg p-8">
-                    <h4 class="font-semibold text-kaptio-primary-800 mb-4 text-lg">Linked Package (Jordan)</h4>
-                    <div class="space-y-3 text-sm text-kaptio-black">
-                        <div>• Jordan is a Sub Tour in the Linked package</div>
-                        <div>• Can be booked with Egypt or standalone (separate package exists)</div>
-                        <div>• Customer chooses at booking time</div>
-                        <div class="text-green-600 font-medium mt-3">✓ Jordan CAN sell separately</div>
-                    </div>
-                </div>
-
-                <div class="bg-white rounded-xl shadow-lg p-8 border-l-4 border-kaptio-secondary-400">
-                    <h4 class="font-semibold text-kaptio-primary-800 mb-4 text-lg">Extension Tour (Alexandria)</h4>
-                    <div class="space-y-3 text-sm text-kaptio-black">
-                        <div>• Alexandria is an Extension Tour Service</div>
-                        <div>• CANNOT be booked separately</div>
-                        <div>• Must be added to Egypt base tour</div>
-                        <div class="text-kaptio-action font-medium mt-3">✗ Alexandria CANNOT sell alone</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="scenario-card mb-12">
-                <h3 class="text-kaptio-primary-800 mb-6 font-semibold text-xl">Real-World Example: Alexandria Extension</h3>
-                <p class="text-kaptio-black mb-4">
-                    Your Egypt tour includes Cairo, Luxor, and Aswan (9 days). Some customers want to add Alexandria (2 days). 
-                    But Alexandria doesn't make sense as a standalone product—it's too short and requires Egypt as context.
-                </p>
-                
-                <div class="bg-kaptio-primary-50 rounded-lg p-6 mb-4">
-                    <h4 class="font-semibold text-kaptio-primary-800 mb-3 text-sm">How It Appears in Booking:</h4>
-                    <div class="space-y-2 text-sm">
-                        <div class="border-l-4 border-kaptio-primary-400 pl-4">
-                            <strong>Base Tour:</strong> Highlights of Egypt (9 days, $4,000)
-                        </div>
-                        <div class="border-l-4 border-kaptio-secondary-400 pl-4">
-                            <strong>Available Extension:</strong> Add Alexandria (+2 days, +$800)
-                        </div>
-                        <div class="text-kaptio-grey-300 text-xs mt-3">
-                            Alexandria only appears as an option when booking Egypt—it's not searchable as a standalone tour.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-white rounded p-4">
-                    <strong class="text-kaptio-black">Configuration:</strong>
-                    <p class="text-kaptio-black text-sm mt-2">
-                        Extension Tours are configured as Tour Services with a flag marking them as "extension-only." 
-                        They appear in the booking wizard as add-ons to their base tour but don't show up in package search.
-                    </p>
-                </div>
-            </div>
-
-            <div class="bg-kaptio-primary-50 rounded-xl p-8">
-                <h3 class="text-kaptio-primary-800 mb-4 font-semibold text-lg">Extension vs Linked vs Combo: Quick Reference</h3>
-                <div class="space-y-3 text-sm">
-                    <div class="bg-white rounded p-4">
-                        <strong class="text-kaptio-black">Combo Package:</strong> 2+ Principle Tours combined (e.g., Korea + Japan). Both tours can sell separately.
-                    </div>
-                    <div class="bg-white rounded p-4">
-                        <strong class="text-kaptio-black">Linked Package:</strong> 1 Principle Tour + 1 Sub Tour (e.g., Egypt + Jordan). Jordan is a Sub Tour in the package.
-                    </div>
-                    <div class="bg-white rounded p-4 border-l-4 border-kaptio-secondary-400">
-                        <strong class="text-kaptio-black">Extension Tour:</strong> Tour Service that CANNOT book separately (e.g., Alexandria). Must be added to base tour.
-                    </div>
-                </div>
-
-                <!-- JSON Structure Viewer for Extension -->
-                <div class="bg-kaptio-secondary-400 text-white rounded-xl p-6 mt-8">
-                    <div class="flex items-center justify-between mb-4">
-                        <h4 class="font-semibold text-white text-lg">📋 Extension Tour Configuration (JSON)</h4>
-                        <button 
-                            disabled 
-                            class="bg-kaptio-grey-300 text-white px-4 py-2 rounded-lg font-medium cursor-not-allowed opacity-60"
-                            title="Coming soon: Deploy this configuration directly to your environment">
-                            🚀 Deploy to My Environment
-                            <span class="text-xs ml-2">(Coming Soon)</span>
-                        </button>
-                    </div>
-                    <details class="bg-white bg-opacity-10 rounded-lg">
-                        <summary class="cursor-pointer p-4 font-medium hover:bg-white hover:bg-opacity-20 rounded-lg transition-all">
-                            Click to view extension structure →
-                        </summary>
-                        <div class="p-4">
-                            <pre class="text-xs overflow-x-auto bg-kaptio-black bg-opacity-40 rounded p-4"><code>{
-  "extensionName": "Alexandria Extension",
-  "extensionType": "Tour Service",
-  "canBookSeparately": false,
-  "mustAddToTour": "Highlights of Egypt",
-  "duration": 2,
-  "configuration": {
-    "type": "Extension",
-    "required": false,
-    "showInPackageSearch": false,
-    "showInBookingWizard": true,
-    "applicablePackages": ["Highlights of Egypt - Air & Land"]
-  },
-  "pricing": {
-    "addOnPrice": 800,
-    "currency": "USD",
-    "pricingModel": "Add-on to base package"
-  },
-  "services": [
-    {
-      "name": "Alexandria Hotels",
-      "type": "Accommodation",
-      "nights": 2
-    },
-    {
-      "name": "Alexandria Guide & Transport",
-      "type": "Service Bundle"
-    }
-  ],
-  "note": "Extension Tours are Tour Services marked as extension-only. They appear in booking wizard but not package search."
-}</code></pre>
-                        </div>
-                    </details>
-                </div>
-            </div>
-        </section>
-
-        <!-- Divider -->
-        <div class="h-px bg-kaptio-grey-100 my-16"></div>
-
 
         <!-- Payment Schedules -->
         <section id="payments" class="section py-16">
