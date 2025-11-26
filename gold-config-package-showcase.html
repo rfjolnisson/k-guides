@@ -335,9 +335,49 @@
     <!-- Main Content -->
     <main class="max-w-5xl mx-auto px-8">
 
+        <!-- Introduction -->
+        <section id="introduction" class="section py-16">
+            <div class="text-sm font-semibold text-kaptio-primary-400 mb-4 uppercase tracking-wide">About This Guide</div>
+            <h2 class="text-4xl font-bold text-kaptio-primary-800 mb-8">What is the Gold Config?</h2>
+            
+            <div class="bg-white rounded-xl shadow-lg p-8 mb-12">
+                <p class="text-xl text-kaptio-black leading-relaxed mb-6">
+                    The <strong>Gold Config</strong> is a set of pre-configured sample packages in your Kaptio sandbox that demonstrate 
+                    best-practice implementation patterns for tour products.
+                </p>
+                <p class="text-kaptio-black leading-relaxed mb-6">
+                    Think of it as your reference implementation. When you're wondering "how should I configure a multi-destination tour?" 
+                    or "how do I handle flight pricing?"—open the Gold Config packages in your sandbox and see exactly how it's done.
+                </p>
+                <div class="bg-kaptio-primary-50 rounded-lg p-6">
+                    <h3 class="font-semibold text-kaptio-primary-800 mb-4">What You'll Find in the Gold Config:</h3>
+                    <div class="grid md:grid-cols-2 gap-4 text-sm">
+                        <ul class="space-y-2 text-kaptio-black">
+                            <li>✓ Complete package structures for all 7 types</li>
+                            <li>✓ Real component configurations</li>
+                            <li>✓ Payment schedule examples</li>
+                            <li>✓ Cancellation policy templates</li>
+                        </ul>
+                        <ul class="space-y-2 text-kaptio-black">
+                            <li>✓ Inventory contract patterns</li>
+                            <li>✓ Room type and pricing setups</li>
+                            <li>✓ Flight placeholder configurations</li>
+                            <li>✓ Multi-segment tour structures</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pull-quote">
+                "Use the Gold Config as your template. Copy its patterns, adapt its structures, and customize for your specific tour products."
+            </div>
+        </section>
+
+        <!-- Divider -->
+        <div class="h-px bg-kaptio-grey-100 my-16"></div>
+
         <!-- Quick Decision Guide -->
         <section id="decision" class="section py-16">
-            <div class="text-sm font-semibold text-kaptio-primary-400 mb-4 uppercase tracking-wide">Start Here</div>
             <h2 class="text-4xl font-bold text-kaptio-primary-800 mb-8">Understanding the Seven Package Types</h2>
             
             <p class="text-xl text-kaptio-black font-light leading-relaxed mb-12">
@@ -370,83 +410,6 @@
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 gap-8 mb-12">
-                <!-- Question 1 -->
-                <div class="bg-white rounded-xl p-8 shadow-lg border-l-4 border-kaptio-yellow-400">
-                    <h3 class="text-kaptio-primary-800 mb-6 font-semibold text-xl">Question 1: Are flights included in your pricing?</h3>
-                    <div class="grid md:grid-cols-2 gap-6">
-                        <div class="bg-kaptio-primary-50 rounded-lg p-6">
-                            <div class="font-medium text-kaptio-primary-800 mb-2 text-lg">Land-Only</div>
-                            <div class="text-kaptio-grey-300 mb-4">"Flights not included - customers arrange their own"</div>
-                            <div class="text-kaptio-primary-400 font-semibold">→ Land-Only Package</div>
-                        </div>
-                        <div class="bg-kaptio-primary-50 rounded-lg p-6">
-                            <div class="font-medium text-kaptio-primary-800 mb-2 text-lg">All-Inclusive</div>
-                            <div class="text-kaptio-grey-300 mb-4">"Price includes international flights"</div>
-                            <div class="text-kaptio-primary-400 font-semibold">→ Air+Land Package</div>
-                            <div class="text-xs text-kaptio-grey-300 mt-3 italic">Operators like Bunnik differentiate with all-inclusive pricing</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Question 2 -->
-                <div class="bg-white rounded-xl p-8 shadow-lg border-l-4 border-kaptio-yellow-400">
-                    <h3 class="text-kaptio-primary-800 mb-6 font-semibold text-xl">Question 2: Are you combining multiple existing tours?</h3>
-                    <div class="grid md:grid-cols-2 gap-6">
-                        <div class="bg-kaptio-primary-50 rounded-lg p-6">
-                            <div class="font-medium text-kaptio-primary-800 mb-2 text-lg">Combining 2+ Tours</div>
-                            <div class="text-kaptio-grey-300 mb-4">"We have a Korea tour and Japan tour - sell them together"</div>
-                            <div class="text-kaptio-primary-400 font-semibold">→ Combo Package</div>
-                            <div class="text-xs text-kaptio-grey-300 mt-2">Both tours are Principle Tours that can also sell separately</div>
-                        </div>
-                        <div class="bg-kaptio-primary-50 rounded-lg p-6">
-                            <div class="font-medium text-kaptio-primary-800 mb-2 text-lg">Single Tour</div>
-                            <div class="text-kaptio-grey-300 mb-4">"This is one tour product (may visit multiple countries)"</div>
-                            <div class="text-kaptio-primary-400 font-semibold">→ Principle Package</div>
-                            <div class="text-xs text-kaptio-grey-300 mt-2">Example: South American Discovery (5 countries, 1 tour)</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Question 3 -->
-                <div class="bg-white rounded-xl p-8 shadow-lg border-l-4 border-kaptio-yellow-400">
-                    <h3 class="text-kaptio-primary-800 mb-6 font-semibold text-xl">Question 3: Do you have a base tour with add-on options?</h3>
-                    <div class="grid md:grid-cols-3 gap-4">
-                        <div class="bg-kaptio-primary-50 rounded-lg p-6">
-                            <div class="font-medium text-kaptio-primary-800 mb-2">Principle + Sub Tour</div>
-                            <div class="text-kaptio-grey-300 mb-3 text-sm">"Egypt tour with optional Jordan add-on"</div>
-                            <div class="text-kaptio-primary-400 font-semibold">→ Linked Package</div>
-                        </div>
-                        <div class="bg-kaptio-primary-50 rounded-lg p-6">
-                            <div class="font-medium text-kaptio-primary-800 mb-2">Mandatory Add-On</div>
-                            <div class="text-kaptio-grey-300 mb-3 text-sm">"Alexandria can only be added to Egypt tour"</div>
-                            <div class="text-kaptio-primary-400 font-semibold">→ Extension Tour</div>
-                        </div>
-                        <div class="bg-kaptio-primary-50 rounded-lg p-6">
-                            <div class="font-medium text-kaptio-primary-800 mb-2">No Add-Ons</div>
-                            <div class="text-kaptio-grey-300 mb-3 text-sm">"Single complete tour"</div>
-                            <div class="text-kaptio-primary-400 font-semibold">→ Principle</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Question 4 -->
-                <div class="bg-white rounded-xl p-8 shadow-lg border-l-4 border-kaptio-yellow-400">
-                    <h3 class="text-kaptio-primary-800 mb-6 font-semibold text-xl">Question 4: What's your capacity and yield strategy?</h3>
-                    <div class="grid md:grid-cols-2 gap-6">
-                        <div class="bg-kaptio-primary-50 rounded-lg p-6">
-                            <div class="font-medium text-kaptio-primary-800 mb-2 text-lg">Minimum to Guarantee</div>
-                            <div class="text-kaptio-grey-300 mb-4">"Need 10 passengers for yield optimization"</div>
-                            <div class="text-kaptio-grey-300 text-sm">Configure minimum capacity</div>
-                        </div>
-                        <div class="bg-kaptio-primary-50 rounded-lg p-6">
-                            <div class="font-medium text-kaptio-primary-800 mb-2 text-lg">Flexible Capacity</div>
-                            <div class="text-kaptio-grey-300 mb-4">"Can operate with any number"</div>
-                            <div class="text-kaptio-grey-300 text-sm">Leave minimum blank</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
             <!-- Decision Matrix -->
             <div class="bg-white rounded-xl shadow-lg p-8">
@@ -686,6 +649,78 @@
                     </ol>
                     <p class="text-xs text-kaptio-grey-300 mt-3 italic">💡 Tip: Use the tree above as your map - each item you see here exists as a record in your sandbox</p>
                 </div>
+            </div>
+
+            <!-- JSON Structure Viewer -->
+            <div class="bg-kaptio-primary-800 text-white rounded-xl p-6 mb-12">
+                <div class="flex items-center justify-between mb-4">
+                    <h4 class="font-semibold text-kaptio-yellow-400 text-lg">📋 Package Configuration Structure (JSON)</h4>
+                    <button 
+                        disabled 
+                        class="bg-kaptio-grey-300 text-white px-4 py-2 rounded-lg font-medium cursor-not-allowed opacity-60"
+                        title="Coming soon: Deploy this configuration directly to your environment">
+                        🚀 Deploy to My Environment
+                        <span class="text-xs ml-2">(Coming Soon)</span>
+                    </button>
+                </div>
+                <details class="bg-white bg-opacity-10 rounded-lg">
+                    <summary class="cursor-pointer p-4 font-medium hover:bg-white hover:bg-opacity-20 rounded-lg transition-all">
+                        Click to view package structure →
+                    </summary>
+                    <div class="p-4">
+                        <pre class="text-xs overflow-x-auto bg-kaptio-black bg-opacity-40 rounded p-4"><code>{
+  "packageName": "Japan Discovery - Land Only",
+  "packageType": "Principle",
+  "duration": 13,
+  "capacity": {
+    "minimum": 10,
+    "maximum": 20
+  },
+  "serviceLevelMode": "Standard",
+  "components": [
+    {
+      "name": "Tour Inventory & Pricing",
+      "type": "Container Service",
+      "required": true,
+      "inventoryDriver": "Per Pax"
+    },
+    {
+      "name": "Room Configuration",
+      "type": "Price Categories",
+      "required": true,
+      "primary": true,
+      "inventoryDriver": "Room",
+      "roomTypes": [
+        {"type": "Single", "price": 10160, "currency": "AUD"},
+        {"type": "Twin/Double", "price": 17574, "currency": "AUD", "occupancy": 2}
+      ]
+    },
+    {
+      "name": "Pre-Stay - Tokyo",
+      "type": "Accommodation",
+      "required": false,
+      "dateRestricted": "Mar 1-31, 2026"
+    },
+    {
+      "name": "Post-Stay - Osaka",
+      "type": "Accommodation",
+      "required": false,
+      "dateRestricted": "Apr 1-15, 2026"
+    },
+    {
+      "name": "Optional Excursion",
+      "type": "Activity",
+      "required": false
+    }
+  ],
+  "paymentSchedule": "Standard: Deposit, Progress, Final Balance",
+  "cancellationPolicy": "Tiered (61+ days → 30-0 days)"
+}</code></pre>
+                        <p class="text-xs text-kaptio-grey-300 mt-3 italic">
+                            💡 This JSON represents the package structure. Soon you'll be able to deploy pre-configured packages to your environment with one click.
+                        </p>
+                    </div>
+                </details>
             </div>
 
             <div class="bg-white rounded-xl shadow-lg p-6 mb-12">
