@@ -31,16 +31,9 @@
   [headers.values]
     Cache-Control = "public, max-age=3600"
 
-# Redirects - but exclude actual files and JSON bundles
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
-  force = false
-  conditions = {Role = ["missing"]}
-  
-# Note: force = false means only redirect if the file doesn't exist
-# This allows JSON files, HTML files, and other assets to be served normally
+# Note: Removed the catch-all redirect to allow proper file serving
+# Static files (HTML, JSON, etc.) will be served directly
+# Only implement redirects if you need specific URL rewrites
 
 
 
