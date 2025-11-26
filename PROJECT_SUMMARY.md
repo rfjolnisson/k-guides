@@ -34,11 +34,12 @@
 17. Back Cover with Key Takeaways
 
 **Real Data Used:**
-- 13 packages from ktdev45 org
+- 14 packages from ktdev45 org
 - Payment schedule configurations with actual rules
 - Cancellation policy configurations with tiered fees
 - Component structures with field values
 - Allotment architecture
+- Multi-supplier configurations across regional DMCs
 
 **Design:** Follows Kaptio Design System (Lexend font, teal primary, yellow CTA)
 
@@ -310,6 +311,8 @@ Each with its own capacity, release tiers, and supplier contracts.
 ✅ Payment schedule architecture documented  
 ✅ Cancellation policy structure explained  
 ✅ Inventory/allotment system mapped  
+✅ Multi-supplier principle package model documented  
+✅ Geographic component segmentation patterns explained  
 ✅ Magazine-style presentation following kaptio-connect-showcase format  
 ✅ Print-optimized for PDF generation  
 ✅ Kaptio Design System compliance  
@@ -323,13 +326,15 @@ Each with its own capacity, release tiers, and supplier contracts.
 | File | Type | Size | Purpose |
 |------|------|------|---------|
 | index.html | HTML | 16 KB | Navigation hub |
-| gold-config-package-showcase.html | HTML | 103 KB | Main guide (21 pages) |
+| gold-config-package-showcase.html | HTML | 130+ KB | Main guide (25+ pages with South America example) |
 | PACKAGE_SCHEMA_ANALYSIS.md | Markdown | 33 KB | Field reference |
 | COMPLETE_DATA_MODEL_REFERENCE.md | Markdown | 31 KB | Object relationships |
-| README.md | Markdown | This file | Documentation guide |
+| README.md | Markdown | Updated | Documentation guide |
 | PROJECT_SUMMARY.md | Markdown | This file | Project completion summary |
+| package-bundles/japan-discovery-land-only.json | JSON | 95 KB | Japan package bundle (83 records) |
+| package-bundles/south-american-discovery.json | JSON | 280 KB | South America package bundle (249 records) |
 
-**Total:** 6 files, ~184 KB documentation
+**Total:** 8 core files + bundles, ~570+ KB documentation + data
 
 ---
 
@@ -556,16 +561,53 @@ We've created guides that:
 - **Guide** implementation with step-by-step checklists
 - **Present** professionally for PDF sharing
 
-**Status:** Phase 1 Complete ✅  
+**Status:** Phase 1 Complete ✅ | v1.1 Released (Nov 26, 2025)  
 **Quality:** Production-ready  
 **Format:** Magazine-style HTML + Technical markdown  
 **Audience:** Implementation teams, business analysts, developers
 
 ---
 
-**Total Time:** ~2 hours (exploration + documentation + design)  
-**Total Output:** 6 files, 184 KB, 21-page showcase guide  
-**Ready for:** M1 demo prep, implementation teams, stakeholder presentations
+## Version History
+
+### v1.1 (November 26, 2025) - South American Discovery Integration
+
+**Added:**
+- South American Discovery package example (33 days, 249 records)
+- Multi-country, multi-supplier principle model documentation
+- Geographic component segmentation pattern analysis
+- Comparison table: Single vs Multi-Country Principle packages
+- 5 Regional DMC supplier relationships documented
+
+**Key Insights:**
+- Package classification is behavior-based, not geography-based
+- Principle packages can span multiple countries with multiple suppliers
+- Components can be segmented geographically with day ranges
+- Same field-based configuration applies regardless of geographic scope
+
+**Files Updated:**
+- `gold-config-package-showcase.html` (+27 KB, now 25+ pages)
+- `package-bundles/south-american-discovery.json` (new, 280 KB)
+- `README.md` (updated examples and bundles section)
+- `PROJECT_SUMMARY.md` (this file)
+
+---
+
+### v1.0 (November 25, 2025) - Initial Release
+
+**Created:**
+- Gold Config Package Architecture showcase (complete)
+- Package Schema Analysis (complete)
+- Complete Data Model Reference (complete)
+- Central index page
+- Package extractor system
+- Japan Discovery bundle (83 records)
+
+---
+
+**Total Time:** ~4 hours (Phase 1: 2hr exploration + Phase 2: 2hr South America integration)  
+**Total Output:** 8 files, 570+ KB, 25+ page showcase guide with 2 complete package examples  
+**Ready for:** M1 demo prep, implementation teams, stakeholder presentations, multi-supplier configuration training
 
 
 

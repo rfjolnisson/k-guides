@@ -1,0 +1,455 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Sophia Sheet Simplified Contract",
+  "version": "1.0",
+  "description": "Simplified data contract for Bunnik's Sophia Sheet → Kaptio transformation. This schema is ~80% simpler than Gold Config format while capturing all essential package data.",
+  
+  "type": "object",
+  "required": ["package", "components", "pricing", "departures"],
+  
+  "properties": {
+    "package": {
+      "type": "object",
+      "description": "Core package definition",
+      "required": ["name", "duration_days", "type"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Package display name",
+          "example": "South American Discovery"
+        },
+        "duration_days": {
+          "type": "integer",
+          "description": "Tour length in days",
+          "minimum": 1,
+          "example": 15
+        },
+        "type": {
+          "type": "string",
+          "enum": ["land_only", "air_land", "combo_land", "combo_air", "linked"],
+          "description": "Package type (simplified)"
+        },
+        "description": {
+          "type": "string",
+          "description": "Package description/summary"
+        },
+        "capacity": {
+          "type": "object",
+          "properties": {
+            "min": {
+              "type": "integer",
+              "description": "Minimum passengers to guarantee departure",
+              "example": 10
+            },
+            "max": {
+              "type": "integer",
+              "description": "Maximum passengers (coach capacity)",
+              "example": 20
+            }
+          }
+        },
+        "start_location": {
+          "type": "string",
+          "description": "Starting city/location name",
+          "example": "Lima"
+        },
+        "end_location": {
+          "type": "string",
+          "description": "Ending city/location name",
+          "example": "Buenos Aires"
+        },
+        "categories": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Package categories for filtering",
+          "example": ["classic", "history", "food"]
+        },
+        "minimum_age": {
+          "type": "integer",
+          "description": "Minimum age requirement",
+          "example": 18
+        },
+        "pace": {
+          "type": "string",
+          "enum": ["easy", "moderate", "active", "challenging"],
+          "description": "Tour pace/activity level"
+        }
+      }
+    },
+    
+    "components": {
+      "type": "array",
+      "description": "Package components (simplified structure)",
+      "items": {
+        "type": "object",
+        "required": ["name", "type"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Component display name",
+            "example": "Main Tour Inventory"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "tour_inventory",
+              "room_configuration",
+              "accommodation",
+              "activity",
+              "flight_placeholder",
+              "extra"
+            ],
+            "description": "Component type"
+          },
+          "required": {
+            "type": "boolean",
+            "description": "Is this component required?",
+            "default": true
+          },
+          "day_range": {
+            "type": "object",
+            "description": "For multi-segment tours (combos)",
+            "properties": {
+              "start": {"type": "integer"},
+              "end": {"type": "integer"}
+            }
+          },
+          "max_nights": {
+            "type": "integer",
+            "description": "For accommodation components (pre/post stays)"
+          },
+          "room_types": {
+            "type": "array",
+            "items": {"type": "string"},
+            "description": "Available room types (for room_configuration components)",
+            "example": ["single", "double", "twin"]
+          }
+        }
+      }
+    },
+    
+    "pricing": {
+      "type": "object",
+      "description": "Simplified pricing structure",
+      "required": ["currency"],
+      "properties": {
+        "currency": {
+          "type": "string",
+          "description": "ISO currency code",
+          "example": "USD"
+        },
+        "room_prices": {
+          "type": "object",
+          "description": "Base prices by room type",
+          "properties": {
+            "single": {
+              "type": "number",
+              "description": "Price for single room (1 person)"
+            },
+            "double_per_person": {
+              "type": "number",
+              "description": "Price per person in double room"
+            },
+            "twin_per_person": {
+              "type": "number",
+              "description": "Price per person in twin room"
+            }
+          }
+        },
+        "seasonal_pricing": {
+          "type": "array",
+          "description": "Optional seasonal price variations",
+          "items": {
+            "type": "object",
+            "properties": {
+              "season_name": {"type": "string", "example": "High Season"},
+              "date_range": {
+                "type": "object",
+                "properties": {
+                  "start": {"type": "string", "format": "date"},
+                  "end": {"type": "string", "format": "date"}
+                }
+              },
+              "price_modifier": {
+                "type": "number",
+                "description": "Percentage increase/decrease",
+                "example": 15
+              }
+            }
+          }
+        },
+        "single_supplement": {
+          "type": "number",
+          "description": "Additional charge for single room (if not using absolute pricing)",
+          "example": 1500
+        }
+      }
+    },
+    
+    "departures": {
+      "type": "array",
+      "description": "Fixed departure dates with capacity",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["date"],
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date",
+            "description": "Departure date (YYYY-MM-DD)",
+            "example": "2026-03-15"
+          },
+          "capacity": {
+            "type": "integer",
+            "description": "Capacity for this departure (overrides package default)",
+            "example": 20
+          },
+          "status": {
+            "type": "string",
+            "enum": ["active", "guaranteed", "sold_out", "cancelled"],
+            "description": "Departure status",
+            "default": "active"
+          }
+        }
+      }
+    },
+    
+    "payment_schedule": {
+      "type": "object",
+      "description": "Simplified payment schedule (most common pattern)",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["standard_3_tier", "long_lead_4_tier", "full_payment", "custom"],
+          "description": "Predefined payment pattern or custom",
+          "default": "standard_3_tier"
+        },
+        "deposit": {
+          "type": "number",
+          "description": "Initial deposit per person",
+          "example": 500
+        },
+        "progress_payment": {
+          "type": "object",
+          "description": "Second payment (optional)",
+          "properties": {
+            "amount": {"type": "number"},
+            "days_after_booking": {"type": "integer"}
+          }
+        },
+        "final_balance_days_before": {
+          "type": "integer",
+          "description": "Days before departure when balance is due",
+          "example": 60
+        },
+        "custom_rules": {
+          "type": "array",
+          "description": "For custom payment schedules",
+          "items": {
+            "type": "object",
+            "properties": {
+              "amount": {"type": "number"},
+              "type": {"enum": ["deposit", "balance", "percentage"]},
+              "timing": {"type": "string"},
+              "days_offset": {"type": "integer"}
+            }
+          }
+        }
+      }
+    },
+    
+    "cancellation_policy": {
+      "type": "object",
+      "description": "Simplified cancellation policy",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["standard_4_tier", "strict", "flexible", "custom"],
+          "default": "standard_4_tier"
+        },
+        "tiers": {
+          "type": "array",
+          "description": "Cancellation fee tiers (sorted by days_before descending)",
+          "items": {
+            "type": "object",
+            "required": ["days_before", "fee_type"],
+            "properties": {
+              "days_before": {
+                "type": "string",
+                "description": "Days before departure (e.g., '61+', '60-45', '30-0')",
+                "example": "61+"
+              },
+              "fee_type": {
+                "type": "string",
+                "enum": ["fixed", "percentage"],
+                "description": "Fixed amount or percentage of total"
+              },
+              "amount": {
+                "type": "number",
+                "description": "Fee amount (dollars if fixed, % if percentage)",
+                "example": 3000
+              }
+            }
+          }
+        }
+      }
+    },
+    
+    "itinerary": {
+      "type": "array",
+      "description": "Day-by-day itinerary (optional)",
+      "items": {
+        "type": "object",
+        "properties": {
+          "day": {"type": "integer"},
+          "title": {"type": "string"},
+          "description": {"type": "string"},
+          "meals": {
+            "type": "array",
+            "items": {"enum": ["breakfast", "lunch", "dinner"]}
+          },
+          "accommodation": {"type": "string"},
+          "location": {"type": "string"}
+        }
+      }
+    },
+    
+    "hotels": {
+      "type": "array",
+      "description": "Hotel inventory (optional, for detailed configuration)",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {"type": "string"},
+          "location": {"type": "string"},
+          "room_types": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "type": {"enum": ["single", "double", "twin", "triple"]},
+                "capacity": {"type": "integer"}
+              }
+            }
+          },
+          "date_range": {
+            "type": "object",
+            "description": "Date restrictions for this hotel",
+            "properties": {
+              "start": {"type": "string", "format": "date"},
+              "end": {"type": "string", "format": "date"}
+            }
+          }
+        }
+      }
+    },
+    
+    "metadata": {
+      "type": "object",
+      "description": "Extraction metadata (optional)",
+      "properties": {
+        "source": {
+          "type": "string",
+          "description": "Source system/file",
+          "example": "Sophia Sheet - 2026 South American Discovery.xlsx"
+        },
+        "extracted_date": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "extracted_by": {
+          "type": "string",
+          "description": "Person or script that generated this file"
+        },
+        "version": {
+          "type": "string",
+          "description": "Sophia sheet version or season"
+        }
+      }
+    }
+  },
+  
+  "definitions": {
+    "transformation_notes": {
+      "description": "How simplified contract maps to Gold Config",
+      "mappings": [
+        {
+          "from": "package.type = 'land_only'",
+          "to": "Package__c.Categories__c = 'Classic;Land Only'",
+          "note": "Package type determines Categories field value"
+        },
+        {
+          "from": "package.type = 'land_only'",
+          "to": "Package__c.PhysicalInventorySelection__c = 'Mandatory'",
+          "note": "Land packages require physical inventory"
+        },
+        {
+          "from": "package.type = 'air_land'",
+          "to": "Package__c.PhysicalInventorySelection__c = 'NotMandatoryHidden'",
+          "note": "Air+land packages don't require inventory for flights"
+        },
+        {
+          "from": "components[type='tour_inventory']",
+          "to": "Component__c (RecordType='Package_Item', IsMainTourComponent=true)",
+          "note": "Main tour component holds inventory"
+        },
+        {
+          "from": "components[type='room_configuration']",
+          "to": "Component__c (ComponentType='PriceCategories') + Price_Category__c records",
+          "note": "Room config generates price categories for each room type"
+        },
+        {
+          "from": "pricing.room_prices",
+          "to": "Item__c + Item_Price__c + Price_Category__c for each room type",
+          "note": "Expands to full pricing structure"
+        },
+        {
+          "from": "departures[]",
+          "to": "PackageDeparture__c + AllotmentDay__c records",
+          "note": "Each departure generates inventory records"
+        },
+        {
+          "from": "payment_schedule.type = 'standard_3_tier'",
+          "to": "PaymentScheduleConfiguration + 3 PaymentScheduleRule records",
+          "note": "Predefined patterns expand to full rules"
+        },
+        {
+          "from": "cancellation_policy.tiers[]",
+          "to": "CancellationConfiguration + CancellationRule records",
+          "note": "Each tier becomes a rule record"
+        },
+        {
+          "from": "itinerary[]",
+          "to": "PackageDay__c records with content",
+          "note": "Day-by-day content directly mapped"
+        }
+      ]
+    },
+    
+    "intelligent_defaults": {
+      "description": "Values auto-applied if not specified",
+      "defaults": [
+        "Package__c.ServiceLevelMode__c = 'Standard'",
+        "Package__c.DepartureType__c = 'Fixed'",
+        "Package__c.NetPriceSetupChoice__c = 'Dynamic'",
+        "Package__c.SellingPriceSetupChoice__c = 'Dynamic'",
+        "Package__c.IsActive__c = true",
+        "Component[tour_inventory].SelectionType__c = 'Required'",
+        "Component[tour_inventory].PrimaryComponent__c = true",
+        "Component[room_configuration].ComponentType__c = 'PriceCategories'",
+        "AllotmentDay.TotalUnits = Package.capacity.max"
+      ]
+    },
+    
+    "size_comparison": {
+      "simplified_contract": "~100-200 lines of JSON for complete package",
+      "gold_config_bundle": "~3,500 lines (135 records)",
+      "reduction": "~95% less verbose",
+      "complexity_hidden": "Salesforce IDs, parent-child relationships, RecordTypes, namespaces, system fields"
+    }
+  }
+}
+

@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sophia Sheet Adapter | Kaptio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'kaptio-primary-800': '#032E36',
+                        'kaptio-primary-600': '#034955',
+                        'kaptio-primary-400': '#056F82',
+                        'kaptio-yellow-400': '#FFBC42',
+                        'kaptio-grey-300': '#878787',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Lexend', sans-serif;
+        }
+        .tab-button.active {
+            border-bottom: 3px solid #FFBC42;
+            color: #032E36;
+            font-weight: 600;
+        }
+        .drop-zone {
+            border: 3px dashed #B4D4DA;
+            transition: all 0.3s;
+        }
+        .drop-zone.drag-over {
+            border-color: #056F82;
+            background: #EFF5F5;
+        }
+        #jsonEditor {
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+        .record-card {
+            transition: all 0.2s;
+        }
+        .record-card:hover {
+            transform: translateX(4px);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-kaptio-primary-800 to-kaptio-primary-600 text-white py-8">
+        <div class="max-w-6xl mx-auto px-6">
+            <h1 class="text-4xl font-bold mb-2">Sophia Sheet Adapter</h1>
+            <p class="text-lg opacity-90">Transform your Sophia Sheet data into Kaptio packages</p>
+        </div>
+    </header>
+
+    <!-- Tabs -->
+    <div class="bg-white border-b shadow-sm sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="flex space-x-8">
+                <button onclick="showTab(1)" id="tab-1" class="tab-button active py-4 px-2 text-gray-600">
+                    1. Upload
+                </button>
+                <button onclick="showTab(2)" id="tab-2" class="tab-button py-4 px-2 text-gray-400" disabled>
+                    2. Review & Edit
+                </button>
+                <button onclick="showTab(3)" id="tab-3" class="tab-button py-4 px-2 text-gray-400" disabled>
+                    3. Preview Transform
+                </button>
+                <button onclick="showTab(4)" id="tab-4" class="tab-button py-4 px-2 text-gray-400" disabled>
+                    4. Deploy
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="max-w-6xl mx-auto px-6 py-12">
+
+        <!-- Tab 1: Upload -->
+        <div id="content-tab-1" class="tab-content">
+            <h2 class="text-3xl font-bold text-kaptio-primary-800 mb-6">Upload Sophia Sheet Data</h2>
+            
+            <div class="bg-blue-50 border-l-4 border-blue-500 p-6 mb-8">
+                <h3 class="font-semibold text-blue-900 mb-2">📋 Your Workflow:</h3>
+                <ol class="text-sm text-blue-800 space-y-2">
+                    <li><strong>1.</strong> Run your Excel extraction script on the Sophia Sheet</li>
+                    <li><strong>2.</strong> Generate simplified JSON using your script</li>
+                    <li><strong>3.</strong> Upload the JSON here (drag & drop or paste)</li>
+                    <li><strong>4.</strong> Review and edit the extracted data</li>
+                    <li><strong>5.</strong> Transform to Gold Config format</li>
+                    <li><strong>6.</strong> Deploy to your Kaptio Salesforce org</li>
+                </ol>
+            </div>
+
+            <!-- Drop Zone -->
+            <div class="drop-zone rounded-xl p-12 text-center mb-6" id="dropZone">
+                <svg class="w-16 h-16 mx-auto text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+                </svg>
+                <h3 class="text-xl font-semibold text-gray-700 mb-2">Drag & Drop Sophia JSON</h3>
+                <p class="text-gray-500 mb-4">or click to browse files</p>
+                <input type="file" id="fileInput" accept=".json" class="hidden" onchange="handleFileSelect(event)">
+                <button onclick="document.getElementById('fileInput').click()" class="bg-kaptio-primary-400 text-white px-6 py-3 rounded-lg font-medium hover:bg-kaptio-primary-600 transition">
+                    📂 Browse Files
+                </button>
+            </div>
+
+            <!-- Or Paste JSON -->
+            <details class="bg-white rounded-xl shadow-sm border">
+                <summary class="cursor-pointer p-6 font-semibold text-kaptio-primary-800 hover:bg-gray-50">
+                    Or paste your JSON directly →
+                </summary>
+                <div class="p-6 pt-0">
+                    <textarea 
+                        id="jsonPaste" 
+                        class="w-full h-64 p-4 border-2 border-gray-200 rounded-lg font-mono text-sm"
+                        placeholder='Paste your Sophia JSON here...'
+                    ></textarea>
+                    <button onclick="handlePastedJSON()" class="mt-4 bg-kaptio-yellow-400 text-gray-900 px-6 py-3 rounded-lg font-medium hover:bg-yellow-500 transition">
+                        ✨ Load JSON
+                    </button>
+                </div>
+            </details>
+
+            <!-- Example Templates -->
+            <div class="mt-8 bg-white rounded-xl shadow-sm border p-6">
+                <h3 class="font-semibold text-kaptio-primary-800 mb-4">📚 Example Templates:</h3>
+                <div class="space-y-2">
+                    <button onclick="loadExample('south-american-discovery')" class="block w-full text-left p-4 rounded-lg hover:bg-gray-50 border">
+                        <div class="font-medium">South American Discovery</div>
+                        <div class="text-sm text-gray-500">Complete example: 15 days, 5 components, full itinerary</div>
+                    </button>
+                    <button onclick="loadExample('minimal')" class="block w-full text-left p-4 rounded-lg hover:bg-gray-50 border">
+                        <div class="font-medium">Minimal Example</div>
+                        <div class="text-sm text-gray-500">Simplest valid package: 8 days, 2 components, 2 departures</div>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 2: Review & Edit -->
+        <div id="content-tab-2" class="tab-content" style="display:none;">
+            <h2 class="text-3xl font-bold text-kaptio-primary-800 mb-6">Review & Edit Sophia Data</h2>
+            
+            <div id="reviewContent" class="space-y-6">
+                <!-- Package Info Card -->
+                <div class="bg-white rounded-xl shadow-sm border p-6">
+                    <h3 class="font-bold text-xl text-kaptio-primary-800 mb-4">📦 Package Details</h3>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Package Name</label>
+                            <input type="text" id="edit-name" class="w-full border-2 border-gray-200 rounded-lg p-3">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Duration (days)</label>
+                            <input type="number" id="edit-duration" class="w-full border-2 border-gray-200 rounded-lg p-3">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Package Type</label>
+                            <select id="edit-type" class="w-full border-2 border-gray-200 rounded-lg p-3">
+                                <option value="land_only">Land Only</option>
+                                <option value="air_land">Air + Land</option>
+                                <option value="combo_land">Combo Land</option>
+                                <option value="combo_air">Combo Air</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Currency</label>
+                            <input type="text" id="edit-currency" class="w-full border-2 border-gray-200 rounded-lg p-3">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Components List -->
+                <div class="bg-white rounded-xl shadow-sm border p-6">
+                    <h3 class="font-bold text-xl text-kaptio-primary-800 mb-4">🧩 Components (<span id="component-count">0</span>)</h3>
+                    <div id="components-list" class="space-y-2"></div>
+                </div>
+
+                <!-- Departures -->
+                <div class="bg-white rounded-xl shadow-sm border p-6">
+                    <h3 class="font-bold text-xl text-kaptio-primary-800 mb-4">📅 Departures (<span id="departure-count">0</span>)</h3>
+                    <div id="departures-list" class="space-y-2"></div>
+                </div>
+            </div>
+
+            <div class="mt-8 flex justify-between">
+                <button onclick="showTab(1)" class="px-6 py-3 border-2 border-gray-300 rounded-lg font-medium hover:bg-gray-50">
+                    ← Back
+                </button>
+                <button onclick="showTab(3)" class="bg-kaptio-yellow-400 text-gray-900 px-6 py-3 rounded-lg font-medium hover:bg-yellow-500">
+                    Next: Preview Transform →
+                </button>
+            </div>
+        </div>
+
+        <!-- Tab 3: Preview Transform -->
+        <div id="content-tab-3" class="tab-content" style="display:none;">
+            <h2 class="text-3xl font-bold text-kaptio-primary-800 mb-6">Preview Transformation</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8 mb-8">
+                <!-- Before -->
+                <div class="bg-white rounded-xl shadow-sm border p-6">
+                    <h3 class="font-bold text-lg text-kaptio-primary-800 mb-4">📥 Simplified Input</h3>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Format:</span>
+                            <span class="font-medium">Sophia JSON</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Size:</span>
+                            <span class="font-medium" id="input-size">- KB</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Complexity:</span>
+                            <span class="font-medium text-green-600">Simple</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- After -->
+                <div class="bg-white rounded-xl shadow-sm border p-6">
+                    <h3 class="font-bold text-lg text-kaptio-primary-800 mb-4">📤 Gold Config Output</h3>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Format:</span>
+                            <span class="font-medium">Salesforce Bundle</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Records:</span>
+                            <span class="font-medium text-kaptio-primary-600" id="output-records">- records</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Object Types:</span>
+                            <span class="font-medium" id="output-types">- types</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Records Breakdown -->
+            <div class="bg-white rounded-xl shadow-sm border p-6 mb-8">
+                <h3 class="font-bold text-xl text-kaptio-primary-800 mb-6">Records to be Created:</h3>
+                <div id="records-breakdown" class="space-y-3"></div>
+            </div>
+
+            <!-- Transform Button -->
+            <div class="bg-gradient-to-r from-kaptio-primary-800 to-kaptio-primary-600 rounded-xl p-8 text-center text-white mb-8">
+                <h3 class="text-2xl font-bold mb-4">Ready to Transform?</h3>
+                <p class="mb-6 opacity-90">This will generate a complete Gold Config bundle with all dependencies.</p>
+                <button onclick="transformToGoldConfig()" id="btn-transform" class="bg-kaptio-yellow-400 text-gray-900 px-8 py-4 rounded-lg font-bold text-lg hover:bg-yellow-500 transition">
+                    ⚡ Transform to Gold Config
+                </button>
+            </div>
+
+            <div class="flex justify-between">
+                <button onclick="showTab(2)" class="px-6 py-3 border-2 border-gray-300 rounded-lg font-medium hover:bg-gray-50">
+                    ← Back
+                </button>
+            </div>
+        </div>
+
+        <!-- Tab 4: Deploy -->
+        <div id="content-tab-4" class="tab-content" style="display:none;">
+            <h2 class="text-3xl font-bold text-kaptio-primary-800 mb-6">Deploy to Salesforce</h2>
+            
+            <div class="bg-green-50 border-l-4 border-green-500 p-6 mb-8">
+                <h3 class="font-semibold text-green-900 mb-2">✅ Transformation Complete!</h3>
+                <p class="text-green-800">Your Sophia data has been transformed into a Gold Config bundle.</p>
+            </div>
+
+            <!-- Bundle Summary -->
+            <div class="grid md:grid-cols-4 gap-6 mb-8">
+                <div class="bg-white rounded-xl shadow-sm border p-6 text-center">
+                    <div class="text-4xl font-bold text-kaptio-primary-600" id="summary-records">0</div>
+                    <div class="text-sm text-gray-600 mt-2">Total Records</div>
+                </div>
+                <div class="bg-white rounded-xl shadow-sm border p-6 text-center">
+                    <div class="text-4xl font-bold text-kaptio-primary-600" id="summary-types">0</div>
+                    <div class="text-sm text-gray-600 mt-2">Object Types</div>
+                </div>
+                <div class="bg-white rounded-xl shadow-sm border p-6 text-center">
+                    <div class="text-4xl font-bold text-green-600" id="summary-expansion">0</div>
+                    <div class="text-sm text-gray-600 mt-2">Expansion Ratio</div>
+                </div>
+                <div class="bg-white rounded-xl shadow-sm border p-6 text-center">
+                    <div class="text-4xl font-bold text-blue-600">96%</div>
+                    <div class="text-sm text-gray-600 mt-2">Complete</div>
+                </div>
+            </div>
+
+            <!-- Download Options -->
+            <div class="bg-white rounded-xl shadow-sm border p-6 mb-8">
+                <h3 class="font-bold text-xl text-kaptio-primary-800 mb-4">📥 Download Bundle</h3>
+                <div class="space-y-3">
+                    <button onclick="downloadBundle()" class="w-full flex items-center justify-between p-4 border-2 border-gray-200 rounded-lg hover:border-kaptio-primary-400 hover:bg-gray-50 transition">
+                        <div>
+                            <div class="font-medium">Gold Config Bundle</div>
+                            <div class="text-sm text-gray-500">Complete Salesforce deployment bundle</div>
+                        </div>
+                        <span class="text-2xl">📦</span>
+                    </button>
+                    <button onclick="downloadSourceJSON()" class="w-full flex items-center justify-between p-4 border-2 border-gray-200 rounded-lg hover:border-kaptio-primary-400 hover:bg-gray-50 transition">
+                        <div>
+                            <div class="font-medium">Original Sophia JSON</div>
+                            <div class="text-sm text-gray-500">Your simplified input file</div>
+                        </div>
+                        <span class="text-2xl">📄</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Deploy to Salesforce -->
+            <div class="bg-gradient-to-r from-kaptio-primary-800 to-kaptio-primary-600 rounded-xl p-8 text-center text-white">
+                <h3 class="text-2xl font-bold mb-4">🚀 Deploy to Salesforce</h3>
+                <p class="mb-6 opacity-90">Connect to your Kaptio org and deploy this package configuration.</p>
+                <button onclick="openDeploymentWizard()" class="bg-kaptio-yellow-400 text-gray-900 px-8 py-4 rounded-lg font-bold text-lg hover:bg-yellow-500 transition">
+                    Connect & Deploy to Kaptio
+                </button>
+                <p class="text-sm mt-4 opacity-75">This will use the same deployment wizard as Gold Config packages</p>
+            </div>
+
+            <div class="mt-8">
+                <button onclick="showTab(3)" class="px-6 py-3 border-2 border-white rounded-lg font-medium hover:bg-white hover:text-kaptio-primary-800 transition">
+                    ← Back to Preview
+                </button>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        let sophiaData = null;
+        let goldConfigBundle = null;
+
+        // Tab Management
+        function showTab(tabNumber) {
+            // Hide all tabs
+            for (let i = 1; i <= 4; i++) {
+                document.getElementById(`content-tab-${i}`).style.display = 'none';
+                const tabButton = document.getElementById(`tab-${i}`);
+                tabButton.classList.remove('active');
+                tabButton.classList.add('text-gray-400');
+            }
+
+            // Show selected tab
+            document.getElementById(`content-tab-${tabNumber}`).style.display = 'block';
+            const activeButton = document.getElementById(`tab-${tabNumber}`);
+            activeButton.classList.add('active');
+            activeButton.classList.remove('text-gray-400');
+        }
+
+        // File Upload
+        const dropZone = document.getElementById('dropZone');
+        
+        dropZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropZone.classList.add('drag-over');
+        });
+
+        dropZone.addEventListener('dragleave', () => {
+            dropZone.classList.remove('drag-over');
+        });
+
+        dropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropZone.classList.remove('drag-over');
+            
+            const file = e.dataTransfer.files[0];
+            if (file && file.name.endsWith('.json')) {
+                readFile(file);
+            } else {
+                alert('Please drop a JSON file');
+            }
+        });
+
+        function handleFileSelect(event) {
+            const file = event.target.files[0];
+            if (file) {
+                readFile(file);
+            }
+        }
+
+        function readFile(file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                try {
+                    sophiaData = JSON.parse(e.target.result);
+                    validateAndProceed(sophiaData);
+                } catch (error) {
+                    alert(`Error parsing JSON: ${error.message}`);
+                }
+            };
+            reader.readAsText(file);
+        }
+
+        function handlePastedJSON() {
+            const jsonText = document.getElementById('jsonPaste').value;
+            try {
+                sophiaData = JSON.parse(jsonText);
+                validateAndProceed(sophiaData);
+            } catch (error) {
+                alert(`Error parsing JSON: ${error.message}`);
+            }
+        }
+
+        function validateAndProceed(data) {
+            // Basic validation
+            if (!data.package || !data.components || !data.pricing || !data.departures) {
+                alert('Invalid Sophia JSON: Missing required fields (package, components, pricing, departures)');
+                return;
+            }
+
+            // Enable tab 2 and switch to it
+            document.getElementById('tab-2').disabled = false;
+            document.getElementById('tab-2').classList.remove('text-gray-400');
+            populateReviewTab(data);
+            showTab(2);
+        }
+
+        function populateReviewTab(data) {
+            document.getElementById('edit-name').value = data.package.name;
+            document.getElementById('edit-duration').value = data.package.duration_days;
+            document.getElementById('edit-type').value = data.package.type;
+            document.getElementById('edit-currency').value = data.pricing.currency;
+
+            // Components
+            const componentsList = document.getElementById('components-list');
+            componentsList.innerHTML = data.components.map(comp => `
+                <div class="flex items-center justify-between p-4 border rounded-lg hover:bg-gray-50">
+                    <div>
+                        <div class="font-medium">${comp.name}</div>
+                        <div class="text-sm text-gray-500">${comp.type} ${comp.required === false ? '• Optional' : '• Required'}</div>
+                    </div>
+                    <span class="text-2xl">${getComponentIcon(comp.type)}</span>
+                </div>
+            `).join('');
+            document.getElementById('component-count').textContent = data.components.length;
+
+            // Departures
+            const departuresList = document.getElementById('departures-list');
+            departuresList.innerHTML = data.departures.map(dep => `
+                <div class="flex items-center justify-between p-4 border rounded-lg hover:bg-gray-50">
+                    <div>
+                        <div class="font-medium">${dep.date}</div>
+                        <div class="text-sm text-gray-500">Capacity: ${dep.capacity || data.package.capacity?.max || 'Default'}</div>
+                    </div>
+                    <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs font-medium">${dep.status || 'active'}</span>
+                </div>
+            `).join('');
+            document.getElementById('departure-count').textContent = data.departures.length;
+
+            // Enable tab 3
+            document.getElementById('tab-3').disabled = false;
+            document.getElementById('tab-3').classList.remove('text-gray-400');
+        }
+
+        function getComponentIcon(type) {
+            const icons = {
+                'tour_inventory': '🎎',
+                'room_configuration': '🛌',
+                'accommodation': '🏨',
+                'activity': '🎭',
+                'flight_placeholder': '✈️',
+                'extra': '💼'
+            };
+            return icons[type] || '📦';
+        }
+
+        // Transform to Gold Config
+        function transformToGoldConfig() {
+            const btn = document.getElementById('btn-transform');
+            btn.disabled = true;
+            btn.innerHTML = '⏳ Transforming...';
+
+            // Simulate transformation (in production, would call transform-to-gold-config.js via API)
+            setTimeout(() => {
+                goldConfigBundle = simulateTransformation(sophiaData);
+                
+                // Populate preview
+                document.getElementById('summary-records').textContent = goldConfigBundle.bundleMetadata.totalRecords;
+                document.getElementById('summary-types').textContent = Object.keys(goldConfigBundle.records).length;
+                document.getElementById('summary-expansion').textContent = Math.round(JSON.stringify(goldConfigBundle).length / JSON.stringify(sophiaData).length) + 'x';
+
+                document.getElementById('input-size').textContent = (JSON.stringify(sophiaData).length / 1024).toFixed(1) + ' KB';
+                document.getElementById('output-records').textContent = goldConfigBundle.bundleMetadata.totalRecords + ' records';
+                document.getElementById('output-types').textContent = Object.keys(goldConfigBundle.records).length + ' types';
+
+                // Show breakdown
+                const breakdown = document.getElementById('records-breakdown');
+                breakdown.innerHTML = Object.entries(goldConfigBundle.bundleMetadata.recordsByType).map(([type, count]) => `
+                    <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg record-card">
+                        <div>
+                            <div class="font-medium text-kaptio-primary-800">${type.replace('KaptioTravel__', '').replace('__c', '')}</div>
+                            <div class="text-sm text-gray-500">${getObjectDescription(type)}</div>
+                        </div>
+                        <div class="text-2xl font-bold text-kaptio-primary-600">${count}</div>
+                    </div>
+                `).join('');
+
+                // Enable tab 4 and switch
+                document.getElementById('tab-4').disabled = false;
+                document.getElementById('tab-4').classList.remove('text-gray-400');
+                showTab(4);
+            }, 1500);
+        }
+
+        function simulateTransformation(sophia) {
+            // Simplified simulation - in production, would call actual transformer
+            return {
+                bundleMetadata: {
+                    packageName: sophia.package.name,
+                    packageType: sophia.package.type,
+                    totalRecords: 25 + (sophia.itinerary?.length || 0) + (sophia.departures.length * 2),
+                    recordsByType: {
+                        'KaptioTravel__Package__c': 1,
+                        'KaptioTravel__Component__c': sophia.components.length,
+                        'KaptioTravel__Item__c': 1,
+                        'KaptioTravel__Price_Category__c': Object.keys(sophia.pricing.room_prices).length,
+                        'KaptioTravel__Item_Price__c': Object.keys(sophia.pricing.room_prices).length,
+                        'KaptioTravel__PackageDeparture__c': sophia.departures.length,
+                        'KaptioTravel__AllotmentDay__c': sophia.departures.length,
+                        'KaptioTravel__PaymentScheduleConfiguration__c': 1,
+                        'KaptioTravel__PaymentScheduleRule__c': 3,
+                        'KaptioTravel__CancellationConfiguration__c': 1,
+                        'KaptioTravel__CancellationRule__c': 4,
+                        'KaptioTravel__Location__c': 2,
+                        'KaptioTravel__PackageDay__c': sophia.itinerary?.length || 0
+                    }
+                },
+                records: {}
+            };
+        }
+
+        function getObjectDescription(type) {
+            const descriptions = {
+                'KaptioTravel__Package__c': 'Main product definition',
+                'KaptioTravel__Component__c': 'Package components',
+                'KaptioTravel__Item__c': 'Services (hotels, activities)',
+                'KaptioTravel__Price_Category__c': 'Room types & pricing',
+                'KaptioTravel__PackageDeparture__c': 'Fixed departure dates',
+                'KaptioTravel__PaymentScheduleConfiguration__c': 'Payment schedule',
+                'KaptioTravel__CancellationConfiguration__c': 'Cancellation policy'
+            };
+            return descriptions[type] || 'Supporting records';
+        }
+
+        // Download functions
+        function downloadBundle() {
+            if (!goldConfigBundle) return;
+            
+            const blob = new Blob([JSON.stringify(goldConfigBundle, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `${sophiaData.package.name.replace(/\s+/g, '-').toLowerCase()}-bundle.json`;
+            a.click();
+        }
+
+        function downloadSourceJSON() {
+            if (!sophiaData) return;
+            
+            const blob = new Blob([JSON.stringify(sophiaData, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `${sophiaData.package.name.replace(/\s+/g, '-').toLowerCase()}-sophia.json`;
+            a.click();
+        }
+
+        function openDeploymentWizard() {
+            alert('🚀 Integration Point\n\nIn production, this would:\n\n1. Open the Gold Config deployment wizard\n2. Pre-load this generated bundle\n3. Guide through OAuth connection\n4. Map org-specific fields\n5. Deploy to Salesforce\n\nThe wizard UI is available in the Gold Config showcase.');
+        }
+
+        // Load example templates
+        async function loadExample(exampleName) {
+            try {
+                const response = await fetch(`examples/${exampleName}-example.json`);
+                sophiaData = await response.json();
+                validateAndProceed(sophiaData);
+            } catch (error) {
+                alert(`Could not load example: ${error.message}`);
+            }
+        }
+    </script>
+
+</body>
+</html>
+
