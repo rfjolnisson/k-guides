@@ -378,10 +378,10 @@
 
         <!-- Quick Decision Guide -->
         <section id="decision" class="section py-16">
-            <h2 class="text-4xl font-bold text-kaptio-primary-800 mb-8">Understanding the Seven Package Types</h2>
+            <h2 class="text-4xl font-bold text-kaptio-primary-800 mb-8">Understanding Package Types</h2>
             
             <p class="text-xl text-kaptio-black font-light leading-relaxed mb-12">
-                Kaptio supports seven distinct package types. The key distinctions are: how tours combine, whether tours can sell independently, and whether flights are included.
+                Kaptio supports multiple package types to model your tour products. The key distinctions are: how tours combine, whether tours can sell independently, and whether flights are included.
             </p>
 
             <div class="bg-kaptio-primary-800 text-white rounded-xl p-8 mb-12">
@@ -654,71 +654,38 @@
             <!-- JSON Structure Viewer -->
             <div class="bg-kaptio-primary-800 text-white rounded-xl p-6 mb-12">
                 <div class="flex items-center justify-between mb-4">
-                    <h4 class="font-semibold text-kaptio-yellow-400 text-lg">📋 Package Configuration Structure (JSON)</h4>
+                    <h4 class="font-semibold text-kaptio-yellow-400 text-lg">📋 Complete Package Bundle (Real Data from Gold Config)</h4>
                     <button 
-                        disabled 
-                        class="bg-kaptio-grey-300 text-white px-4 py-2 rounded-lg font-medium cursor-not-allowed opacity-60"
-                        title="Coming soon: Deploy this configuration directly to your environment">
+                        onclick="deployPackage('japan-land-only')" 
+                        class="bg-kaptio-yellow-400 text-kaptio-black px-4 py-2 rounded-lg font-medium hover:bg-kaptio-yellow-300 transition-all">
                         🚀 Deploy to My Environment
-                        <span class="text-xs ml-2">(Coming Soon)</span>
+                        <span class="text-xs ml-2">(Wizard Coming Soon)</span>
                     </button>
                 </div>
                 <details class="bg-white bg-opacity-10 rounded-lg">
                     <summary class="cursor-pointer p-4 font-medium hover:bg-white hover:bg-opacity-20 rounded-lg transition-all">
-                        Click to view package structure →
+                        Click to view complete bundle (83 records, 15 object types) →
                     </summary>
                     <div class="p-4">
-                        <pre class="text-xs overflow-x-auto bg-kaptio-black bg-opacity-40 rounded p-4"><code>{
-  "packageName": "Japan Discovery - Land Only",
-  "packageType": "Principle",
-  "duration": 13,
-  "capacity": {
-    "minimum": 10,
-    "maximum": 20
-  },
-  "serviceLevelMode": "Standard",
-  "components": [
-    {
-      "name": "Tour Inventory & Pricing",
-      "type": "Container Service",
-      "required": true,
-      "inventoryDriver": "Per Pax"
-    },
-    {
-      "name": "Room Configuration",
-      "type": "Price Categories",
-      "required": true,
-      "primary": true,
-      "inventoryDriver": "Room",
-      "roomTypes": [
-        {"type": "Single", "price": 10160, "currency": "AUD"},
-        {"type": "Twin/Double", "price": 17574, "currency": "AUD", "occupancy": 2}
-      ]
-    },
-    {
-      "name": "Pre-Stay - Tokyo",
-      "type": "Accommodation",
-      "required": false,
-      "dateRestricted": "Mar 1-31, 2026"
-    },
-    {
-      "name": "Post-Stay - Osaka",
-      "type": "Accommodation",
-      "required": false,
-      "dateRestricted": "Apr 1-15, 2026"
-    },
-    {
-      "name": "Optional Excursion",
-      "type": "Activity",
-      "required": false
-    }
-  ],
-  "paymentSchedule": "Standard: Deposit, Progress, Final Balance",
-  "cancellationPolicy": "Tiered (61+ days → 30-0 days)"
-}</code></pre>
-                        <p class="text-xs text-kaptio-grey-300 mt-3 italic">
-                            💡 This JSON represents the package structure. Soon you'll be able to deploy pre-configured packages to your environment with one click.
-                        </p>
+                        <div class="mb-4 text-sm bg-kaptio-yellow-400 bg-opacity-20 rounded-lg p-3">
+                            <strong>⚡ Real Extracted Data:</strong> This is the actual package configuration extracted from ktdev45 Gold Config, 
+                            including all components, inventory, payment schedules, cancellation policies, and dependencies.
+                        </div>
+                        <pre class="text-xs overflow-x-auto bg-kaptio-black bg-opacity-40 rounded p-4" id="japan-land-only-json-viewer"><code>Loading bundle data...</code></pre>
+                        <div class="mt-4 space-y-2 text-xs">
+                            <div class="flex items-center space-x-2">
+                                <span class="text-kaptio-yellow-400">📦</span>
+                                <span>Bundle includes: Package, 5 Components, 18 Component Options, 4 Items, 14 Package Days, Payment Schedule (3 rules), Cancellation Policy (4 rules), 4 Package Departures</span>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <span class="text-kaptio-yellow-400">🔗</span>
+                                <span>All dependencies included and ready for deployment</span>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <span class="text-kaptio-yellow-400">📥</span>
+                                <span><a href="package-bundles/japan-discovery-land-only.json" download class="underline hover:text-kaptio-yellow-300">Download complete bundle JSON</a></span>
+                            </div>
+                        </div>
                     </div>
                 </details>
             </div>
@@ -3073,6 +3040,47 @@
         });
 
         console.log('Gold Config Package Guide loaded - Interactive trees enabled');
+
+        // Load actual package bundle JSON
+        function loadBundleJSON(bundleName, elementId) {
+            const bundleUrl = `package-bundles/${bundleName}.json`;
+            fetch(bundleUrl)
+                .then(response => response.json())
+                .then(data => {
+                    const element = document.getElementById(elementId);
+                    if (element) {
+                        element.textContent = JSON.stringify(data, null, 2);
+                    }
+                })
+                .catch(error => {
+                    const element = document.getElementById(elementId);
+                    if (element) {
+                        element.textContent = `Error loading bundle: ${error.message}\n\nNote: Bundle JSON files are generated by running the extraction script.`;
+                    }
+                });
+        }
+
+        // Deploy package (future functionality)
+        function deployPackage(bundleName) {
+            alert(`📦 Deployment Wizard Coming Soon!\n\nYou selected: ${bundleName}\n\nThe deployment wizard will guide you through:\n1. Uploading this bundle\n2. Mapping org-specific settings\n3. Previewing what will be created\n4. Deploying to your Salesforce org\n\nFor now, you can download the bundle JSON and review its structure.`);
+        }
+
+        // Load bundle JSON when details are opened
+        document.addEventListener('DOMContentLoaded', function() {
+            // Find all details elements with JSON viewers
+            const landOnlyViewer = document.getElementById('japan-land-only-json-viewer');
+            if (landOnlyViewer) {
+                // Load when parent details element is opened
+                const detailsParent = landOnlyViewer.closest('details');
+                if (detailsParent) {
+                    detailsParent.addEventListener('toggle', function() {
+                        if (this.open && landOnlyViewer.textContent === 'Loading bundle data...') {
+                            loadBundleJSON('japan-discovery-land-only', 'japan-land-only-json-viewer');
+                        }
+                    });
+                }
+            }
+        });
     </script>
 
 </body>
