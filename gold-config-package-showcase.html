@@ -1149,26 +1149,38 @@
                         <!-- Tour Max Pax Component -->
                         <div class="tree-node level-1 required" onclick="toggleNode(this)">
                             <span class="expand-icon">▼</span>
-                            <span>🎫 Tour Max Pax (Main Pricing)</span>
+                            <span>🎫 Tour Max Pax</span>
                             <span class="badge-required">Required</span>
                             <span class="badge-primary">Day 1+</span>
                         </div>
                         <div class="tree-children">
-                            <div class="tree-node level-2">Main tour pricing component - represents total package capacity</div>
-                            <div class="tree-node level-2">Per passenger allocation across all regional segments</div>
+                            <div class="tree-node level-2">Main tour component - controls departure dates and total capacity</div>
+                            <div class="tree-node level-2">ComponentType: PriceCategories (no cost - pricing is at Room Configuration)</div>
                             <div class="tree-node level-2">
-                                <span>📊 Inventory: Per Pax</span>
+                                <span>📊 Inventory: Per Pax (not inventory-driven)</span>
                                 <div class="inventory-detail">
-                                    Each passenger consumes 1 unit regardless of region
+                                    Tracks maximum capacity but doesn't hold physical inventory
                                 </div>
                             </div>
                         </div>
 
                         <!-- Room Configuration Component -->
-                        <div class="tree-node level-1 required">
-                            <span>🛏️ Room Configuration (Single/Double/Twin)</span>
+                        <div class="tree-node level-1 required" onclick="toggleNode(this)">
+                            <span class="expand-icon">▼</span>
+                            <span>🛏️ Room Configuration (Customer Pricing)</span>
                             <span class="badge-required">Required</span>
                             <span class="badge-primary">Day 1+</span>
+                        </div>
+                        <div class="tree-children">
+                            <div class="tree-node level-2"><strong>This is where customers see pricing</strong></div>
+                            <div class="tree-node level-2">Options: Single, Double, Twin room types</div>
+                            <div class="tree-node level-2">Each room type links to Item_Price records with actual $ amounts</div>
+                            <div class="tree-node level-2">
+                                <span>📊 Inventory: Room-based (inventory required)</span>
+                                <div class="inventory-detail">
+                                    Room configuration drives physical room inventory allocation
+                                </div>
+                            </div>
                         </div>
 
                         <!-- Ecuador Component -->
