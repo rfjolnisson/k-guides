@@ -1149,167 +1149,90 @@
                         <!-- Tour Max Pax Component -->
                         <div class="tree-node level-1 required" onclick="toggleNode(this)">
                             <span class="expand-icon">▼</span>
-                            <span>🎫 Tour Max Pax</span>
+                            <span>🎎 Tour Max Pax (Per Pax)</span>
                             <span class="badge-required">Required</span>
-                            <span class="badge-primary">Day 1+</span>
                         </div>
                         <div class="tree-children">
-                            <div class="tree-node level-2">Main tour component - controls departure dates and total capacity</div>
-                            <div class="tree-node level-2">ComponentType: PriceCategories (no cost - pricing is at Room Configuration)</div>
+                            <div class="tree-node level-2">Controls departure dates and total package capacity (4-20 passengers)</div>
                             <div class="tree-node level-2">
-                                <span>📊 Inventory: Per Pax (not inventory-driven)</span>
+                                <span>📊 Per Pax Allotment</span>
                                 <div class="inventory-detail">
-                                    Tracks maximum capacity but doesn't hold physical inventory
+                                    Each passenger consumes 1 unit across all regional segments
+                                </div>
+                            </div>
+                            <div class="tree-node level-2">
+                                <span>📦 Coordinates inventory across all regional DMCs</span>
+                                <div class="inventory-detail">
+                                    Departures only generated when ALL regions have availability
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Room Configuration Component -->
+                        <!-- Room Configuration -->
                         <div class="tree-node level-1 required" onclick="toggleNode(this)">
                             <span class="expand-icon">▼</span>
-                            <span>🛏️ Room Configuration (Customer Pricing)</span>
+                            <span>🛌 Room Configuration</span>
                             <span class="badge-required">Required</span>
-                            <span class="badge-primary">Day 1+</span>
                         </div>
                         <div class="tree-children">
-                            <div class="tree-node level-2"><strong>This is where customers see pricing</strong></div>
-                            <div class="tree-node level-2">Options: Single, Double, Twin room types</div>
-                            <div class="tree-node level-2">Each room type links to Item_Price records with actual $ amounts</div>
                             <div class="tree-node level-2">
-                                <span>📊 Inventory: Room-based (inventory required)</span>
-                                <div class="inventory-detail">
-                                    Room configuration drives physical room inventory allocation
-                                </div>
+                                <span>🟦 Single Room (1 person)</span>
+                                <span class="price-detail">Price varies by season</span>
+                            </div>
+                            <div class="tree-node level-2">
+                                <span>🟩 Twin/Double Room (2 people)</span>
+                                <span class="price-detail">Price varies by season</span>
+                            </div>
+                            <div class="tree-node level-2 text-xs text-kaptio-grey-300 mt-2">
+                                Note: Pricing configured per room type. Twin/Double is for 2 people combined.
                             </div>
                         </div>
 
-                        <!-- Ecuador Component -->
-                        <div class="tree-node level-1 required" onclick="toggleNode(this)">
-                            <span class="expand-icon">▼</span>
+                        <!-- Regional Components -->
+                        <div class="tree-node level-1 required">
                             <span>🇪🇨 Ecuador Configuration</span>
                             <span class="badge-required">Required</span>
-                            <span class="badge-primary">Day 1+</span>
-                        </div>
-                        <div class="tree-children">
-                            <div class="tree-node level-2"><strong>Regional DMC:</strong> Encounter Latin America</div>
-                            <div class="tree-node level-2"><strong>Services:</strong> Quito hotels, Galapagos tours, internal flights</div>
-                            <div class="tree-node level-2"><strong>Item:</strong> "South American Discovery Tour - Ecuador"</div>
-                            <div class="tree-node level-2">
-                                <span>📦 Inventory tracked separately for Ecuador segment</span>
-                                <div class="inventory-detail">
-                                    Component links to Ecuador-specific inventory contracts
-                                </div>
-                            </div>
+                            <span class="text-xs text-kaptio-grey-300">(Day 1+ • Encounter Latin America DMC)</span>
                         </div>
 
-                        <!-- Peru Amazon Component -->
-                        <div class="tree-node level-1 required" onclick="toggleNode(this)">
-                            <span class="expand-icon">▼</span>
+                        <div class="tree-node level-1 required">
                             <span>🌴 Peru Amazon Configuration</span>
                             <span class="badge-required">Required</span>
-                            <span class="badge-primary">Day 11+</span>
-                        </div>
-                        <div class="tree-children">
-                            <div class="tree-node level-2"><strong>Regional DMC:</strong> Explorama DMC (Amazon specialist)</div>
-                            <div class="tree-node level-2"><strong>Services:</strong> Amazon jungle lodges, river boats, naturalist guides</div>
-                            <div class="tree-node level-2"><strong>Item:</strong> "South American Discovery Tour - Peru Amazon"</div>
-                            <div class="tree-node level-2"><strong>Start Day:</strong> 11 (after Ecuador segment)</div>
-                            <div class="tree-node level-2">
-                                <span>📦 Separate inventory for Amazon lodges</span>
-                                <div class="inventory-detail">
-                                    Component has its own inventory contracts with Explorama
-                                </div>
-                            </div>
+                            <span class="text-xs text-kaptio-grey-300">(Day 11+ • Explorama DMC)</span>
                         </div>
 
-                        <!-- Peru Component -->
-                        <div class="tree-node level-1 required" onclick="toggleNode(this)">
-                            <span class="expand-icon">▼</span>
+                        <div class="tree-node level-1 required">
                             <span>🏔️ Peru Configuration (Machu Picchu)</span>
                             <span class="badge-required">Required</span>
-                            <span class="badge-primary">Day 15+</span>
-                        </div>
-                        <div class="tree-children">
-                            <div class="tree-node level-2"><strong>Regional DMC:</strong> Coltur DMC</div>
-                            <div class="tree-node level-2"><strong>Services:</strong> Lima, Cusco, Machu Picchu, Sacred Valley</div>
-                            <div class="tree-node level-2"><strong>Item:</strong> "South American Discovery Tour - Peru"</div>
-                            <div class="tree-node level-2"><strong>Speciality:</strong> Inca Trail permits ($1,050pp non-refundable)</div>
-                            <div class="tree-node level-2"><strong>Start Day:</strong> 15 (after Amazon segment)</div>
-                            <div class="tree-node level-2">
-                                <span>📦 Peru highlands inventory separate from Amazon</span>
-                                <div class="inventory-detail">
-                                    Coltur manages inventory for Sacred Valley & Machu Picchu segment
-                                </div>
-                            </div>
+                            <span class="text-xs text-kaptio-grey-300">(Day 15+ • Coltur DMC)</span>
                         </div>
 
-                        <!-- Optional Component: Aguas Calientes -->
-                        <div class="tree-node level-1 optional" onclick="toggleNode(this)">
-                            <span class="expand-icon">▼</span>
+                        <div class="tree-node level-1 optional">
                             <span>🎟️ Aguas Calientes Optionals</span>
                             <span class="badge-optional">Optional</span>
-                            <span class="badge-primary">Day 18</span>
-                        </div>
-                        <div class="tree-children">
-                            <div class="tree-node level-2">Machu Picchu 2nd visit: $160pp (non-commissionable)</div>
-                            <div class="tree-node level-2">Machu Picchu + Huayna Picchu: $190pp (non-commissionable)</div>
-                            <div class="tree-node level-2">
-                                <span>📦 Permit-based inventory</span>
-                                <div class="inventory-detail">
-                                    Limited daily permits managed by Coltur
-                                </div>
-                            </div>
+                            <span class="text-xs text-kaptio-grey-300">(Day 18 • Inca Trail permits)</span>
                         </div>
 
-                        <!-- Brazil Component -->
-                        <div class="tree-node level-1 required" onclick="toggleNode(this)">
-                            <span class="expand-icon">▼</span>
+                        <div class="tree-node level-1 required">
                             <span>🇧🇷 Brazil Configuration</span>
                             <span class="badge-required">Required</span>
-                            <span class="badge-primary">Day 23+</span>
-                        </div>
-                        <div class="tree-children">
-                            <div class="tree-node level-2"><strong>Regional DMC:</strong> Blumar DMC</div>
-                            <div class="tree-node level-2"><strong>Services:</strong> Rio de Janeiro, Iguazu Falls, internal flights</div>
-                            <div class="tree-node level-2"><strong>Item:</strong> "South American Discovery Tour - Brazil"</div>
-                            <div class="tree-node level-2"><strong>Start Day:</strong> 23 (after Peru segment)</div>
-                            <div class="tree-node level-2">
-                                <span>📦 Brazil-specific inventory</span>
-                                <div class="inventory-detail">
-                                    Blumar manages Rio & Iguazu hotel allocations
-                                </div>
-                            </div>
+                            <span class="text-xs text-kaptio-grey-300">(Day 23+ • Blumar DMC)</span>
                         </div>
 
-                        <!-- Argentina Component -->
-                        <div class="tree-node level-1 required" onclick="toggleNode(this)">
-                            <span class="expand-icon">▼</span>
+                        <div class="tree-node level-1 required">
                             <span>🇦🇷 Argentina Configuration</span>
                             <span class="badge-required">Required</span>
-                            <span class="badge-primary">Day 29+</span>
-                        </div>
-                        <div class="tree-children">
-                            <div class="tree-node level-2"><strong>Regional DMC:</strong> Gateways DMC</div>
-                            <div class="tree-node level-2"><strong>Services:</strong> Buenos Aires city tour, tango shows, wine region</div>
-                            <div class="tree-node level-2"><strong>Item:</strong> "South American Discovery Tour - Argentina"</div>
-                            <div class="tree-node level-2"><strong>Hotels:</strong> Alvear Palace Hotel (luxury accommodation)</div>
-                            <div class="tree-node level-2"><strong>Start Day:</strong> 29 (final segment)</div>
-                            <div class="tree-node level-2">
-                                <span>📦 Argentina-specific inventory</span>
-                                <div class="inventory-detail">
-                                    Gateways manages Buenos Aires hotel blocks
-                                </div>
-                            </div>
+                            <span class="text-xs text-kaptio-grey-300">(Day 29+ • Gateways DMC)</span>
                         </div>
 
-                        <!-- Additional Components -->
+                        <!-- Pre/Post Stays -->
                         <div class="tree-node level-1 optional">
-                            <span>🏨 Pre-Stay Lima</span>
+                            <span>🏨 Pre-Stay – Lima</span>
                             <span class="badge-optional">Optional</span>
                         </div>
 
                         <div class="tree-node level-1 optional">
-                            <span>🏨 Post-Stay Buenos Aires</span>
+                            <span>🏨 Post-Stay – Buenos Aires</span>
                             <span class="badge-optional">Optional</span>
                         </div>
 
@@ -1318,6 +1241,43 @@
                             <span class="badge-required">Required</span>
                         </div>
                     </div>
+
+                    <!-- Payment Schedule -->
+                    <div class="tree-node level-0" onclick="toggleNode(this)">
+                        <span class="expand-icon">▼</span>
+                        <span>💰 Payment Schedule: "Standard Deposit + Balance"</span>
+                    </div>
+                    <div class="tree-children">
+                        <div class="tree-node level-1">Deposit per person at booking</div>
+                        <div class="tree-node level-1">Progress payment 45 days after booking</div>
+                        <div class="tree-node level-1">Balance 60 days before departure</div>
+                    </div>
+
+                    <!-- Cancellation Policy -->
+                    <div class="tree-node level-0" onclick="toggleNode(this)">
+                        <span class="expand-icon">▼</span>
+                        <span>⚠️ Cancellation Policy: "Standard Tiered"</span>
+                    </div>
+                    <div class="tree-children">
+                        <div class="tree-node level-1">61+ days before: Fixed fee per person</div>
+                        <div class="tree-node level-1">60-45 days: 25% per person</div>
+                        <div class="tree-node level-1">44-31 days: 50% per person</div>
+                        <div class="tree-node level-1">30-0 days: 100% (no refund)</div>
+                    </div>
+                </div>
+
+                <div class="mt-6 bg-kaptio-primary-50 rounded-lg p-4">
+                    <h4 class="font-semibold text-kaptio-primary-800 mb-3 text-sm">🔍 Explore in Your Sandbox</h4>
+                    <ol class="space-y-2 text-sm text-kaptio-grey-300">
+                        <li>1. Navigate to: <strong class="text-kaptio-black">Packages</strong> tab</li>
+                        <li>2. Search for: <strong class="text-kaptio-black">"South American Discovery - Land Only"</strong></li>
+                        <li>3. Open the package record</li>
+                        <li>4. Scroll to <strong class="text-kaptio-black">Components</strong> section</li>
+                        <li>5. Click each regional component to see DMC supplier assignments</li>
+                    </ol>
+                    <p class="text-xs text-kaptio-grey-300 italic mt-3">
+                        💡 Tip: Look at the "Item" field on each component to see which regional DMC manages that segment
+                    </p>
                 </div>
 
                 <div class="mt-8 bg-kaptio-primary-50 rounded-lg p-6">
