@@ -263,7 +263,210 @@
             color: #878787;
         }
         
+        /* Deployment Modal Styles */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(4px);
+        }
+        .modal-overlay.active {
+            display: flex;
+        }
+        .modal-container {
+            background: white;
+            border-radius: 16px;
+            width: 90%;
+            max-width: 700px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: modalSlideIn 0.3s ease-out;
+        }
+        @keyframes modalSlideIn {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        .modal-header {
+            background: linear-gradient(135deg, #032E36, #034955);
+            color: white;
+            padding: 2rem;
+            border-radius: 16px 16px 0 0;
+        }
+        .modal-body {
+            padding: 2rem;
+        }
+        .modal-footer {
+            padding: 1.5rem 2rem;
+            border-top: 1px solid #EBEBEB;
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+        .progress-steps {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        .progress-step {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #EBEBEB;
+            color: #878787;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        .progress-step.active {
+            background: #FFBC42;
+            color: #212121;
+        }
+        .progress-step.completed {
+            background: #10B981;
+            color: white;
+        }
+        .progress-line {
+            width: 40px;
+            height: 2px;
+            background: #EBEBEB;
+        }
+        .progress-line.completed {
+            background: #10B981;
+        }
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+        }
+        .btn-primary {
+            background: #056F82;
+            color: white;
+        }
+        .btn-primary:hover {
+            background: #034955;
+        }
+        .btn-secondary {
+            background: #EBEBEB;
+            color: #212121;
+        }
+        .btn-secondary:hover {
+            background: #C3C3C3;
+        }
+        .btn-cta {
+            background: #FFBC42;
+            color: #212121;
+        }
+        .btn-cta:hover {
+            background: #FFD78E;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .form-label {
+            display: block;
+            font-weight: 600;
+            color: #032E36;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+        .form-input, .form-select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #EBEBEB;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            transition: border-color 0.2s;
+        }
+        .form-input:focus, .form-select:focus {
+            outline: none;
+            border-color: #056F82;
+        }
+        .help-text {
+            font-size: 0.8rem;
+            color: #878787;
+            margin-top: 0.5rem;
+        }
+        .badge-required {
+            background: #C1121F;
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-left: 0.5rem;
+        }
+        .connected-badge {
+            background: #10B981;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .deployment-item {
+            padding: 1rem;
+            background: #EFF5F5;
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .deployment-item-icon {
+            width: 32px;
+            height: 32px;
+            background: #056F82;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        .wizard-step {
+            animation: fadeIn 0.3s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-spin {
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
         @media print {
+            .modal-overlay {
+                display: none !important;
+            }
             nav.sticky {
                 position: relative;
             }
@@ -2779,6 +2982,355 @@
         </svg>
     </button>
 
+    <!-- Deployment Wizard Modal -->
+    <div class="modal-overlay no-print" id="deploymentModal">
+        <div class="modal-container">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h3 class="text-2xl font-bold text-white mb-2">Deploy Gold Config Package</h3>
+                        <div class="text-kaptio-yellow-400 text-sm" id="modalPackageName">Japan Discovery - Land Only</div>
+                    </div>
+                    <button onclick="closeDeploymentModal()" class="text-white hover:text-kaptio-yellow-400 text-2xl leading-none">&times;</button>
+                </div>
+                <div class="progress-steps">
+                    <div class="progress-step active" id="step-1-indicator">1</div>
+                    <div class="progress-line" id="line-1"></div>
+                    <div class="progress-step" id="step-2-indicator">2</div>
+                    <div class="progress-line" id="line-2"></div>
+                    <div class="progress-step" id="step-3-indicator">3</div>
+                    <div class="progress-line" id="line-3"></div>
+                    <div class="progress-step" id="step-4-indicator">4</div>
+                </div>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <!-- Step 1: Connect to Salesforce -->
+                <div id="wizard-step-1" class="wizard-step">
+                    <h4 class="text-xl font-bold text-kaptio-primary-800 mb-4">Step 1: Connect to Your Salesforce Org</h4>
+                    <p class="text-kaptio-grey-300 mb-6">Connect to the Salesforce org where you want to deploy this package.</p>
+                    
+                    <div class="bg-kaptio-primary-50 rounded-lg p-6 mb-6" id="connection-section">
+                        <div id="not-connected">
+                            <div class="text-center">
+                                <div class="mb-4">
+                                    <svg class="w-16 h-16 mx-auto text-kaptio-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                                    </svg>
+                                </div>
+                                <h5 class="font-semibold text-kaptio-primary-800 mb-2">Not Connected</h5>
+                                <p class="text-sm text-kaptio-grey-300 mb-4">Connect via Salesforce OAuth to deploy packages</p>
+                                <button onclick="simulateOAuthConnection()" class="btn btn-cta">
+                                    🔗 Connect to Salesforce
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div id="connected" style="display: none;">
+                            <div class="flex items-start gap-4">
+                                <div class="flex-shrink-0">
+                                    <svg class="w-12 h-12 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                </div>
+                                <div class="flex-1">
+                                    <h5 class="font-semibold text-green-800 mb-1">✅ Connected to Salesforce</h5>
+                                    <div class="text-sm text-kaptio-grey-300 space-y-1">
+                                        <div><strong>Org Name:</strong> <span id="org-name">Demo Production</span></div>
+                                        <div><strong>Username:</strong> <span id="org-username">john.smith@touroperator.com</span></div>
+                                        <div><strong>Instance:</strong> <span id="org-instance">na123.salesforce.com</span></div>
+                                        <div><strong>Org Type:</strong> <span id="org-type">Production</span></div>
+                                    </div>
+                                    <button onclick="simulateDisconnect()" class="text-xs text-kaptio-action hover:underline mt-2">Disconnect</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-kaptio-yellow-400 bg-opacity-20 rounded-lg p-4 text-sm text-kaptio-black">
+                        <strong>🎭 Prototype Mode:</strong> This is a simulated wizard showing the deployment experience. No actual Salesforce connection is made. Production version will use Salesforce OAuth 2.0 with secure token handling.
+                    </div>
+                </div>
+
+                <!-- Step 2: Map Dependencies -->
+                <div id="wizard-step-2" class="wizard-step" style="display: none;">
+                    <h4 class="text-xl font-bold text-kaptio-primary-800 mb-4">Step 2: Map Dependencies</h4>
+                    <p class="text-kaptio-grey-300 mb-6">Configure org-specific settings for this package.</p>
+                    
+                    <div class="form-group">
+                        <label class="form-label">
+                            Package Owner
+                            <span class="badge-required">Required</span>
+                        </label>
+                        <select class="form-select" id="owner-select">
+                            <option value="">Select user...</option>
+                            <option value="005xx001" selected>John Smith (john.smith@touroperator.com)</option>
+                            <option value="005xx002">Sarah Johnson (sarah.johnson@touroperator.com)</option>
+                            <option value="005xx003">Mike Chen (mike.chen@touroperator.com)</option>
+                        </select>
+                        <div class="help-text">The user who will own this package and have full edit access.</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">
+                            Package Currency
+                            <span class="badge-required">Required</span>
+                        </label>
+                        <select class="form-select" id="currency-select">
+                            <option value="EUR" selected>EUR (Euro) - Source Currency</option>
+                            <option value="USD">USD (US Dollar)</option>
+                            <option value="GBP">GBP (British Pound)</option>
+                            <option value="AUD">AUD (Australian Dollar)</option>
+                        </select>
+                        <div class="help-text">Package and all related records will use this currency. Prices will be converted if you change currency.</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">
+                            Sales Channel
+                            <span class="text-xs text-kaptio-grey-300 ml-1">(Optional)</span>
+                        </label>
+                        <select class="form-select" id="channel-select">
+                            <option value="">No channel assignment</option>
+                            <option value="a0X001" selected>Direct Sales</option>
+                            <option value="a0X002">Partner Network</option>
+                            <option value="a0X003">Online Booking</option>
+                        </select>
+                        <div class="help-text">Assign package to a sales channel for channel-specific visibility and pricing.</div>
+                    </div>
+
+                    <details class="bg-kaptio-primary-50 rounded-lg p-4">
+                        <summary class="cursor-pointer font-semibold text-kaptio-primary-800">Advanced Mappings (Optional)</summary>
+                        <div class="mt-4 space-y-4">
+                            <div>
+                                <label class="form-label text-sm">Supplier Mapping</label>
+                                <div class="text-xs text-kaptio-grey-300 mb-2">4 items in this package reference suppliers. Map to existing suppliers or leave blank.</div>
+                                <select class="form-select text-sm">
+                                    <option value="">Leave all suppliers blank (assign later)</option>
+                                    <option value="001xx001" selected>Map all to: Japan Travel Services Inc.</option>
+                                    <option value="custom">Map individually...</option>
+                                </select>
+                            </div>
+                        </div>
+                    </details>
+                </div>
+
+                <!-- Step 3: Preview Deployment -->
+                <div id="wizard-step-3" class="wizard-step" style="display: none;">
+                    <h4 class="text-xl font-bold text-kaptio-primary-800 mb-4">Step 3: Preview Deployment</h4>
+                    <p class="text-kaptio-grey-300 mb-6">Review what will be created in your org.</p>
+                    
+                    <div class="bg-kaptio-primary-800 text-white rounded-lg p-6 mb-6">
+                        <div class="text-2xl font-bold mb-2">Japan Discovery - Land Only</div>
+                        <div class="text-sm opacity-75">Classic Land-Only (Principle) • 13 days</div>
+                        <div class="text-xs opacity-60 mt-2">Total: 85 records across 16 object types</div>
+                    </div>
+
+                    <div class="space-y-2 mb-6">
+                        <div class="deployment-item">
+                            <div class="deployment-item-icon">1</div>
+                            <div class="flex-1">
+                                <div class="font-semibold text-kaptio-primary-800">Package</div>
+                                <div class="text-xs text-kaptio-grey-300">Japan Discovery - Land Only</div>
+                            </div>
+                        </div>
+                        
+                        <div class="deployment-item">
+                            <div class="deployment-item-icon">5</div>
+                            <div class="flex-1">
+                                <div class="font-semibold text-kaptio-primary-800">Components</div>
+                                <div class="text-xs text-kaptio-grey-300">Tour, Rooms, Pre-Stay, Post-Stay, Excursions</div>
+                            </div>
+                        </div>
+
+                        <div class="deployment-item">
+                            <div class="deployment-item-icon">18</div>
+                            <div class="flex-1">
+                                <div class="font-semibold text-kaptio-primary-800">Component Options</div>
+                                <div class="text-xs text-kaptio-grey-300">Hotel properties, room types, pricing tiers</div>
+                            </div>
+                        </div>
+
+                        <div class="deployment-item">
+                            <div class="deployment-item-icon">14</div>
+                            <div class="flex-1">
+                                <div class="font-semibold text-kaptio-primary-800">Package Days</div>
+                                <div class="text-xs text-kaptio-grey-300">Day-by-day itinerary content</div>
+                            </div>
+                        </div>
+
+                        <div class="deployment-item">
+                            <div class="deployment-item-icon">1</div>
+                            <div class="flex-1">
+                                <div class="font-semibold text-kaptio-primary-800">Payment Schedule</div>
+                                <div class="text-xs text-kaptio-grey-300">3 rules: $500 at booking, $2,500 after 45 days, balance 60 days before</div>
+                            </div>
+                        </div>
+
+                        <div class="deployment-item">
+                            <div class="deployment-item-icon">1</div>
+                            <div class="flex-1">
+                                <div class="font-semibold text-kaptio-primary-800">Cancellation Policy</div>
+                                <div class="text-xs text-kaptio-grey-300">4-tier structure (61+ days to 0 days)</div>
+                            </div>
+                        </div>
+
+                        <div class="deployment-item">
+                            <div class="deployment-item-icon">45</div>
+                            <div class="flex-1">
+                                <div class="font-semibold text-kaptio-primary-800">Supporting Records</div>
+                                <div class="text-xs text-kaptio-grey-300">Items, Locations, Departures, Assignments</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-kaptio-primary-50 rounded-lg p-4">
+                        <h5 class="font-semibold text-kaptio-primary-800 mb-3 text-sm">Your Mappings:</h5>
+                        <div class="space-y-2 text-sm">
+                            <div class="flex justify-between">
+                                <span class="text-kaptio-grey-300">Owner:</span>
+                                <span class="text-kaptio-black font-medium" id="preview-owner">John Smith</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-kaptio-grey-300">Currency:</span>
+                                <span class="text-kaptio-black font-medium" id="preview-currency">EUR (Euro)</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-kaptio-grey-300">Channel:</span>
+                                <span class="text-kaptio-black font-medium" id="preview-channel">Direct Sales</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-kaptio-yellow-400 bg-opacity-20 rounded-lg p-4 mt-4">
+                        <div class="flex items-start gap-3">
+                            <span class="text-2xl">⚠️</span>
+                            <div class="text-sm text-kaptio-black">
+                                <strong>Important:</strong> Deployment will create 85 new records. Existing records will not be modified. Process may take 30-60 seconds.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 4: Deploying -->
+                <div id="wizard-step-4" class="wizard-step" style="display: none;">
+                    <h4 class="text-xl font-bold text-kaptio-primary-800 mb-4">Step 4: Deploying Package</h4>
+                    
+                    <div class="text-center py-8">
+                        <div class="mb-6">
+                            <div class="inline-block">
+                                <svg class="w-20 h-20 text-kaptio-primary-400 animate-spin" fill="none" viewBox="0 0 24 24">
+                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                </svg>
+                            </div>
+                        </div>
+                        
+                        <div class="text-2xl font-bold text-kaptio-primary-800 mb-2" id="deploy-progress">0%</div>
+                        <div class="text-sm text-kaptio-grey-300 mb-8" id="deploy-status">Preparing deployment...</div>
+                        
+                        <div class="max-w-md mx-auto bg-kaptio-primary-50 rounded-lg p-4 text-left">
+                            <div class="text-xs space-y-2 text-kaptio-black" id="deploy-log">
+                                <div>✓ Validated bundle structure</div>
+                                <div>✓ Created ID mapping table</div>
+                                <div class="opacity-50">⏳ Inserting Locations...</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-kaptio-yellow-400 bg-opacity-20 rounded-lg p-4 text-center">
+                        <div class="text-sm text-kaptio-black">
+                            ⏱️ Please wait... Do not close this window.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 5: Success -->
+                <div id="wizard-step-5" class="wizard-step" style="display: none;">
+                    <div class="bg-kaptio-yellow-400 bg-opacity-20 rounded-lg p-3 mb-6 text-center">
+                        <div class="text-sm text-kaptio-black">
+                            <strong>🎭 Prototype Simulation Complete</strong> - No records were actually created. This demonstrates the deployment wizard experience.
+                        </div>
+                    </div>
+                    
+                    <div class="text-center py-8">
+                        <div class="mb-6">
+                            <svg class="w-24 h-24 mx-auto text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <h4 class="text-3xl font-bold text-green-800 mb-2">Deployment Successful!</h4>
+                        <p class="text-kaptio-grey-300 mb-8">Japan Discovery - Land Only would be available in your org</p>
+                        
+                        <div class="bg-kaptio-primary-50 rounded-lg p-6 mb-6">
+                            <h5 class="font-semibold text-kaptio-primary-800 mb-4">Deployment Summary:</h5>
+                            <div class="grid grid-cols-2 gap-4 text-sm">
+                                <div class="text-center">
+                                    <div class="text-3xl font-bold text-kaptio-primary-600">85</div>
+                                    <div class="text-xs text-kaptio-grey-300">Records Created</div>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-3xl font-bold text-kaptio-primary-600">16</div>
+                                    <div class="text-xs text-kaptio-grey-300">Object Types</div>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-3xl font-bold text-green-600">2</div>
+                                    <div class="text-xs text-kaptio-grey-300">Locations Reused</div>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-3xl font-bold text-kaptio-primary-400">42s</div>
+                                    <div class="text-xs text-kaptio-grey-300">Duration</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="space-y-3">
+                            <button class="btn btn-cta w-full" onclick="openInSalesforce()">
+                                🔗 View Package in Salesforce
+                            </button>
+                            <button class="btn btn-secondary w-full" onclick="downloadIdMapping()">
+                                📥 Download ID Mapping File
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="bg-kaptio-primary-50 rounded-lg p-4">
+                        <h5 class="font-semibold text-kaptio-primary-800 mb-2 text-sm">What's Next?</h5>
+                        <ul class="text-xs text-kaptio-grey-300 space-y-1">
+                            <li>• Review package configuration in Salesforce</li>
+                            <li>• Customize pricing for your market</li>
+                            <li>• Add your brand imagery</li>
+                            <li>• Configure online booking settings</li>
+                            <li>• Test booking flow</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="modal-footer">
+                <button onclick="previousWizardStep()" id="btn-previous" class="btn btn-secondary" style="display: none;">
+                    ← Previous
+                </button>
+                <div class="flex-1"></div>
+                <button onclick="closeDeploymentModal()" id="btn-cancel" class="btn btn-secondary">
+                    Cancel
+                </button>
+                <button onclick="nextWizardStep()" id="btn-next" class="btn btn-primary" disabled>
+                    Next →
+                </button>
+                <button onclick="startDeployment()" id="btn-deploy" class="btn btn-cta" style="display: none;">
+                    🚀 Deploy Package
+                </button>
+                <button onclick="closeDeploymentModal()" id="btn-close" class="btn btn-cta" style="display: none;">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+
     <script>
         // Toggle tree node expand/collapse
         function toggleNode(element) {
@@ -2888,9 +3440,244 @@
                 });
         }
 
-        // Deploy package (future functionality)
+        // Wizard State
+        let currentWizardStep = 1;
+        let isConnected = false;
+        let currentBundleName = 'japan-land-only';
+
+        // Deploy package - open modal
         function deployPackage(bundleName) {
-            alert(`📦 Deployment Wizard Coming Soon!\n\nYou selected: ${bundleName}\n\nThe deployment wizard will guide you through:\n1. Uploading this bundle\n2. Mapping org-specific settings\n3. Previewing what will be created\n4. Deploying to your Salesforce org\n\nFor now, you can download the bundle JSON and review its structure.`);
+            currentBundleName = bundleName;
+            currentWizardStep = 1;
+            isConnected = false;
+            
+            // Set package name in modal
+            document.getElementById('modalPackageName').textContent = getBundleDisplayName(bundleName);
+            
+            // Reset modal to step 1
+            showWizardStep(1);
+            
+            // Open modal
+            document.getElementById('deploymentModal').classList.add('active');
+        }
+
+        function getBundleDisplayName(bundleName) {
+            const names = {
+                'japan-land-only': 'Japan Discovery - Land Only',
+                'japan-air-land': 'Japan Discovery - Air & Land',
+                'korea-japan-combo': 'South Korea & Japan - Combo'
+            };
+            return names[bundleName] || bundleName;
+        }
+
+        function closeDeploymentModal() {
+            document.getElementById('deploymentModal').classList.remove('active');
+            currentWizardStep = 1;
+            isConnected = false;
+            
+            // Reset connection UI
+            document.getElementById('not-connected').style.display = 'block';
+            document.getElementById('connected').style.display = 'none';
+        }
+
+        // Simulate OAuth Connection
+        function simulateOAuthConnection() {
+            // Show loading state
+            const btn = event.target;
+            btn.disabled = true;
+            btn.innerHTML = '🔄 Connecting...';
+            
+            setTimeout(() => {
+                // Simulate successful connection
+                document.getElementById('not-connected').style.display = 'none';
+                document.getElementById('connected').style.display = 'block';
+                isConnected = true;
+                
+                // Enable next button
+                document.getElementById('btn-next').disabled = false;
+            }, 1500);
+        }
+
+        function simulateDisconnect() {
+            document.getElementById('not-connected').style.display = 'block';
+            document.getElementById('connected').style.display = 'none';
+            isConnected = false;
+            document.getElementById('btn-next').disabled = true;
+        }
+
+        // Wizard Navigation
+        function showWizardStep(step) {
+            // Hide all steps
+            for (let i = 1; i <= 5; i++) {
+                const stepEl = document.getElementById(`wizard-step-${i}`);
+                if (stepEl) stepEl.style.display = 'none';
+            }
+            
+            // Show current step
+            const currentStepEl = document.getElementById(`wizard-step-${step}`);
+            if (currentStepEl) currentStepEl.style.display = 'block';
+            
+            // Update progress indicators
+            updateProgressIndicators(step);
+            
+            // Update buttons
+            updateWizardButtons(step);
+            
+            currentWizardStep = step;
+        }
+
+        function updateProgressIndicators(step) {
+            for (let i = 1; i <= 4; i++) {
+                const indicator = document.getElementById(`step-${i}-indicator`);
+                const line = document.getElementById(`line-${i}`);
+                
+                if (i < step) {
+                    indicator.classList.add('completed');
+                    indicator.classList.remove('active');
+                    if (line) line.classList.add('completed');
+                } else if (i === step) {
+                    indicator.classList.add('active');
+                    indicator.classList.remove('completed');
+                } else {
+                    indicator.classList.remove('active', 'completed');
+                    if (line) line.classList.remove('completed');
+                }
+            }
+        }
+
+        function updateWizardButtons(step) {
+            const btnPrevious = document.getElementById('btn-previous');
+            const btnNext = document.getElementById('btn-next');
+            const btnCancel = document.getElementById('btn-cancel');
+            const btnDeploy = document.getElementById('btn-deploy');
+            const btnClose = document.getElementById('btn-close');
+            
+            // Reset all
+            btnPrevious.style.display = 'none';
+            btnNext.style.display = 'none';
+            btnDeploy.style.display = 'none';
+            btnClose.style.display = 'none';
+            btnCancel.style.display = 'inline-block';
+            
+            if (step === 1) {
+                btnNext.style.display = 'inline-block';
+                btnNext.disabled = !isConnected;
+            } else if (step === 2) {
+                btnPrevious.style.display = 'inline-block';
+                btnNext.style.display = 'inline-block';
+                btnNext.disabled = false;
+            } else if (step === 3) {
+                btnPrevious.style.display = 'inline-block';
+                btnDeploy.style.display = 'inline-block';
+            } else if (step === 4) {
+                btnCancel.style.display = 'none';
+            } else if (step === 5) {
+                btnCancel.style.display = 'none';
+                btnClose.style.display = 'inline-block';
+            }
+        }
+
+        function nextWizardStep() {
+            if (currentWizardStep === 2) {
+                // Update preview with current selections
+                const ownerSelect = document.getElementById('owner-select');
+                const currencySelect = document.getElementById('currency-select');
+                const channelSelect = document.getElementById('channel-select');
+                
+                document.getElementById('preview-owner').textContent = ownerSelect.options[ownerSelect.selectedIndex].text.split(' (')[0];
+                document.getElementById('preview-currency').textContent = currencySelect.options[currencySelect.selectedIndex].text;
+                document.getElementById('preview-channel').textContent = channelSelect.options[channelSelect.selectedIndex].text;
+            }
+            
+            showWizardStep(currentWizardStep + 1);
+        }
+
+        function previousWizardStep() {
+            showWizardStep(currentWizardStep - 1);
+        }
+
+        function startDeployment() {
+            showWizardStep(4);
+            simulateDeployment();
+        }
+
+        function simulateDeployment() {
+            const steps = [
+                { progress: 10, status: 'Inserting 3 Locations...', log: '⏳ Inserting Locations...' },
+                { progress: 20, status: 'Locations created', log: '✓ Inserted 3 Locations' },
+                { progress: 30, status: 'Inserting Payment Schedule...', log: '⏳ Inserting PaymentScheduleConfiguration...' },
+                { progress: 40, status: 'Payment schedule created', log: '✓ Inserted 1 PaymentScheduleConfiguration' },
+                { progress: 45, status: 'Creating payment rules...', log: '✓ Inserted 3 PaymentScheduleRules' },
+                { progress: 50, status: 'Inserting Cancellation Policy...', log: '⏳ Inserting CancellationConfiguration...' },
+                { progress: 60, status: 'Cancellation policy created', log: '✓ Inserted 1 CancellationConfiguration\n✓ Inserted 4 CancellationRules' },
+                { progress: 70, status: 'Creating Package record...', log: '⏳ Inserting Package...' },
+                { progress: 75, status: 'Package created!', log: '✓ Inserted 1 Package (Id: a29XX000000NEWIDXX)' },
+                { progress: 80, status: 'Inserting 5 Components...', log: '⏳ Inserting Components...' },
+                { progress: 85, status: 'Components created', log: '✓ Inserted 5 Components' },
+                { progress: 90, status: 'Inserting Component Options...', log: '✓ Inserted 18 ComponentOptions' },
+                { progress: 95, status: 'Creating Package Days...', log: '✓ Inserted 14 PackageDays\n✓ Inserted 4 PackageDepartures' },
+                { progress: 100, status: 'Finalizing deployment...', log: '✓ Inserted remaining 45 records\n✓ Deployment complete!' }
+            ];
+
+            let stepIndex = 0;
+            const deployLog = document.getElementById('deploy-log');
+            
+            function runStep() {
+                if (stepIndex >= steps.length) {
+                    setTimeout(() => showWizardStep(5), 500);
+                    return;
+                }
+                
+                const step = steps[stepIndex];
+                document.getElementById('deploy-progress').textContent = step.progress + '%';
+                document.getElementById('deploy-status').textContent = step.status;
+                
+                // Add to log
+                const logLines = step.log.split('\n');
+                deployLog.innerHTML = ''; // Clear previous
+                
+                // Show last 5 log entries
+                const allLogs = [];
+                for (let i = 0; i <= stepIndex; i++) {
+                    allLogs.push(...steps[i].log.split('\n'));
+                }
+                const recentLogs = allLogs.slice(-6);
+                
+                recentLogs.forEach((log, idx) => {
+                    const div = document.createElement('div');
+                    div.textContent = log;
+                    if (idx === recentLogs.length - 1 && log.startsWith('⏳')) {
+                        div.classList.add('font-semibold');
+                    }
+                    deployLog.appendChild(div);
+                });
+                
+                stepIndex++;
+                setTimeout(runStep, 600);
+            }
+            
+            runStep();
+        }
+
+        function openInSalesforce() {
+            alert('🔗 In production, this would open:\n\nhttps://[your-instance].salesforce.com/a29XX000000NEWIDXX\n\nShowing your newly deployed package record.');
+        }
+
+        function downloadIdMapping() {
+            const mapping = {
+                note: 'ID mapping from ktdev45 to your org',
+                mappings: {
+                    'a29J8000000IKF9IAO': 'a29XX000000NEWIDXX',
+                    'a0eJ8000002CCsRIAW': 'a0eXX000000NEWIDXX'
+                }
+            };
+            
+            const blob = new Blob([JSON.stringify(mapping, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'id-mapping.json';
+            a.click();
         }
 
         // Load bundle JSON when details are opened
@@ -2908,6 +3695,26 @@
                     });
                 }
             }
+
+            // Close modal when clicking overlay (not modal content)
+            const modalOverlay = document.getElementById('deploymentModal');
+            if (modalOverlay) {
+                modalOverlay.addEventListener('click', function(e) {
+                    if (e.target === modalOverlay) {
+                        closeDeploymentModal();
+                    }
+                });
+            }
+
+            // Close modal on Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    const modal = document.getElementById('deploymentModal');
+                    if (modal && modal.classList.contains('active')) {
+                        closeDeploymentModal();
+                    }
+                }
+            });
         });
     </script>
 
