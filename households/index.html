@@ -267,8 +267,8 @@
     <div class="max-w-7xl mx-auto px-6">
       <div class="grid md:grid-cols-4 gap-6">
         <div class="text-center">
-          <div class="text-4xl font-bold text-kaptio-primary-400 mb-2">1-Click</div>
-          <div class="text-sm text-kaptio-grey-300 font-light">Add all household members to booking</div>
+          <div class="text-4xl font-bold text-kaptio-primary-400 mb-2">10x</div>
+          <div class="text-sm text-kaptio-grey-300 font-light">Faster repeat bookings</div>
         </div>
         <div class="text-center">
           <div class="text-4xl font-bold text-kaptio-primary-400 mb-2">360°</div>
@@ -307,6 +307,42 @@
             <div class="bg-kaptio-yellow-200 border-l-4 border-kaptio-yellow-400 p-4 rounded">
               <p class="text-sm text-kaptio-black font-light"><strong class="font-medium">Key Distinction:</strong> This is a Kaptio-specific approach using a custom Account Record Type. It does NOT use Salesforce's pre-built Household objects from Nonprofit Cloud or Health Cloud.</p>
             </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- NPSP Comparison -->
+      <div class="bg-gradient-to-br from-kaptio-yellow-200 to-kaptio-yellow-100 rounded-lg p-8 mb-12 border-2 border-kaptio-yellow-400">
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0">
+            <svg class="w-12 h-12 text-kaptio-primary-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+            </svg>
+          </div>
+          <div class="flex-1">
+            <h3 class="text-xl font-bold text-kaptio-primary-800 mb-3">How Kaptio Differs from NPSP Households</h3>
+            <p class="text-base text-kaptio-black font-light leading-relaxed mb-4">If you're familiar with Salesforce's Nonprofit Success Pack (NPSP), note that <strong class="font-medium">Kaptio's approach is fundamentally different.</strong></p>
+            
+            <div class="grid md:grid-cols-2 gap-4">
+              <div class="bg-white/80 rounded-lg p-4">
+                <p class="text-sm font-bold text-red-700 mb-2">❌ NPSP (Not Used by Kaptio)</p>
+                <ul class="text-sm text-kaptio-grey-300 space-y-1">
+                  <li>• Auto-creates Household when Contact created</li>
+                  <li>• E.g., "Thomas Jefferson" → "Jefferson Household"</li>
+                  <li>• Built-in triggers and automation</li>
+                </ul>
+              </div>
+              <div class="bg-white/80 rounded-lg p-4">
+                <p class="text-sm font-bold text-green-700 mb-2">✓ Kaptio's Approach</p>
+                <ul class="text-sm text-kaptio-grey-300 space-y-1">
+                  <li>• Custom "Household" Account Record Type</li>
+                  <li>• Manual household creation (full control)</li>
+                  <li>• You define naming & grouping rules</li>
+                </ul>
+              </div>
+            </div>
+            
+            <p class="text-sm text-kaptio-black font-light mt-4"><strong class="font-medium">Need automatic creation?</strong> Custom automation (Apex/Flow) can be built to replicate NPSP-like behavior if required.</p>
           </div>
         </div>
       </div>
@@ -370,7 +406,7 @@
             </svg>
           </div>
           <h3 class="text-lg font-bold text-kaptio-primary-800 mb-2">Operational Efficiency</h3>
-          <p class="text-sm text-kaptio-grey-300 font-light leading-relaxed">Add all household members to a booking with a single click. Dramatically speeds up repeat bookings for the 32% of customers who travel together.</p>
+          <p class="text-sm text-kaptio-grey-300 font-light leading-relaxed">Household members are pre-loaded and ready to add to bookings instantly. Dramatically speeds up repeat bookings for the 32% of customers who travel together.</p>
         </div>
 
         <!-- Benefit 2 -->
@@ -478,7 +514,7 @@
                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
               </svg>
               <div>
-                <p class="text-sm font-medium text-green-900">1-click booking for repeat customers</p>
+                <p class="text-sm font-medium text-green-900">Instant access to all family members</p>
                 <p class="text-xs text-green-700">Dramatic efficiency gains</p>
               </div>
             </div>
@@ -616,8 +652,8 @@
 
         <div class="bg-kaptio-background rounded-lg p-6">
           <div class="w-12 h-12 bg-kaptio-yellow-400 rounded-full flex items-center justify-center text-kaptio-primary-800 font-bold text-xl mb-4">3</div>
-          <h3 class="text-lg font-bold text-kaptio-primary-800 mb-2">1-Click Passenger Selection</h3>
-          <p class="text-sm text-kaptio-grey-300 font-light">All household members appear. Select all with one click or pick specific travelers.</p>
+          <h3 class="text-lg font-bold text-kaptio-primary-800 mb-2">Pre-Loaded Passenger Selection</h3>
+          <p class="text-sm text-kaptio-grey-300 font-light">All household members appear instantly. Quickly select all or pick specific travelers.</p>
         </div>
       </div>
 
@@ -628,7 +664,7 @@
           </svg>
           <div class="flex-1">
             <h3 class="text-xl font-bold mb-2">The Magic of Repeat Bookings</h3>
-            <p class="text-base font-light leading-relaxed text-kaptio-primary-100">When the Smith family returns for their annual Italy trip, you open their household, start a new booking, and add all 4 family members with a single click. No searching, no multiple lookups, no data re-entry. What used to take 5-10 minutes now takes 30 seconds.</p>
+            <p class="text-base font-light leading-relaxed text-kaptio-primary-100">When the Smith family returns for their annual Italy trip, you open their household, start a new booking, and all 4 family members are instantly available to add. No searching, no multiple lookups, no data re-entry. What used to take 5-10 minutes now takes 30 seconds.</p>
           </div>
         </div>
       </div>
@@ -1129,6 +1165,113 @@ delete oldPersonAccounts;</code></pre>
         </div>
       </div>
 
+      <!-- Migration Responsibilities -->
+      <div class="bg-kaptio-white rounded-lg shadow-kaptio p-8 mb-8">
+        <h3 class="text-2xl font-bold text-kaptio-primary-800 mb-6">Migration Responsibilities</h3>
+        <p class="text-base text-kaptio-grey-300 font-light leading-relaxed mb-6">Understanding who does what is critical for successful migration:</p>
+        
+        <div class="overflow-x-auto">
+          <table class="w-full">
+            <thead class="border-b-2 border-kaptio-primary-400">
+              <tr>
+                <th class="text-left py-3 px-4 text-sm font-bold text-kaptio-primary-800">Area</th>
+                <th class="text-center py-3 px-4 text-sm font-bold text-kaptio-primary-800">Kaptio</th>
+                <th class="text-center py-3 px-4 text-sm font-bold text-kaptio-primary-800">Customer</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b border-kaptio-grey-100">
+                <td class="py-3 px-4 text-sm text-kaptio-grey-300">Migration guidance & templates</td>
+                <td class="py-3 px-4 text-center"><span class="inline-flex items-center px-2 py-1 rounded text-xs font-medium bg-kaptio-primary-100 text-kaptio-primary-600">Primary</span></td>
+                <td class="py-3 px-4 text-center">-</td>
+              </tr>
+              <tr class="border-b border-kaptio-grey-100">
+                <td class="py-3 px-4 text-sm text-kaptio-grey-300">Data cleansing & preparation</td>
+                <td class="py-3 px-4 text-center">-</td>
+                <td class="py-3 px-4 text-center"><span class="inline-flex items-center px-2 py-1 rounded text-xs font-medium bg-kaptio-primary-100 text-kaptio-primary-600">Primary</span></td>
+              </tr>
+              <tr class="border-b border-kaptio-grey-100">
+                <td class="py-3 px-4 text-sm text-kaptio-grey-300">Define household grouping logic</td>
+                <td class="py-3 px-4 text-center"><span class="inline-flex items-center px-2 py-1 rounded text-xs font-medium bg-kaptio-grey-100 text-kaptio-grey-300">Advisory</span></td>
+                <td class="py-3 px-4 text-center"><span class="inline-flex items-center px-2 py-1 rounded text-xs font-medium bg-kaptio-primary-100 text-kaptio-primary-600">Decision</span></td>
+              </tr>
+              <tr class="border-b border-kaptio-grey-100">
+                <td class="py-3 px-4 text-sm text-kaptio-grey-300">Migration script development</td>
+                <td class="py-3 px-4 text-center"><span class="inline-flex items-center px-2 py-1 rounded text-xs font-medium bg-kaptio-yellow-200 text-kaptio-black">Joint</span></td>
+                <td class="py-3 px-4 text-center"><span class="inline-flex items-center px-2 py-1 rounded text-xs font-medium bg-kaptio-yellow-200 text-kaptio-black">Joint</span></td>
+              </tr>
+              <tr class="border-b border-kaptio-grey-100">
+                <td class="py-3 px-4 text-sm text-kaptio-grey-300">UAT testing & validation</td>
+                <td class="py-3 px-4 text-center"><span class="inline-flex items-center px-2 py-1 rounded text-xs font-medium bg-kaptio-grey-100 text-kaptio-grey-300">Support</span></td>
+                <td class="py-3 px-4 text-center"><span class="inline-flex items-center px-2 py-1 rounded text-xs font-medium bg-kaptio-primary-100 text-kaptio-primary-600">Primary</span></td>
+              </tr>
+              <tr class="border-b border-kaptio-grey-100">
+                <td class="py-3 px-4 text-sm text-kaptio-grey-300">Staff training</td>
+                <td class="py-3 px-4 text-center"><span class="inline-flex items-center px-2 py-1 rounded text-xs font-medium bg-kaptio-grey-100 text-kaptio-grey-300">Materials</span></td>
+                <td class="py-3 px-4 text-center"><span class="inline-flex items-center px-2 py-1 rounded text-xs font-medium bg-kaptio-primary-100 text-kaptio-primary-600">Execution</span></td>
+              </tr>
+              <tr>
+                <td class="py-3 px-4 text-sm text-kaptio-grey-300">Production cutover</td>
+                <td class="py-3 px-4 text-center"><span class="inline-flex items-center px-2 py-1 rounded text-xs font-medium bg-kaptio-grey-100 text-kaptio-grey-300">Support</span></td>
+                <td class="py-3 px-4 text-center"><span class="inline-flex items-center px-2 py-1 rounded text-xs font-medium bg-kaptio-primary-100 text-kaptio-primary-600">Primary</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        
+        <div class="mt-6 bg-kaptio-primary-50 border-l-4 border-kaptio-primary-400 p-4 rounded">
+          <p class="text-sm text-kaptio-black font-light"><strong class="font-medium">Note:</strong> The specific responsibility split may vary based on your support agreement with Kaptio. Discuss this during your migration planning workshop.</p>
+        </div>
+      </div>
+
+      <!-- Environment Management -->
+      <div class="bg-gradient-to-br from-red-50 to-white rounded-lg p-8 border-2 border-red-300 mb-8">
+        <div class="flex items-start space-x-4">
+          <svg class="w-10 h-10 text-red-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+          </svg>
+          <div class="flex-1">
+            <h4 class="text-xl font-bold text-red-900 mb-3">Environment Management: Do NOT Migrate Production First</h4>
+            <p class="text-sm text-kaptio-grey-300 font-light leading-relaxed mb-4">Always prove the migration in lower environments before touching production data.</p>
+            
+            <div class="space-y-4">
+              <div class="flex items-start space-x-3">
+                <div class="w-8 h-8 bg-kaptio-primary-400 rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0">1</div>
+                <div>
+                  <p class="text-sm font-medium text-kaptio-primary-800">Develop & Test in Sandbox/UAT</p>
+                  <p class="text-xs text-kaptio-grey-300">Build migration scripts, run multiple test cycles, iterate on grouping logic</p>
+                </div>
+              </div>
+              <div class="flex items-start space-x-3">
+                <div class="w-8 h-8 bg-kaptio-primary-400 rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0">2</div>
+                <div>
+                  <p class="text-sm font-medium text-kaptio-primary-800">Validate Thoroughly</p>
+                  <p class="text-xs text-kaptio-grey-300">Compare record counts, verify relationships, test booking flows</p>
+                </div>
+              </div>
+              <div class="flex items-start space-x-3">
+                <div class="w-8 h-8 bg-kaptio-primary-400 rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0">3</div>
+                <div>
+                  <p class="text-sm font-medium text-kaptio-primary-800">Execute Production Migration</p>
+                  <p class="text-xs text-kaptio-grey-300">During planned downtime, execute tested scripts from sandbox</p>
+                </div>
+              </div>
+              <div class="flex items-start space-x-3">
+                <div class="w-8 h-8 bg-kaptio-primary-400 rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0">4</div>
+                <div>
+                  <p class="text-sm font-medium text-kaptio-primary-800">Refresh Dev Environments</p>
+                  <p class="text-xs text-kaptio-grey-300">After go-live, refresh sandboxes from Production to sync environments</p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="mt-4 bg-white rounded p-3">
+              <p class="text-xs text-red-700"><strong>Why NOT "Production First"?</strong> No opportunity to test scripts, cannot validate outcomes, rollback is complex, extended downtime if issues occur.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- Bottom Line -->
       <div class="bg-gradient-to-br from-kaptio-yellow-400 to-kaptio-yellow-300 rounded-lg p-8">
         <div class="flex items-start space-x-4">
@@ -1154,6 +1297,34 @@ delete oldPersonAccounts;</code></pre>
       </div>
 
       <div class="space-y-4">
+        <!-- FAQ 0 - NPSP Comparison -->
+        <div class="bg-kaptio-background rounded-lg shadow-button overflow-hidden">
+          <button class="faq-question w-full text-left px-6 py-5 flex items-center justify-between hover:bg-kaptio-primary-50 transition-colors" onclick="toggleFAQ(this)">
+            <span class="text-base font-bold text-kaptio-primary-800 pr-4">Does Kaptio automatically create Household Accounts like NPSP?</span>
+            <svg class="w-5 h-5 text-kaptio-primary-400 faq-icon flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </button>
+          <div class="faq-answer px-6">
+            <div class="pb-5 text-sm text-kaptio-grey-300 font-light leading-relaxed">
+              <p class="mb-3"><strong class="text-kaptio-primary-800">No.</strong> Unlike Salesforce's Nonprofit Success Pack (NPSP), Kaptio does <strong class="text-kaptio-primary-800">not</strong> automatically create Household Accounts when Contacts are created.</p>
+              <p class="mb-3">With NPSP, creating a Contact named "Thomas Jefferson" would automatically generate a "Jefferson Household" Account. Kaptio's Household model works differently:</p>
+              <ol class="list-decimal pl-5 space-y-2 mb-3">
+                <li>You create the Household Account first (manually or through your own automation)</li>
+                <li>Then you add Contacts to that Household by setting their AccountId</li>
+              </ol>
+              <p class="mb-3">This intentional design gives operators full control over:</p>
+              <ul class="list-disc pl-5 space-y-1">
+                <li>When households are created</li>
+                <li>What naming conventions are used</li>
+                <li>How individuals are grouped together</li>
+                <li>Edge cases like solo travelers or business bookings</li>
+              </ul>
+              <p class="mt-3"><strong class="text-kaptio-primary-800">Need automatic creation?</strong> You can build custom automation (Apex trigger or Flow) to replicate NPSP-like behavior. Contact your Kaptio implementation team for guidance.</p>
+            </div>
+          </div>
+        </div>
+
         <!-- FAQ 1 -->
         <div class="bg-kaptio-background rounded-lg shadow-button overflow-hidden">
           <button class="faq-question w-full text-left px-6 py-5 flex items-center justify-between hover:bg-kaptio-primary-50 transition-colors" onclick="toggleFAQ(this)">

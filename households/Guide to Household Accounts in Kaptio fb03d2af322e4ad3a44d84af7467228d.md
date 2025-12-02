@@ -17,6 +17,43 @@ The Household model is Kaptio's recommended approach for managing customer data 
 
 ---
 
+## How Kaptio Households Differ from NPSP
+
+If you're familiar with Salesforce's Nonprofit Success Pack (NPSP) Household model, it's important to understand that **Kaptio's approach is fundamentally different**.
+
+### NPSP Household Model (Not Used by Kaptio)
+
+NPSP provides native automation where:
+- Creating a Contact **automatically creates** a linked Household Account
+- E.g., creating "Thomas Jefferson" as a Contact auto-generates "Jefferson Household"
+- This is built into Salesforce's NPSP triggers and managed package
+- Household naming and membership is managed automatically
+
+### Kaptio's Household Model (Custom Record Type)
+
+Kaptio's approach is intentionally different:
+- Uses a **custom Account Record Type** called "Household"
+- **No automatic household creation** when Contacts are created
+- Users create a Household Account first, then add Contacts to it
+- This design gives operators **full control** over household definitions and naming conventions
+
+<aside>
+⚠️
+
+**Important:** If you require automatic household creation (like NPSP), this would need to be built as custom automation (Apex trigger or Flow). This is considered customization work, not native Kaptio functionality.
+
+</aside>
+
+### What DOES Happen Automatically in Kaptio
+
+Once a Household Account exists with linked Contacts:
+- Contacts appear automatically in the **Booking Wizard** for one-click passenger selection
+- Contact-level data is preserved and tracked individually
+- Booking history rolls up to the Household level
+- All Kaptio features (Passengers, Payments, Amendments) work natively with the Household structure
+
+---
+
 ## Household vs. Person Account Models
 
 ### Household Model (Recommended)
@@ -274,13 +311,79 @@ Determine what to migrate:
 - **Active + recent historical bookings** (for reporting continuity)
 - **All historical data** (most complex, consider data archiving instead)
 
+### Migration Responsibilities
+
+Understanding who does what is critical for successful migration:
+
+| Area | Kaptio | Customer |
+|------|--------|----------|
+| Migration guidance & templates | ✓ Primary | |
+| Data cleansing & preparation | | ✓ Primary |
+| Define household grouping logic | Advisory | ✓ Decision |
+| Migration script development | Joint | Joint |
+| UAT testing & validation | Support | ✓ Primary |
+| Staff training materials | ✓ Primary | |
+| Staff training execution | Support | ✓ Primary |
+| Production cutover | Support | ✓ Primary |
+
+<aside>
+📋
+
+**Note:** The specific responsibility split may vary based on your support agreement with Kaptio. Discuss this during your migration planning workshop.
+
+</aside>
+
+### Environment Management Strategy
+
+<aside>
+🚨
+
+**Critical:** Do NOT migrate directly in Production first. Always prove the migration in lower environments before touching production data.
+
+</aside>
+
+**Recommended Approach:**
+
+1. **Develop & Test in Sandbox/UAT**
+   - Build migration scripts in a sandbox environment
+   - Run multiple test migration cycles
+   - Iterate on household grouping logic
+   - Validate data transformations
+
+2. **Validate Thoroughly**
+   - Compare record counts (before vs. after)
+   - Verify all relationships are intact
+   - Test booking flows with migrated data
+   - Run custom validation reports
+
+3. **Execute Production Migration**
+   - Schedule during planned downtime window
+   - Ensure no active bookings during migration
+   - Execute tested scripts from sandbox
+   - Verify production data post-migration
+
+4. **Refresh Dev Environments**
+   - After production go-live, refresh sandboxes from Production
+   - This syncs dev environments with the new Household structure
+   - Ensures all environments use consistent data model
+
+**Why NOT "Production First"?**
+
+Some customers ask about migrating Production first and refreshing down to sandboxes. This approach introduces unnecessary risk:
+- No opportunity to test migration scripts on real data
+- Cannot validate outcomes before affecting live operations
+- Rollback is more complex if issues are discovered
+- Production downtime is extended if problems occur
+
 ### Go-Live Considerations
 
 **Timing:**
 
 - Plan for appropriate downtime window
-- Consider low-activity periods (e.g., early January)
+- Consider low-activity periods (e.g., early January, end of peak season)
 - Coordinate with all system integrations
+- **Typical timeline:** 2-4 months from kickoff to full adoption
+- **Production downtime window:** 1-2 days depending on data volume
 
 **Approach:**
 
@@ -294,6 +397,7 @@ Determine what to migrate:
 - Document rollback procedures
 - Maintain legacy system access temporarily
 - Clear success criteria for go-live
+- Keep backup of pre-migration data for at least 30 days
 
 ---
 
@@ -458,6 +562,23 @@ Determine what to migrate:
 ---
 
 ## Common Questions and Edge Cases
+
+### Does Kaptio automatically create Household Accounts like NPSP?
+
+**No.** Unlike Salesforce's Nonprofit Success Pack (NPSP), Kaptio does not automatically create Household Accounts when Contacts are created. 
+
+With NPSP, creating a Contact named "Thomas Jefferson" would automatically generate a "Jefferson Household" Account. Kaptio's Household model works differently:
+
+1. You create the Household Account first (manually or through automation)
+2. Then you add Contacts to that Household by setting their AccountId
+
+This intentional design gives operators full control over:
+- When households are created
+- What naming conventions are used
+- How individuals are grouped together
+- Edge cases like solo travelers or business bookings
+
+If you need automatic household creation, you can build custom automation (Apex trigger or Flow) to replicate NPSP-like behavior. Contact your Kaptio implementation team for guidance.
 
 ### How do we handle groups of unrelated travelers?
 
